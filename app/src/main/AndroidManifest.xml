@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TraitQuestionPage"></activity>
         <activity android:name=".PlayGame" />
         <activity android:name=".ReadMe" />
         <activity android:name=".MainActivity">

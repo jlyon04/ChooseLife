@@ -1,5 +1,6 @@
 package com.example.chooselife;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class class_Helper {
@@ -51,6 +52,34 @@ public class class_Helper {
                     new class_TraitAnswer("",          quick_add(t, t))),
             */
     };
+
+    public class_TraitQuestion get_trait_question(int stage)
+    {
+        Random rand = new Random();
+        int rare_num = rand.nextInt(105);
+        class_TraitQuestion[] questions_array = {};
+        ArrayList<class_TraitQuestion> local_array = new ArrayList<>();
+        if (stage == 1)
+            questions_array = stage1_questions;
+        /*
+        else if (stage == 2)
+            questions_array = stage2_questions;
+        else if (stage == 3)
+            questions_array = stage3_questions;
+         */
+        for (int i=0; i<questions_array.length; i++)
+        {
+            if (questions_array[i].getRarity() <= rare_num)
+                local_array.add(questions_array[i]);
+        }
+        if (local_array.size() < 1)
+        {
+            rare_num = rand.nextInt(questions_array.length);
+            return questions_array[rare_num];
+        }
+        rare_num = rand.nextInt(local_array.size());
+        return local_array.get(rare_num);
+    }
 
     public String get_ReadMe(String t_title)
     {

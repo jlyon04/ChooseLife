@@ -9,6 +9,11 @@ public class class_TraitAnswer {
         text = txt;
         trait_array = array;
     }
+    public class_TraitAnswer()
+    {
+        text = "";
+        trait_array = new class_Trait[7];
+    }
 
 
     public String getText(){return text;}

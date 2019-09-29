@@ -24,6 +24,12 @@ public class class_TraitQuestion {
         optc = oc;
         optd = od;
     }
+    public class_TraitQuestion()
+    {
+        rarity = 0;
+        question = "";
+        opta = new class_TraitAnswer();
+    }
 
     public String getQuestion() {return question;}
     public class_TraitAnswer getOptA() { return opta;}

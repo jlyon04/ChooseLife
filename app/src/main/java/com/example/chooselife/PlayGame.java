@@ -8,6 +8,8 @@ import android.os.Bundle;
 public class PlayGame extends AppCompatActivity {
     int stage_count = 1;
     class_Helper Helper = new class_Helper();
+    class_GameStats Stats = new class_GameStats();
+    class_TraitQuestion cur_trait_que = new class_TraitQuestion();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,9 @@ public class PlayGame extends AppCompatActivity {
     }
 
     public void play_game(){
-        Intent stage1 = new Intent(this, .class);
+        // Get Stage 1 Question
+        cur_trait_que = Helper.get_trait_question(1);
+        Intent stage1 = new Intent(this, TraitQuestionPage.class);
+        stage1.putExtra(cur_trait_que);
     }
 }
