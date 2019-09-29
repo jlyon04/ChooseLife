@@ -16,16 +16,14 @@ public class class_Trait {
 
     public class_Trait[] new_array()
     {
-        class_Trait[] return_array = new class_Trait[9];
+        class_Trait[] return_array = new class_Trait[7];
         return_array[0] = new class_Trait("intelligence", 0);
         return_array[1] = new class_Trait("luck", 0);
         return_array[2] = new class_Trait("courage", 0);
-        return_array[3] = new class_Trait("do_or_plan", 0);
-        return_array[4] = new class_Trait("camaraderie", 0);
-        return_array[5] = new class_Trait("moral_compass", 0);
-        return_array[6] = new class_Trait("bizarre", 0);
-        return_array[7] = new class_Trait("confrontation_response", 0);
-        return_array[8] = new class_Trait("athleticism", 0);
+        return_array[3] = new class_Trait("charisma", 0);
+        return_array[4] = new class_Trait("deviance", 0);
+        return_array[5] = new class_Trait("bizarre", 0);
+        return_array[6] = new class_Trait("athleticism", 0);
 
         return return_array;
     }
