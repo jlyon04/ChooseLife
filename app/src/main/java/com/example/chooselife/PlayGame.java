@@ -18,7 +18,11 @@ public class PlayGame extends AppCompatActivity {
         starting_readme.putExtra("Readme", Helper.get_ReadMe("start"));
         startActivity(starting_readme);
 
+        play_game();
 
+    }
 
+    public void play_game(){
+        Intent stage1 = new Intent(this, .class);
     }
 }
