@@ -45,6 +45,7 @@ public class TraitQuestionPage extends AppCompatActivity {
             Integer.toString(cur_trait_que.getOptA().getTrait(1).getValue()),
         };
         returnIntent.putExtra("result", temp);
+        finish();
     }
     public void bButton(View view){
     }

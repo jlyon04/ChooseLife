@@ -2,6 +2,7 @@ package com.example.chooselife;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +19,9 @@ public class ReadMe extends AppCompatActivity {
         readme_text.setText(text);
     }
 
-    public void continueButton(View view){finish();
+    public void continueButton(View view){
+        Intent returnIntent = new Intent();
+        setResult(2);
+        finish();
     }
 }
