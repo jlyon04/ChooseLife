@@ -1,5 +1,7 @@
 package com.example.chooselife;
 
+import android.os.Parcel;
+
 public class class_TraitQuestion {
     private int rarity;
     private String question;
@@ -29,6 +31,13 @@ public class class_TraitQuestion {
         rarity = 0;
         question = "";
         opta = new class_TraitAnswer();
+    }
+
+    // Parcel Part
+    public class_TraitQuestion(Parcel in){
+        String[] data= new String[5];
+        in.readStringArray(data);
+
     }
 
     public String getQuestion() {return question;}

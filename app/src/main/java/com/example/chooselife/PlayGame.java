@@ -2,14 +2,16 @@ package com.example.chooselife;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 public class PlayGame extends AppCompatActivity {
     int stage_count = 1;
     class_Helper Helper = new class_Helper();
-    class_GameStats Stats = new class_GameStats();
-    class_TraitQuestion cur_trait_que = new class_TraitQuestion();
+    class_Trait Trait = new class_Trait();
+    class_GameStats Stats = new class_GameStats(Trait.new_array());
+    static final int STAGE_1_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +28,41 @@ public class PlayGame extends AppCompatActivity {
 
     public void play_game(){
         // Get Stage 1 Question
-        cur_trait_que = Helper.get_trait_question(1);
         Intent stage1 = new Intent(this, TraitQuestionPage.class);
-        stage1.putExtra(cur_trait_que);
+        stage1.putExtra("stage", 1);
+        startActivityForResult(stage1, STAGE_1_REQUEST);
     }
+
+    @Override
+    protected  void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == 1){
+            if(resultCode == Activity.RESULT_OK){
+                String[] result = data.getStringArrayExtra("result");
+                set_traits(result);
+
+            }
+            if (requestCode == Activity.RESULT_CANCELED){
+            }
+        }
+    }
+
+    public void set_traits(String[] trait_array){
+        int trait_val_1 = Integer.parseInt(trait_array[1]);
+        int trait_val_2 = Integer.parseInt(trait_array[3]);
+        int i=0;
+        while (i < 4){
+            int h=0;
+            while(trait_array[i] != Stats.getTraitArray()[h].getTitle())
+                h++;
+            if (i==0)
+                Stats.addToTrait(h, trait_val_1);
+            else
+                Stats.addToTrait(h, trait_val_2);
+            i += 2;
+        }
+
+    }
+
+
 }
