@@ -50,10 +50,37 @@ public class TraitQuestionPage extends AppCompatActivity {
         finish();
     }
     public void bButton(View view){
+        String[] temp = {
+                cur_trait_que.getOptA().getTrait(0).getTitle(),
+                Integer.toString(cur_trait_que.getOptA().getTrait(0).getValue()),
+                cur_trait_que.getOptA().getTrait(1).getTitle(),
+                Integer.toString(cur_trait_que.getOptA().getTrait(1).getValue()),
+        };
+        returnIntent.putExtra("result", temp);
+        setResult(stage, returnIntent);
+        finish();
     }
     public void cButton(View view){
+        String[] temp = {
+                cur_trait_que.getOptA().getTrait(0).getTitle(),
+                Integer.toString(cur_trait_que.getOptA().getTrait(0).getValue()),
+                cur_trait_que.getOptA().getTrait(1).getTitle(),
+                Integer.toString(cur_trait_que.getOptA().getTrait(1).getValue()),
+        };
+        returnIntent.putExtra("result", temp);
+        setResult(stage, returnIntent);
+        finish();
     }
     public void dButton(View view){
+        String[] temp = {
+                cur_trait_que.getOptA().getTrait(0).getTitle(),
+                Integer.toString(cur_trait_que.getOptA().getTrait(0).getValue()),
+                cur_trait_que.getOptA().getTrait(1).getTitle(),
+                Integer.toString(cur_trait_que.getOptA().getTrait(1).getValue()),
+        };
+        returnIntent.putExtra("result", temp);
+        setResult(stage, returnIntent);
+        finish();
     }
 
 }
