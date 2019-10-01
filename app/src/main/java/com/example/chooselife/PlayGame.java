@@ -11,8 +11,7 @@ public class PlayGame extends AppCompatActivity {
     class_Helper Helper = new class_Helper();
     class_Trait Trait = new class_Trait();
     class_GameStats Stats = new class_GameStats(Trait.new_array());
-    static final int STAGE_1_REQUEST = 1;
-    static final int INTRO_README = 2;
+    static final int INTRO_README = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,26 +23,33 @@ public class PlayGame extends AppCompatActivity {
         startActivityForResult(starting_readme, INTRO_README);
     }
 
-    public void play_game(){
+    public void trait_question(int stage){
         // Get Stage 1 Question
-        Intent stage1 = new Intent(this, TraitQuestionPage.class);
-        stage1.putExtra("stage", 1);
-        startActivityForResult(stage1, STAGE_1_REQUEST);
+        Intent trait_que = new Intent(this, TraitQuestionPage.class);
+        trait_que.putExtra("stage", stage);
+        startActivityForResult(trait_que, stage);
     }
 
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        if (requestCode == 1){
-            if(resultCode == Activity.RESULT_OK){
-                String[] result = data.getStringArrayExtra("result");
-                set_traits(result);
-            }
-            if (requestCode == Activity.RESULT_CANCELED){
-            }
+        if (requestCode == 0){
+            trait_question(1);
         }
-        else if (requestCode == 2){
-                play_game();
+        else if (requestCode == 1){
+            String[] result = data.getStringArrayExtra("result");
+            set_traits(result);
+            trait_question(2);
+        }
+        else if (resultCode == 2){
+            String[] result = data.getStringArrayExtra("result");
+            set_traits(result);
+            trait_question(3);
+        }
+        else if (requestCode == 3){
+            String[] result = data.getStringArrayExtra("result");
+            set_traits(result);
+            // Stage 4 Question
         }
     }
 
@@ -53,7 +59,7 @@ public class PlayGame extends AppCompatActivity {
         int i=0;
         while (i < 4){
             int h=0;
-            while(trait_array[i] != Stats.getTraitArray()[h].getTitle())
+            while(!trait_array[i].equalsIgnoreCase(Stats.getTrait(h).getTitle()))
                 h++;
             if (i==0)
                 Stats.addToTrait(h, trait_val_1);

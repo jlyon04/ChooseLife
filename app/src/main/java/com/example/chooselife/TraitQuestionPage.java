@@ -14,13 +14,14 @@ public class TraitQuestionPage extends AppCompatActivity {
     Intent returnIntent = new Intent();
     class_TraitQuestion cur_trait_que = new class_TraitQuestion();
     class_Helper Helper = new class_Helper();
+    int stage = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trait_question_page);
 
-        int stage = getIntent().getIntExtra("stage", 0);
-        cur_trait_que = Helper.get_trait_question(1);
+        stage = getIntent().getIntExtra("stage", 0);
+        cur_trait_que = Helper.get_trait_question(stage);
         //Initialize Buttons and Question Prompt
         aButton = (Button)findViewById(R.id.buttonA);
         bButton = (Button)findViewById(R.id.buttonB);
@@ -45,6 +46,7 @@ public class TraitQuestionPage extends AppCompatActivity {
             Integer.toString(cur_trait_que.getOptA().getTrait(1).getValue()),
         };
         returnIntent.putExtra("result", temp);
+        setResult(stage, returnIntent);
         finish();
     }
     public void bButton(View view){

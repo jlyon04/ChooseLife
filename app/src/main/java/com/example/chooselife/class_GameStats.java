@@ -14,5 +14,5 @@ public class class_GameStats {
     public void addToTrait(int index, int value){
         trait_array[index].addValue(value);
     }
-
+    public class_Trait getTrait(int index){return trait_array[index];}
 }

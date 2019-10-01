@@ -21,7 +21,7 @@ public class ReadMe extends AppCompatActivity {
 
     public void continueButton(View view){
         Intent returnIntent = new Intent();
-        setResult(2);
+        setResult(0);
         finish();
     }
 }
