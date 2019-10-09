@@ -83,7 +83,13 @@ public class class_Helper {
                     new class_TraitAnswer("Skip and Smoke",          quick_add(tdev, tint, 1)))
     };
 
-
+    public class_TraitQuestion get_stage4_question() {
+        return new class_TraitQuestion("You have fallen for your first crush.",
+                new class_TraitAnswer("Chase the girl", "Girl"),
+                new class_TraitAnswer("Focus on School", "No Girl", quick_add(tint, tint)),
+                new class_TraitAnswer("Focus on Athletics", "No Girl", quick_add(tath, tath)),
+                new class_TraitAnswer("Focus on Social", "No Girl", quick_add(tchar, tchar)));
+    }
 
     public class_TraitQuestion get_trait_question(int stage)
     {

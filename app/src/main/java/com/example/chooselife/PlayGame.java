@@ -2,7 +2,6 @@ package com.example.chooselife;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,7 +24,7 @@ public class PlayGame extends AppCompatActivity {
 
     public void trait_question(int stage){
         // Get Stage 1 Question
-        Intent trait_que = new Intent(this, TraitQuestionPage.class);
+        Intent trait_que = new Intent(this, FourAnswerPage.class);
         trait_que.putExtra("stage", stage);
         startActivityForResult(trait_que, stage);
     }
@@ -50,6 +49,7 @@ public class PlayGame extends AppCompatActivity {
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
             // Stage 4 Question
+            trait_question(4);
         }
     }
 
