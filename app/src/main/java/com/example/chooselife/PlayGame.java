@@ -24,7 +24,7 @@ public class PlayGame extends AppCompatActivity {
         startActivityForResult(starting_readme, INTRO_README);
     }
 
-    public void trait_question(int stage){
+    public void start_question(int stage){
         // Get Stage 1 Question
         Intent trait_que = new Intent(this, FourAnswerPage.class);
         trait_que.putExtra("stage", stage);
@@ -36,26 +36,26 @@ public class PlayGame extends AppCompatActivity {
     {
         // ReadMe
         if (requestCode == 0){
-            trait_question(1);
+            start_question(1);
         }
         // Trait Q1 - Return
         else if (requestCode == 1){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
-            trait_question(2);
+            start_question(2);
         }
         // Trait Q2 - Return
         else if (resultCode == 2){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
-            trait_question(3);
+            start_question(3);
         }
         // Trait Q3 - Return
         else if (requestCode == 3){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
             // Stage 4 Question
-            trait_question(4);
+            start_question(4);
         }
         // Q4 - Return
         else if (requestCode == 4)
@@ -72,7 +72,7 @@ public class PlayGame extends AppCompatActivity {
                 set_traits(Arrays.copyOfRange(result, 1, result.length));
             }
             // Stage 5 Question
-            trait_question(5);
+            start_question(5);
         }
     }
 

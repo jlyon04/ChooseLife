@@ -91,6 +91,14 @@ public class class_Helper {
                 new class_TraitAnswer("Focus on Social", "No Girl", quick_add(tchar, tchar)));
     }
 
+    public class_TraitQuestion get_stage5_question() {
+        return new class_TraitQuestion("You Have Graduated High School.",
+                new class_TraitAnswer("College",        "college"),
+                new class_TraitAnswer("Trade School",   "trade", quick_add(tint, tint)),
+                new class_TraitAnswer("Get A  Job",     "job", quick_add(tath, tath)),
+                new class_TraitAnswer("Do Nothing",     "nothing", quick_add(tchar, tchar)));
+    }
+
     public class_TraitQuestion get_trait_question(int stage)
     {
         Random rand = new Random();

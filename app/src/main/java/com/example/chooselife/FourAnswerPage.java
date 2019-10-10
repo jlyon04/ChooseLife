@@ -25,6 +25,9 @@ public class FourAnswerPage extends AppCompatActivity {
             cur_que = Helper.get_trait_question(stage);
         else if (stage == 4)
             cur_que = Helper.get_stage4_question();
+        else if (stage == 5)
+            cur_que = Helper.get_stage5_question();
+
         //Initialize Buttons and Question Prompt
         aButton = (Button)findViewById(R.id.buttonA);
         bButton = (Button)findViewById(R.id.buttonB);
