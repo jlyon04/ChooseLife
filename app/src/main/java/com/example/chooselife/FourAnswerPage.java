@@ -41,36 +41,42 @@ public class FourAnswerPage extends AppCompatActivity {
 
     }
 
-       public String[] set_trait_return(class_TraitAnswer option)
+       public String[] set_return(class_TraitAnswer option)
         {
+            // Traits only
+            if (option.get_Life_choice() ==  "") {
+                String[] temp = {
+                        option.getTrait(0).getTitle(),
+                        Integer.toString(option.getTrait(0).getValue()),
+                        option.getTrait(1).getTitle(),
+                        Integer.toString(option.getTrait(1).getValue())
+                };
+                return temp;
+            }
+            // Life Choice Only
+            else if (option.getTraitArray().length == 0)
+            {
+                String[] temp = {
+                        option.get_Life_choice()
+                };
+                return temp;
+            }
+            //Choice + Trait
             String[] temp = {
-                option.getTrait(0).getTitle(),
-                Integer.toString(option.getTrait(0).getValue()),
-                option.getTrait(1).getTitle(),
-                Integer.toString(option.getTrait(1).getValue()),
+                    option.get_Life_choice(),
+                    option.getTrait(0).getTitle(),
+                    Integer.toString(option.getTrait(0).getValue()),
+                    option.getTrait(1).getTitle(),
+                    Integer.toString(option.getTrait(1).getValue())
             };
             return temp;
         }
 
     public void aButton(View view) {
-        //class_TraitAnswer opt = cur_que.getOptA();
-        if (stage < 4) {
-            String[] temp = {
-                   cur_que.getOptA().getTrait(0).getTitle(),
-                   Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
-                   cur_que.getOptA().getTrait(1).getTitle(),
-                   Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
-            };
-            returnIntent.putExtra("result", temp);
-            setResult(stage, returnIntent);
-        }
-        if (stage == 4)
-        {
-            String[] temp ={
-
-            };
-        }
-
+        class_TraitAnswer opt = cur_que.getOptA();
+        String[] temp = set_return(opt);
+        returnIntent.putExtra("result", temp);
+        setResult(stage, returnIntent);
         finish();
     }
     public void bButton(View view){

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.util.Arrays;
+
 public class PlayGame extends AppCompatActivity {
     int stage_count = 1;
     class_Helper Helper = new class_Helper();
@@ -32,36 +34,45 @@ public class PlayGame extends AppCompatActivity {
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        // ReadMe
         if (requestCode == 0){
             trait_question(1);
         }
+        // Trait Q1 - Return
         else if (requestCode == 1){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
             trait_question(2);
         }
+        // Trait Q2 - Return
         else if (resultCode == 2){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
             trait_question(3);
         }
+        // Trait Q3 - Return
         else if (requestCode == 3){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
             // Stage 4 Question
             trait_question(4);
         }
+        // Q4 - Return
         else if (requestCode == 4)
         {
             String[] result = data.getStringArrayExtra("result");
             if (result[0] == "Girl")
             {
-
+                Stats.set_girl(true);
             }
             else
             {
-
+                Stats.set_girl(false);
+                // Set traits minus the first array index
+                set_traits(Arrays.copyOfRange(result, 1, result.length));
             }
+            // Stage 5 Question
+            trait_question(5);
         }
     }
 

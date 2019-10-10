@@ -9,6 +9,7 @@ public class class_TraitAnswer {
     {
         text = txt;
         trait_array = array;
+        life_choice = "";
     }
     public class_TraitAnswer(String txt, String lfe_chce, class_Trait[] array)
     {
@@ -19,12 +20,13 @@ public class class_TraitAnswer {
     public class_TraitAnswer(String txt, String lfe_chce)
     {
         text = txt;
+        trait_array = new class_Trait[0];
         life_choice = lfe_chce;
     }
     public class_TraitAnswer()
     {
         text = "";
-        trait_array = new class_Trait[7];
+        trait_array = new class_Trait[0];
         life_choice = "";
     }
 
