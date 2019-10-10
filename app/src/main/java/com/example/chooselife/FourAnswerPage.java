@@ -41,24 +41,43 @@ public class FourAnswerPage extends AppCompatActivity {
 
     }
 
+       public String[] set_trait_return(class_TraitAnswer option)
+        {
+            String[] temp = {
+                option.getTrait(0).getTitle(),
+                Integer.toString(option.getTrait(0).getValue()),
+                option.getTrait(1).getTitle(),
+                Integer.toString(option.getTrait(1).getValue()),
+            };
+            return temp;
+        }
+
     public void aButton(View view) {
+        //class_TraitAnswer opt = cur_que.getOptA();
         if (stage < 4) {
             String[] temp = {
-                    cur_que.getOptA().getTrait(0).getTitle(),
-                    Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
-                    cur_que.getOptA().getTrait(1).getTitle(),
-                    Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
+                   cur_que.getOptA().getTrait(0).getTitle(),
+                   Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
+                   cur_que.getOptA().getTrait(1).getTitle(),
+                   Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
             };
             returnIntent.putExtra("result", temp);
             setResult(stage, returnIntent);
         }
+        if (stage == 4)
+        {
+            String[] temp ={
+
+            };
+        }
+
         finish();
     }
     public void bButton(View view){
         String[] temp = {
-                cur_que.getOptA().getTrait(0).getTitle(),
+                cur_que.getOptB().getTrait(0).getTitle(),
                 Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
-                cur_que.getOptA().getTrait(1).getTitle(),
+                cur_que.getOptB().getTrait(1).getTitle(),
                 Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
         };
         returnIntent.putExtra("result", temp);
@@ -67,9 +86,9 @@ public class FourAnswerPage extends AppCompatActivity {
     }
     public void cButton(View view){
         String[] temp = {
-                cur_que.getOptA().getTrait(0).getTitle(),
+                cur_que.getOptC().getTrait(0).getTitle(),
                 Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
-                cur_que.getOptA().getTrait(1).getTitle(),
+                cur_que.getOptC().getTrait(1).getTitle(),
                 Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
         };
         returnIntent.putExtra("result", temp);
@@ -78,9 +97,9 @@ public class FourAnswerPage extends AppCompatActivity {
     }
     public void dButton(View view){
         String[] temp = {
-                cur_que.getOptA().getTrait(0).getTitle(),
+                cur_que.getOptD().getTrait(0).getTitle(),
                 Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
-                cur_que.getOptA().getTrait(1).getTitle(),
+                cur_que.getOptD().getTrait(1).getTitle(),
                 Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
         };
         returnIntent.putExtra("result", temp);

@@ -51,6 +51,18 @@ public class PlayGame extends AppCompatActivity {
             // Stage 4 Question
             trait_question(4);
         }
+        else if (requestCode == 4)
+        {
+            String[] result = data.getStringArrayExtra("result");
+            if (result[0] == "Girl")
+            {
+
+            }
+            else
+            {
+
+            }
+        }
     }
 
     public void set_traits(@org.jetbrains.annotations.NotNull String[] trait_array){

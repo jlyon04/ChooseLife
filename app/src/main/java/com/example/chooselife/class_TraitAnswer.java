@@ -34,4 +34,6 @@ public class class_TraitAnswer {
     public class_Trait[] getTraitArray(){return trait_array;}
 
     public class_Trait getTrait(int i){return trait_array[i];}
+
+    public String get_Life_choice(){return life_choice;}
 }
