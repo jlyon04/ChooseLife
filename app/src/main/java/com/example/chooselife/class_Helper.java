@@ -99,6 +99,16 @@ public class class_Helper {
                 new class_TraitAnswer("Do Nothing",     "nothing", quick_add(tchar, tchar)));
     }
 
+    public class_TraitQuestion get_stage6_question(){
+        class_GameStats gs ;
+        gs.getClass();
+        String after_school= gs.get_after_school();
+        boolean girl = gs.get_girl();
+        if (girl){
+
+        }
+    }
+
     public class_TraitQuestion get_trait_question(int stage)
     {
         Random rand = new Random();

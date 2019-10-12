@@ -61,7 +61,7 @@ public class PlayGame extends AppCompatActivity {
         else if (requestCode == 4)
         {
             String[] result = data.getStringArrayExtra("result");
-            if (result[0] == "Girl")
+            if (result[0].equals("Girl"))
             {
                 Stats.set_girl(true);
             }
@@ -73,6 +73,16 @@ public class PlayGame extends AppCompatActivity {
             }
             // Stage 5 Question
             start_question(5);
+        }
+        else if (requestCode == 5)
+        {
+            String[] result = data.getStringArrayExtra("result");
+            Stats.set_after_school(result[0]);
+            start_question(6);
+        }
+        else if (requestCode == 6)
+        {
+
         }
     }
 

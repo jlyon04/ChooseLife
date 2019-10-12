@@ -20,5 +20,8 @@ public class class_GameStats {
     public void set_girl(boolean choice){girl = choice;}
     public void set_marriage(boolean choice){marriage = choice;}
     public void set_kids(int choice){kids = choice;}
+    public void set_after_school(String choice){after_school = choice;}
+    public String get_after_school(){return after_school;}
+    public boolean get_girl(){return girl;}
 
 }
