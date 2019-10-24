@@ -37,6 +37,13 @@ public class class_Helper {
         return new class_Trait[]{new class_Trait(trait1, rand_int1), new class_Trait(trait2, rand_int2)};
     }
 
+    class_Trait[] future_trait_array(String t1, int val1, String t2, int val2){
+        return new class_Trait[]{ new class_Trait(t1, val1), new class_Trait(t2, val2)};
+    }
+    class_Trait[] future_trait_array(String t1, int val1, String t2, int val2, String t3, int val3){
+        return new class_Trait[]{ new class_Trait(t1, val1), new class_Trait(t2, val2), new class_Trait(t3, val3)};
+    }
+
     public static class_ReadMe[] readme_array = {
             new class_ReadMe("start", "Welcome to life where your answers will determine your outcome. Answer the multiple choice questions to avoid death and earn glory. In between each question there is a small chance for an event, many times this will mean your " +
                     "death but in very rare circumstance it may launch a secret event. Good luck and good life.")
@@ -75,6 +82,7 @@ public class class_Helper {
                     new class_TraitAnswer("Push Dale and Reclaim your Shovel",          quick_add(tdev, tcour)),
                     new class_TraitAnswer("Lie, Tell Dale the Shovel is cursed",          quick_add(tdev, tint)))
     };
+
     public class_TraitQuestion[] stage3_questions = {
             new class_TraitQuestion("Middle School gym class, oh what a joy. Your Teacher lets you decide on what activity to participate in.",
                     new class_TraitAnswer("Basketball",          quick_add(tchar, tath)),
@@ -91,7 +99,39 @@ public class class_Helper {
                 new class_TraitAnswer("Focus on Social", "No Girl", quick_add(tchar, tchar)));
     }
 
-    public class_TraitQuestion get_stage5_question() {
+    public class_TraitQuestion get_stage5_question(String question_string, String taken_skill) {
+        ArrayList<String> skill_array = get_skill_array();
+        String opta, optb, optc, optd;
+        Random rand = new Random();
+        // -1??
+        if (taken_skill != null){
+            skill_array.remove(taken_skill);
+        }
+        //A
+        int index = rand.nextInt(skill_array.size());
+        opta = skill_array.get(index);
+        skill_array.remove(index);
+        //B
+        index = rand.nextInt(skill_array.size());
+        optb = skill_array.get(index);
+        skill_array.remove(index);
+        //C
+        index = rand.nextInt(skill_array.size());
+        optc = skill_array.get(index);
+        skill_array.remove(index);
+        //D
+        index = rand.nextInt(skill_array.size());
+        optd = skill_array.get(index);
+        skill_array.remove(index);
+
+        return new class_TraitQuestion(question_string,
+                new class_TraitAnswer(opta, opta),
+                new class_TraitAnswer(optb, optb),
+                new class_TraitAnswer(optc, optc),
+                new class_TraitAnswer(optd, optd));
+    }
+
+    public class_TraitQuestion get_stage6_question() {
         return new class_TraitQuestion("You Have Graduated High School.",
                 new class_TraitAnswer("College",        "college"),
                 new class_TraitAnswer("Trade School",   "trade", quick_add(tint, tint)),
@@ -99,15 +139,78 @@ public class class_Helper {
                 new class_TraitAnswer("Do Nothing",     "nothing", quick_add(tchar, tchar)));
     }
 
-    public class_TraitQuestion get_stage6_question(){
-        class_GameStats gs ;
-        gs.getClass();
-        String after_school= gs.get_after_school();
-        boolean girl = gs.get_girl();
-        if (girl){
-
-        }
+    public ArrayList<String> get_skill_array(){
+        ArrayList<String> skills = new ArrayList<String>() {
+            {
+                add("Art"); add("Combat"); add("Lock Pick"); add("Crafting"); add("First Aid");
+                add("Diplomacy"); add("Computer"); add("Sales"); add("Speed"); add("Strength");
+                add("Investigative"); add("Gambling");
+            }
+        };
+        return skills;
     }
+
+    public class_TraitQuestion get_stage7_question(String love, String taken_skill){
+        class_TraitQuestion ret_que = new class_TraitQuestion();
+        if (love.equals("true")){
+           return get_stage5_question("You have just married the love of your life, " +
+                   "you return from the honey moon and decide to start a hobby before your future is set", taken_skill);
+        }
+        ArrayList<String> skill_array = get_skill_array();
+        String optb, optc, optd;
+        Random rand = new Random();
+        if (taken_skill != null){
+            skill_array.remove(taken_skill);
+        }
+        //B
+        int index = rand.nextInt(skill_array.size());
+        optb = skill_array.get(index);
+        skill_array.remove(index);
+        //C
+        index = rand.nextInt(skill_array.size());
+        optc = skill_array.get(index);
+        skill_array.remove(index);
+        //D
+        index = rand.nextInt(skill_array.size());
+        optd = skill_array.get(index);
+        skill_array.remove(index);
+
+        return new class_TraitQuestion("You are preparing for your future but the dating life " +
+                "has not been so great, your friend would like to set you up with a blind date",
+                new class_TraitAnswer("Take your 2nd Chance at love", "love"),
+                new class_TraitAnswer("Deny Love focus on : "+optb, optb),
+                new class_TraitAnswer("Stay alone and start a new hobby : "+optc, optc),
+                new class_TraitAnswer("Seriously Last Chance but no try : "+optd, optd));
+    }
+
+    public String get_crime()
+    {
+        String[] crime_array = {"Rob a bank", "Rob a gas station", "Start Pyramid scheme", "Steal Rich Mans Identity"};
+        Random rand = new Random();
+        int index = rand.nextInt(crime_array.length);
+        return crime_array[index];
+    }
+
+    public class_TraitQuestion get_stage8_question(String love) {
+        if (love.equals("true")) {
+            return new class_TraitQuestion("You are married and ready to start your family, choose your assortment of family.",
+                    new class_TraitAnswer("0 Children", "0"),
+                    new class_TraitAnswer("1 Child", "1"),
+                    new class_TraitAnswer("2 Children", "2"),
+                    new class_TraitAnswer("Get a Dog", "0 and Dog"));
+        }
+        String crime = get_crime();
+        return new class_TraitQuestion("You are single and lonely, you want to fill this never ending whole in your life.",
+                new class_TraitAnswer("Adopt a Child", "1"),
+                new class_TraitAnswer("Adopt Twins", "2"),
+                new class_TraitAnswer("Get a Dog", "0 and Dog"),
+                new class_TraitAnswer(crime, crime));
+    }
+
+    public class_Future[] futureArray = {
+        //new class_Future(null, null, null, null, null, null, null, null, null)
+        new class_Future("Firefighter", future_trait_array(tcour, 4, tdev, -3), null, new String[]{"job, trade, college"}, null, null, null, null, null)
+    };
 
     public class_TraitQuestion get_trait_question(int stage)
     {

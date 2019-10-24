@@ -20,13 +20,23 @@ public class FourAnswerPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_four_question_page);
 
-        stage = getIntent().getIntExtra("stage", 0);
+        String[] info = getIntent().getStringArrayExtra("info");
+        stage = Integer.parseInt(info[0]);
         if (stage < 4)
             cur_que = Helper.get_trait_question(stage);
         else if (stage == 4)
             cur_que = Helper.get_stage4_question();
         else if (stage == 5)
-            cur_que = Helper.get_stage5_question();
+            cur_que = Helper.get_stage5_question("Choose a skill", null);
+        else if (stage == 6){
+            cur_que = Helper.get_stage6_question();
+        }
+        else if (stage == 7){
+            cur_que = Helper.get_stage7_question(info[1], info[2]);
+        }
+        else if (stage == 8){
+            cur_que = Helper.get_stage8_question(info[1]);
+        }
 
         //Initialize Buttons and Question Prompt
         aButton = (Button)findViewById(R.id.buttonA);
@@ -83,34 +93,22 @@ public class FourAnswerPage extends AppCompatActivity {
         finish();
     }
     public void bButton(View view){
-        String[] temp = {
-                cur_que.getOptB().getTrait(0).getTitle(),
-                Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
-                cur_que.getOptB().getTrait(1).getTitle(),
-                Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
-        };
+        class_TraitAnswer opt = cur_que.getOptB();
+        String[] temp = set_return(opt);
         returnIntent.putExtra("result", temp);
         setResult(stage, returnIntent);
         finish();
     }
     public void cButton(View view){
-        String[] temp = {
-                cur_que.getOptC().getTrait(0).getTitle(),
-                Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
-                cur_que.getOptC().getTrait(1).getTitle(),
-                Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
-        };
+        class_TraitAnswer opt = cur_que.getOptC();
+        String[] temp = set_return(opt);
         returnIntent.putExtra("result", temp);
         setResult(stage, returnIntent);
         finish();
     }
     public void dButton(View view){
-        String[] temp = {
-                cur_que.getOptD().getTrait(0).getTitle(),
-                Integer.toString(cur_que.getOptA().getTrait(0).getValue()),
-                cur_que.getOptD().getTrait(1).getTitle(),
-                Integer.toString(cur_que.getOptA().getTrait(1).getValue()),
-        };
+        class_TraitAnswer opt = cur_que.getOptD();
+        String[] temp = set_return(opt);
         returnIntent.putExtra("result", temp);
         setResult(stage, returnIntent);
         finish();

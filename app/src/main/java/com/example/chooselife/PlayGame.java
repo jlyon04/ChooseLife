@@ -25,9 +25,31 @@ public class PlayGame extends AppCompatActivity {
     }
 
     public void start_question(int stage){
-        // Get Stage 1 Question
         Intent trait_que = new Intent(this, FourAnswerPage.class);
-        trait_que.putExtra("stage", stage);
+        if (stage < 7)
+        {
+            String[] info_str = {
+                    Integer.toString(stage)
+            };
+            trait_que.putExtra("info", info_str);
+        }
+        else if (stage == 7){
+            String skill = Stats.getSkill_1();
+
+            String[] info_str = {
+                    Integer.toString(stage),
+                    Stats.get_love(),
+                    skill
+            };
+            trait_que.putExtra("info", info_str);
+        }
+        else if (stage == 8){
+            String[] info_str = {
+                    Integer.toString(stage),
+                    Stats.get_love()
+            };
+            trait_que.putExtra("info", info_str);
+        }
         startActivityForResult(trait_que, stage);
     }
 
@@ -63,26 +85,56 @@ public class PlayGame extends AppCompatActivity {
             String[] result = data.getStringArrayExtra("result");
             if (result[0].equals("Girl"))
             {
-                Stats.set_girl(true);
+                Stats.set_love("true");
             }
             else
             {
-                Stats.set_girl(false);
+                Stats.set_love("false");
                 // Set traits minus the first array index
                 set_traits(Arrays.copyOfRange(result, 1, result.length));
             }
             // Stage 5 Question
             start_question(5);
         }
+        //Q5 Return
         else if (requestCode == 5)
         {
             String[] result = data.getStringArrayExtra("result");
-            Stats.set_after_school(result[0]);
+            Stats.setSkill_1(result[0]);
             start_question(6);
         }
+        //Q6 Return
         else if (requestCode == 6)
         {
-
+            String[] result = data.getStringArrayExtra("result");
+            Stats.set_after_school(result[0]);
+            start_question(7);
+        }
+        //Q7 Return
+        else if (requestCode == 7)
+        {
+            String[] result = data.getStringArrayExtra("result");
+            if (result[0].equals("love"))
+                Stats.set_love("true");
+            else
+                Stats.setSkill_2(result[0]);
+            start_question(8);
+        }
+        //Q8 Return
+        else if (requestCode == 8){
+            String[] result = data.getStringArrayExtra("result");
+            if (result[0].equals("0"))
+               Stats.set_kids("0");
+            else if (result[0].equals("1"))
+                Stats.set_kids("1");
+            else if (result[0].equals("2"))
+                Stats.set_kids("2");
+            else if (result[0].equals("0 and Dog")){
+                Stats.set_kids("0");
+                Stats.setDog("true");
+            }
+            else
+                Stats.setCrime(result[0]);
         }
     }
 
@@ -104,4 +156,8 @@ public class PlayGame extends AppCompatActivity {
     }
 
 
+    public String setFuture()
+    {
+
+    }
 }
