@@ -37,9 +37,6 @@ public class FourAnswerPage extends AppCompatActivity {
         else if (stage == 8){
             cur_que = Helper.get_stage8_question(info[1]);
         }
-        else if (stage > 8){
-            cur_que = Helper.get_
-        }
 
         //Initialize Buttons and Question Prompt
         aButton = (Button)findViewById(R.id.buttonA);

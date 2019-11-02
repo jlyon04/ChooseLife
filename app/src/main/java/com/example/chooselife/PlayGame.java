@@ -58,9 +58,6 @@ public class PlayGame extends AppCompatActivity {
             // get_future_que()
             String[] info_str = {
                     Integer.toString(stage),
-                    Future.story[0].getQuestion(),
-                    Fut
-                    Integer.toString(0)
             };
             trait_que.putExtra("info", info_str);
         }
@@ -71,6 +68,7 @@ public class PlayGame extends AppCompatActivity {
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        //TODO: Move results outside of oif statements
         // ReadMe
         if (requestCode == 0){
             start_question(1, 0);
@@ -149,7 +147,7 @@ public class PlayGame extends AppCompatActivity {
             start_question(9,0);
         }
         else if (requestCode > 8){
-            
+
         }
     }
 
