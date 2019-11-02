@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class PlayGame extends AppCompatActivity {
     int stage_count = 1;
     class_Helper Helper = new class_Helper();
     class_Trait Trait = new class_Trait();
     class_GameStats Stats = new class_GameStats(Trait.new_array());
+    class_Future Future = new class_Future();
     static final int INTRO_README = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,7 @@ public class PlayGame extends AppCompatActivity {
         startActivityForResult(starting_readme, INTRO_README);
     }
 
-    public void start_question(int stage){
+    public void start_question(int stage, int story_num){
         Intent trait_que = new Intent(this, FourAnswerPage.class);
         if (stage < 7)
         {
@@ -50,6 +53,18 @@ public class PlayGame extends AppCompatActivity {
             };
             trait_que.putExtra("info", info_str);
         }
+        else if (stage == 9){
+            // Setup Future Question
+            // get_future_que()
+            String[] info_str = {
+                    Integer.toString(stage),
+                    Future.story[0].getQuestion(),
+                    Fut
+                    Integer.toString(0)
+            };
+            trait_que.putExtra("info", info_str);
+        }
+
         startActivityForResult(trait_que, stage);
     }
 
@@ -58,26 +73,25 @@ public class PlayGame extends AppCompatActivity {
     {
         // ReadMe
         if (requestCode == 0){
-            start_question(1);
+            start_question(1, 0);
         }
         // Trait Q1 - Return
         else if (requestCode == 1){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
-            start_question(2);
+            start_question(2,0);
         }
         // Trait Q2 - Return
         else if (resultCode == 2){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
-            start_question(3);
+            start_question(3,0);
         }
         // Trait Q3 - Return
         else if (requestCode == 3){
             String[] result = data.getStringArrayExtra("result");
             set_traits(result);
-            // Stage 4 Question
-            start_question(4);
+            start_question(4,0);
         }
         // Q4 - Return
         else if (requestCode == 4)
@@ -94,21 +108,21 @@ public class PlayGame extends AppCompatActivity {
                 set_traits(Arrays.copyOfRange(result, 1, result.length));
             }
             // Stage 5 Question
-            start_question(5);
+            start_question(5,0);
         }
         //Q5 Return
         else if (requestCode == 5)
         {
             String[] result = data.getStringArrayExtra("result");
             Stats.setSkill_1(result[0]);
-            start_question(6);
+            start_question(6,0);
         }
         //Q6 Return
         else if (requestCode == 6)
         {
             String[] result = data.getStringArrayExtra("result");
             Stats.set_after_school(result[0]);
-            start_question(7);
+            start_question(7,0);
         }
         //Q7 Return
         else if (requestCode == 7)
@@ -118,7 +132,7 @@ public class PlayGame extends AppCompatActivity {
                 Stats.set_love("true");
             else
                 Stats.setSkill_2(result[0]);
-            start_question(8);
+            start_question(8,0);
         }
         //Q8 Return
         else if (requestCode == 8){
@@ -129,12 +143,13 @@ public class PlayGame extends AppCompatActivity {
                 Stats.set_kids("1");
             else if (result[0].equals("2"))
                 Stats.set_kids("2");
-            else if (result[0].equals("0 and Dog")){
-                Stats.set_kids("0");
-                Stats.setDog("true");
-            }
             else
                 Stats.setCrime(result[0]);
+            setFuture();
+            start_question(9,0);
+        }
+        else if (requestCode > 8){
+            
         }
     }
 
@@ -156,8 +171,61 @@ public class PlayGame extends AppCompatActivity {
     }
 
 
-    public String setFuture()
+    public void setFuture()
     {
+        Random rand = new Random();
+        class_Future[] future_array = Helper.futureArray;
+        ArrayList<class_Future> local_array = new ArrayList<>();
+        //Loop through all Futures
+        future_loop: for (int i =0; i < future_array.length; i++){
+            // Love
+            if (future_array[i].love != null && !Stats.get_love().equals(future_array[i].love))
+                continue;
+            // Kids
+            if (future_array[i].kids != null && !Stats.getKids().equals(future_array[i].kids))
+                continue;
+            // Skill 1
+            if (future_array[i].skill_1 != null && !Stats.getSkill_1().equals(future_array[i].skill_1))
+                continue;
+            // Skill 2
+            if (future_array[i].skill_2 != null && !Stats.getSkill_2().equals(future_array[i].skill_2))
+                continue;
+            // Crime
+            if (future_array[i].crime != null && !Stats.getCrime().equals(future_array[i].crime))
+                continue;
+            // After School
+            for (int j=0; j<future_array[i].after_school.length; j++) {
+                if (future_array[i].after_school == null || Stats.get_after_school() == future_array[i].after_school[j])
+                    break;
+                else if (j == future_array[i].after_school.length - 1)
+                    continue;
+            }
 
+            // Trait Array
+            // Future Trait Loop
+            for (int k=0; k<future_array[i].trait_array.length; k++){
+                // Stats Trait Loop
+                for (int l=0; l<Stats.getTrait_array().length; l++){
+                    // Title Match
+                    if (future_array[i].trait_array[k].getTitle().equals(Stats.getTrait(l).getTitle())){
+                        // Value Match
+                        // Negative Value
+                        if (future_array[i].trait_array[k].getValue() < 0){
+                            if (!(Stats.getTrait(l).getValue() <= future_array[i].trait_array[k].getValue()))
+                                continue future_loop;
+                        }
+                        // Positive Value
+                        else{
+                            if (!(Stats.getTrait(l).getValue() >= future_array[i].trait_array[k].getValue()))
+                                continue future_loop;
+                        }
+                    }
+                }
+            }
+            // Fill Local Array
+            local_array.add(future_array[i]);
+        }
+        int index = rand.nextInt(local_array.size());
+        Future = local_array.get(index);
     }
 }

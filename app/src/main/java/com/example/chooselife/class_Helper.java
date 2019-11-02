@@ -192,24 +192,24 @@ public class class_Helper {
     }
 
     public class_TraitQuestion get_stage8_question(String love) {
+        String crime = get_crime();
         if (love.equals("true")) {
             return new class_TraitQuestion("You are married and ready to start your family, choose your assortment of family.",
                     new class_TraitAnswer("0 Children", "0"),
                     new class_TraitAnswer("1 Child", "1"),
                     new class_TraitAnswer("2 Children", "2"),
-                    new class_TraitAnswer("Get a Dog", "0 and Dog"));
+                    new class_TraitAnswer("No kids, Bonnie and Clyde", crime));
         }
-        String crime = get_crime();
-        return new class_TraitQuestion("You are single and lonely, you want to fill this never ending whole in your life.",
+        return new class_TraitQuestion("You are single and lonely, you want to fill this bottomless whole in your life.",
                 new class_TraitAnswer("Adopt a Child", "1"),
                 new class_TraitAnswer("Adopt Twins", "2"),
-                new class_TraitAnswer("Get a Dog", "0 and Dog"),
+                new class_TraitAnswer("Live alone", "0"),
                 new class_TraitAnswer(crime, crime));
     }
 
     public class_Future[] futureArray = {
         //new class_Future(null, null, null, null, null, null, null, null, null)
-        new class_Future("Firefighter", future_trait_array(tcour, 4, tdev, -3), null, new String[]{"job, trade, college"}, null, null, null, null, null)
+        new class_Future(0, "Firefighter", future_trait_array(tcour, 4, tdev, -3), null, new String[]{"job, trade, college"}, null, null, null,  null, new class_TraitQuestion[]{})
     };
 
     public class_TraitQuestion get_trait_question(int stage)

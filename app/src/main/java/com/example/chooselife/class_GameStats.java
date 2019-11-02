@@ -7,7 +7,6 @@ public class class_GameStats {
     private String kids;
     private  String skill_1;
     private  String skill_2;
-    private String dog;
     private String crime;
 
     public class_GameStats(class_Trait[] t_trait_array){
@@ -23,7 +22,6 @@ public class class_GameStats {
     public void setSkill_1(String choice){skill_1 = choice;}
     public void setSkill_2(String choice){skill_2 = choice;}
     public void setCrime(String choice){crime = choice;}
-    public void setDog(String choice){dog = choice;}
 
 
 
@@ -33,7 +31,6 @@ public class class_GameStats {
     public String getSkill_1(){return skill_1;}
     public String getSkill_2(){return skill_2;}
     public String getCrime(){return crime;}
-    public String getDog(){return dog;}
     public String getKids(){return kids;}
     public class_Trait[] getTrait_array(){return trait_array;}
     public class_Trait getTrait(int index){return trait_array[index];}
