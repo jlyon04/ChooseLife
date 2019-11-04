@@ -207,6 +207,27 @@ public class class_Helper {
                 new class_TraitAnswer(crime, crime));
     }
 
+    public class_FutureQuestion get_FutureQuestion(int storynum, String Future)
+    {
+        class_Future curFuture = new class_Future();
+        class_FutureQuestion fut_que = new class_FutureQuestion();
+
+        for (int i =0; i < futureArray.length; i++)
+        {
+            if (Future.equals(futureArray[i].title))
+                curFuture = futureArray[i];
+        }
+        for (int i = 0; i < curFuture.story.length; i++)
+        {
+            if (curFuture.story[i].getStorynum() == storynum)
+            {
+                if (curFuture.story[i].getQual_skill())
+
+            }
+        }
+        return fut_que;
+    }
+
     public class_Future[] futureArray = {
         //new class_Future(null, null, null, null, null, null, null, null, null)
         new class_Future(0, "Firefighter", future_trait_array(tcour, 4, tdev, -3), null, new String[]{"job, trade, college"}, null, null, null,  null, new class_TraitQuestion[]{})

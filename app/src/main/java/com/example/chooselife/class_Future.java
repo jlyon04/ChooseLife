@@ -12,7 +12,7 @@ public class class_Future {
     public String skill_1;
     public String skill_2;
     public String crime;
-    public class_TraitQuestion[] story;
+    public class_FutureQuestion[] story;
 
 
     public class_Future(){
@@ -30,7 +30,7 @@ public class class_Future {
 
 
     public class_Future(int rar, String titl, class_Trait[] ta, String vlove, String[] after, String kds, String sk1, String sk2,
-                  String crm, class_TraitQuestion[] stry){
+                  String crm, class_FutureQuestion[] stry){
         rare = rar;
         title = titl;
         trait_array = ta;

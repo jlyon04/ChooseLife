@@ -4,6 +4,7 @@ public class class_TraitAnswer {
     private String text;
     private String life_choice;
     private class_Trait[] trait_array;
+    private int storynum;
 
     public class_TraitAnswer(String txt, class_Trait[] array)
     {
@@ -22,6 +23,11 @@ public class class_TraitAnswer {
         text = txt;
         trait_array = new class_Trait[0];
         life_choice = lfe_chce;
+    }
+    public class_TraitAnswer(String txt, int stornum)
+    {
+        text = txt;
+        storynum = stornum;
     }
     public class_TraitAnswer()
     {

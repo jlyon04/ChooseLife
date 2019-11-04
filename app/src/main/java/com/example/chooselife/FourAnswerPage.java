@@ -13,6 +13,7 @@ public class FourAnswerPage extends AppCompatActivity {
     TextView questionText;
     Intent returnIntent = new Intent();
     class_TraitQuestion cur_que = new class_TraitQuestion();
+    class_FutureQuestion fut_que = new class_FutureQuestion();
     class_Helper Helper = new class_Helper();
     int stage = 0;
     @Override
@@ -36,6 +37,10 @@ public class FourAnswerPage extends AppCompatActivity {
         }
         else if (stage == 8){
             cur_que = Helper.get_stage8_question(info[1]);
+        }
+        else if (stage > 8)
+        {
+            fut_que = Helper.get_FutureQuestion(Integer.parseInt(info[1]), info[2]);
         }
 
         //Initialize Buttons and Question Prompt
@@ -83,6 +88,7 @@ public class FourAnswerPage extends AppCompatActivity {
                     Integer.toString(option.getTrait(1).getValue())
             };
             return temp;
+
         }
 
     public void aButton(View view) {
