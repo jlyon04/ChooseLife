@@ -93,10 +93,10 @@ public class class_Helper {
 
     public class_TraitQuestion get_stage4_question() {
         return new class_TraitQuestion("You have fallen for your first crush.",
-                new class_TraitAnswer("Chase the girl", "Girl"),
-                new class_TraitAnswer("Focus on School", "No Girl", quick_add(tint, tint)),
-                new class_TraitAnswer("Focus on Athletics", "No Girl", quick_add(tath, tath)),
-                new class_TraitAnswer("Focus on Social", "No Girl", quick_add(tchar, tchar)));
+                new class_TraitAnswer("Chase the girl", "Love"),
+                new class_TraitAnswer("Focus on School", "No Love", quick_add(tint, tint)),
+                new class_TraitAnswer("Focus on Athletics", "No Love", quick_add(tath, tath)),
+                new class_TraitAnswer("Focus on Social", "No Love", quick_add(tchar, tchar)));
     }
 
     public class_TraitQuestion get_stage5_question(String question_string, String taken_skill) {
@@ -139,17 +139,6 @@ public class class_Helper {
                 new class_TraitAnswer("Do Nothing",     "nothing", quick_add(tchar, tchar)));
     }
 
-    public ArrayList<String> get_skill_array(){
-        ArrayList<String> skills = new ArrayList<String>() {
-            {
-                add("Art"); add("Combat"); add("Lock Pick"); add("Crafting"); add("First Aid");
-                add("Diplomacy"); add("Computer"); add("Sales"); add("Speed"); add("Strength");
-                add("Investigative"); add("Gambling");
-            }
-        };
-        return skills;
-    }
-
     public class_TraitQuestion get_stage7_question(String love, String taken_skill){
         class_TraitQuestion ret_que = new class_TraitQuestion();
         if (love.equals("true")){
@@ -177,18 +166,10 @@ public class class_Helper {
 
         return new class_TraitQuestion("You are preparing for your future but the dating life " +
                 "has not been so great, your friend would like to set you up with a blind date",
-                new class_TraitAnswer("Take your 2nd Chance at love", "love"),
+                new class_TraitAnswer("Take your 2nd Chance at love", "Love"),
                 new class_TraitAnswer("Deny Love focus on : "+optb, optb),
                 new class_TraitAnswer("Stay alone and start a new hobby : "+optc, optc),
                 new class_TraitAnswer("Seriously Last Chance but no try : "+optd, optd));
-    }
-
-    public String get_crime()
-    {
-        String[] crime_array = {"Rob a bank", "Rob a gas station", "Start Pyramid scheme", "Steal Rich Mans Identity"};
-        Random rand = new Random();
-        int index = rand.nextInt(crime_array.length);
-        return crime_array[index];
     }
 
     public class_TraitQuestion get_stage8_question(String love) {
@@ -205,6 +186,26 @@ public class class_Helper {
                 new class_TraitAnswer("Adopt Twins", "2"),
                 new class_TraitAnswer("Live alone", "0"),
                 new class_TraitAnswer(crime, crime));
+    }
+
+
+    public ArrayList<String> get_skill_array(){
+        ArrayList<String> skills = new ArrayList<String>() {
+            {
+                add("Art"); add("Combat"); add("Lock Pick"); add("Crafting"); add("First Aid");
+                add("Diplomacy"); add("Computer"); add("Sales"); add("Speed"); add("Strength");
+                add("Investigative"); add("Gambling");
+            }
+        };
+        return skills;
+    }
+
+    public String get_crime()
+    {
+        String[] crime_array = {"Rob a bank", "Rob a gas station", "Start Pyramid scheme", "Steal Rich Mans Identity"};
+        Random rand = new Random();
+        int index = rand.nextInt(crime_array.length);
+        return crime_array[index];
     }
 
     public class_FutureQuestion get_FutureQuestion(int storynum, String Future)

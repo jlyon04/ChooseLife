@@ -16,6 +16,7 @@ public class PlayGame extends AppCompatActivity {
     class_GameStats Stats = new class_GameStats(Trait.new_array());
     class_Future Future = new class_Future();
     class_TraitQuestion cur_que = new class_TraitQuestion();
+    class_FutureQuestion fut_que = new class_FutureQuestion();
     static final int INTRO_README = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,60 +33,45 @@ public class PlayGame extends AppCompatActivity {
     {
         Intent trait_que = new Intent(this, FourAnswerPage.class);
         if (stage < 4)
-        {
             cur_que = Helper.get_trait_question(stage);
-            String[] info_str = {
-                    cur_que.getQuestion(),
-                    cur_que.getOptA().getText(),
-                    cur_que.getOptB().getText(),
-                    cur_que.getOptC().getText(),
-                    cur_que.getOptD().getText(),
+        else if (stage == 4)
+            cur_que = Helper.get_stage4_question();
+        else if (stage == 5)
+            cur_que = Helper.get_stage5_question("choose a skill", null);
+        else if (stage == 6)
+            cur_que = Helper.get_stage6_question();
+        else if (stage == 7)
+            cur_que = Helper.get_stage7_question(Stats.get_love(), Stats.getSkill_1());
+        else if (stage == 8)
+            cur_que = Helper.get_stage8_question(Stats.get_love());
+        // TODO
+        else if (stage == 9)
+            fut_que = Helper.get_FutureQuestion(0, Future.title);
+
+
+        if (stage < 9) {
+                String[] info_str = {
+                        cur_que.getQuestion(),
+                        cur_que.getOptA().getText(),
+                        cur_que.getOptB().getText(),
+                        cur_que.getOptC().getText(),
+                        cur_que.getOptD().getText(),
             };
             trait_que.putExtra("info", info_str);
         }
-
-
-    }
-
-    /*
-    public void start_question(int stage, int story_num){
-        Intent trait_que = new Intent(this, FourAnswerPage.class);
-        if (stage < 7)
-        {
+        else{
             String[] info_str = {
-                    Integer.toString(stage)
+                    fut_que.getQuestion(),
+                    fut_que.getOptA().getText(),
+                    fut_que.getOptB().getText(),
+                    fut_que.getOptC().getText(),
+                    fut_que.getOptD().getText(),
             };
             trait_que.putExtra("info", info_str);
         }
-        else if (stage == 7){
-            String skill = Stats.getSkill_1();
-
-            String[] info_str = {
-                    Integer.toString(stage),
-                    Stats.get_love(),
-                    skill
-            };
-            trait_que.putExtra("info", info_str);
-        }
-        else if (stage == 8){
-            String[] info_str = {
-                    Integer.toString(stage),
-                    Stats.get_love()
-            };
-            trait_que.putExtra("info", info_str);
-        }
-        else if (stage == 9){
-            // Setup Future Question
-            // get_future_que()
-            String[] info_str = {
-                    Integer.toString(stage),
-            };
-            trait_que.putExtra("info", info_str);
-        }
-
         startActivityForResult(trait_que, stage);
     }
-     */
+
 
     public class_TraitAnswer getOpt(String option)
     {
@@ -99,111 +85,72 @@ public class PlayGame extends AppCompatActivity {
             case "d":
                 return cur_que.getOptD();
         }
+        return new class_TraitAnswer();
     }
 
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         class_TraitAnswer opt = new class_TraitAnswer();
+        String result = data.getStringExtra("result");
+        opt = getOpt(result);
         //TODO: Move results outside of oif statements
         // ReadMe
         if (requestCode == 0){
             start_question(1, 0);
         }
-        // Trait Q1 - Return
-        else if (requestCode == 1){
-            String result = data.getStringExtra("result");
-            opt = getOpt(result);
+        // Trait 1-3 - Return
+        else if (requestCode < 4){
             set_traits(opt.getTraitArray());
-            start_question(2,0);
-        }
-        // Trait Q2 - Return
-        else if (resultCode == 2){
-            String[] result = data.getStringArrayExtra("result");
-            set_traits(result);
-            start_question(3,0);
-        }
-        // Trait Q3 - Return
-        else if (requestCode == 3){
-            String[] result = data.getStringArrayExtra("result");
-            set_traits(result);
-            start_question(4,0);
+            start_question(requestCode+1,0);
         }
         // Q4 - Return
         else if (requestCode == 4)
         {
-            String[] result = data.getStringArrayExtra("result");
-            if (result[0].equals("Girl"))
-            {
-                Stats.set_love("true");
-            }
-            else
-            {
-                Stats.set_love("false");
-                // Set traits minus the first array index
-                set_traits(Arrays.copyOfRange(result, 1, result.length));
-            }
+            Stats.set_love(opt.get_Life_choice());
+            if (opt.get_Life_choice().equals("No Love"))
+                set_traits(opt.getTraitArray());
             // Stage 5 Question
             start_question(5,0);
         }
         //Q5 Return
         else if (requestCode == 5)
         {
-            String[] result = data.getStringArrayExtra("result");
-            Stats.setSkill_1(result[0]);
+            Stats.setSkill_1(opt.get_Life_choice());
             start_question(6,0);
         }
         //Q6 Return
         else if (requestCode == 6)
         {
-            String[] result = data.getStringArrayExtra("result");
-            Stats.set_after_school(result[0]);
+            Stats.set_after_school(opt.get_Life_choice());
             start_question(7,0);
         }
         //Q7 Return
         else if (requestCode == 7)
         {
-            String[] result = data.getStringArrayExtra("result");
-            if (result[0].equals("love"))
-                Stats.set_love("true");
+            if (opt.get_Life_choice().equals("Love"))
+                Stats.set_love("Love");
             else
-                Stats.setSkill_2(result[0]);
+                Stats.setSkill_2(opt.get_Life_choice());
             start_question(8,0);
         }
         //Q8 Return
         else if (requestCode == 8){
-            String[] result = data.getStringArrayExtra("result");
-            if (result[0].equals("0"))
+            if (opt.get_Life_choice().equals("0"))
                Stats.set_kids("0");
-            else if (result[0].equals("1"))
+            else if (opt.get_Life_choice().equals("1"))
                 Stats.set_kids("1");
-            else if (result[0].equals("2"))
+            else if (opt.get_Life_choice().equals("2"))
                 Stats.set_kids("2");
             else
-                Stats.setCrime(result[0]);
+                Stats.setCrime(opt.get_Life_choice());
             setFuture();
             start_question(9,0);
         }
+        //TODO
         else if (requestCode > 8){
 
         }
-    }
-
-    public void set_traits(@org.jetbrains.annotations.NotNull String[] trait_array){
-        int trait_val_1 = Integer.parseInt(trait_array[1]);
-        int trait_val_2 = Integer.parseInt(trait_array[3]);
-        int i=0;
-        while (i < 4){
-            int h=0;
-            while(!trait_array[i].equalsIgnoreCase(Stats.getTrait(h).getTitle()))
-                h++;
-            if (i==0)
-                Stats.addToTrait(h, trait_val_1);
-            else
-                Stats.addToTrait(h, trait_val_2);
-            i += 2;
-        }
-
     }
 
     public void set_traits(class_Trait[] answer_traits)
@@ -220,8 +167,6 @@ public class PlayGame extends AppCompatActivity {
         }
 
     }
-
-
 
     public void setFuture()
     {
