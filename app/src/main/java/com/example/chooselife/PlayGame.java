@@ -15,6 +15,7 @@ public class PlayGame extends AppCompatActivity {
     class_Trait Trait = new class_Trait();
     class_GameStats Stats = new class_GameStats(Trait.new_array());
     class_Future Future = new class_Future();
+    class_TraitQuestion cur_que = new class_TraitQuestion();
     static final int INTRO_README = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,26 @@ public class PlayGame extends AppCompatActivity {
         startActivityForResult(starting_readme, INTRO_README);
     }
 
+    public void start_question(int stage, int storynum)
+    {
+        Intent trait_que = new Intent(this, FourAnswerPage.class);
+        if (stage < 4)
+        {
+            cur_que = Helper.get_trait_question(stage);
+            String[] info_str = {
+                    cur_que.getQuestion(),
+                    cur_que.getOptA().getText(),
+                    cur_que.getOptB().getText(),
+                    cur_que.getOptC().getText(),
+                    cur_que.getOptD().getText(),
+            };
+            trait_que.putExtra("info", info_str);
+        }
+
+
+    }
+
+    /*
     public void start_question(int stage, int story_num){
         Intent trait_que = new Intent(this, FourAnswerPage.class);
         if (stage < 7)
@@ -64,10 +85,26 @@ public class PlayGame extends AppCompatActivity {
 
         startActivityForResult(trait_que, stage);
     }
+     */
+
+    public class_TraitAnswer getOpt(String option)
+    {
+        switch(option) {
+            case "a":
+                return cur_que.getOptA();
+            case "b":
+                return cur_que.getOptB();
+            case "c":
+                return cur_que.getOptC();
+            case "d":
+                return cur_que.getOptD();
+        }
+    }
 
     @Override
     protected  void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        class_TraitAnswer opt = new class_TraitAnswer();
         //TODO: Move results outside of oif statements
         // ReadMe
         if (requestCode == 0){
@@ -75,8 +112,9 @@ public class PlayGame extends AppCompatActivity {
         }
         // Trait Q1 - Return
         else if (requestCode == 1){
-            String[] result = data.getStringArrayExtra("result");
-            set_traits(result);
+            String result = data.getStringExtra("result");
+            opt = getOpt(result);
+            set_traits(opt.getTraitArray());
             start_question(2,0);
         }
         // Trait Q2 - Return
@@ -164,6 +202,21 @@ public class PlayGame extends AppCompatActivity {
             else
                 Stats.addToTrait(h, trait_val_2);
             i += 2;
+        }
+
+    }
+
+    public void set_traits(class_Trait[] answer_traits)
+    {
+        for (int i =0; i < answer_traits.length; i++)
+        {
+            for (int j=0; j<Stats.getTrait_array().length;j++)
+            {
+                if(Stats.getTrait(j).getTitle().equals(answer_traits[i]))
+                {
+                    Stats.getTrait(j).addValue(answer_traits[i].getValue());
+                }
+            }
         }
 
     }

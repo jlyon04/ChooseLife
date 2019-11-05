@@ -22,6 +22,7 @@ public class FourAnswerPage extends AppCompatActivity {
         setContentView(R.layout.activity_four_question_page);
 
         String[] info = getIntent().getStringArrayExtra("info");
+        /*
         stage = Integer.parseInt(info[0]);
         if (stage < 4)
             cur_que = Helper.get_trait_question(stage);
@@ -43,6 +44,8 @@ public class FourAnswerPage extends AppCompatActivity {
             fut_que = Helper.get_FutureQuestion(Integer.parseInt(info[1]), info[2]);
         }
 
+         */
+
         //Initialize Buttons and Question Prompt
         aButton = (Button)findViewById(R.id.buttonA);
         bButton = (Button)findViewById(R.id.buttonB);
@@ -51,11 +54,11 @@ public class FourAnswerPage extends AppCompatActivity {
         questionText = (TextView) findViewById(R.id.textView);
 
         //Set texts for Questions and Answers
-        aButton.setText(cur_que.getOptA().getText());
-        bButton.setText(cur_que.getOptB().getText());
-        cButton.setText(cur_que.getOptC().getText());
-        dButton.setText(cur_que.getOptD().getText());
-        questionText.setText(cur_que.getQuestion());
+        aButton.setText(info[1]);
+        bButton.setText(info[2]);
+        cButton.setText(info[3]);
+        dButton.setText(info[4]);
+        questionText.setText(info[0]);
 
     }
 
@@ -92,30 +95,22 @@ public class FourAnswerPage extends AppCompatActivity {
         }
 
     public void aButton(View view) {
-        class_TraitAnswer opt = cur_que.getOptA();
-        String[] temp = set_return(opt);
-        returnIntent.putExtra("result", temp);
+        returnIntent.putExtra("result", "a");
         setResult(stage, returnIntent);
         finish();
     }
     public void bButton(View view){
-        class_TraitAnswer opt = cur_que.getOptB();
-        String[] temp = set_return(opt);
-        returnIntent.putExtra("result", temp);
+        returnIntent.putExtra("result", "b");
         setResult(stage, returnIntent);
         finish();
     }
     public void cButton(View view){
-        class_TraitAnswer opt = cur_que.getOptC();
-        String[] temp = set_return(opt);
-        returnIntent.putExtra("result", temp);
+        returnIntent.putExtra("result", "c");
         setResult(stage, returnIntent);
         finish();
     }
     public void dButton(View view){
-        class_TraitAnswer opt = cur_que.getOptD();
-        String[] temp = set_return(opt);
-        returnIntent.putExtra("result", temp);
+        returnIntent.putExtra("result", "d");
         setResult(stage, returnIntent);
         finish();
     }
