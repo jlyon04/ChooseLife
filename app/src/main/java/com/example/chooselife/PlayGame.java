@@ -8,6 +8,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.Future;
 
 public class PlayGame extends AppCompatActivity {
     int stage_count = 1;
@@ -29,6 +30,28 @@ public class PlayGame extends AppCompatActivity {
         startActivityForResult(starting_readme, INTRO_README);
     }
 
+    public class_Trait get_stat_trait(String trait)
+    {
+        class_Trait temp = new class_Trait();
+        switch(trait){
+            case "intelligence":
+                temp = Stats.getTrait(0);
+            case "luck":
+                temp = Stats.getTrait(1);
+            case "courage":
+                temp = Stats.getTrait(2);
+            case "charisma":
+                temp = Stats.getTrait(3);
+            case "deviance":
+                temp = Stats.getTrait(4);
+            case "bizarre":
+                temp = Stats.getTrait(5);
+            case "athleticism":
+                temp = Stats.getTrait(6);
+        }
+        return temp;
+    }
+
     public void start_question(int stage, int storynum)
     {
         Intent trait_que = new Intent(this, FourAnswerPage.class);
@@ -46,9 +69,11 @@ public class PlayGame extends AppCompatActivity {
             cur_que = Helper.get_stage8_question(Stats.get_love());
         // TODO
         else if (stage == 9)
-            fut_que = Helper.get_FutureQuestion(0, Future.title);
+            fut_que = Helper.get_FutureQuestion(0, Future);
 
 
+
+        // Set Info String and Extra
         if (stage < 9) {
                 String[] info_str = {
                         cur_que.getQuestion(),
@@ -157,13 +182,8 @@ public class PlayGame extends AppCompatActivity {
     {
         for (int i =0; i < answer_traits.length; i++)
         {
-            for (int j=0; j<Stats.getTrait_array().length;j++)
-            {
-                if(Stats.getTrait(j).getTitle().equals(answer_traits[i]))
-                {
-                    Stats.getTrait(j).addValue(answer_traits[i].getValue());
-                }
-            }
+            class_Trait stat_trait = get_stat_trait(answer_traits[i].getTitle());
+            stat_trait.addValue(answer_traits[i].getValue());
         }
 
     }
@@ -224,5 +244,49 @@ public class PlayGame extends AppCompatActivity {
         }
         int index = rand.nextInt(local_array.size());
         Future = local_array.get(index);
+    }
+
+    public class_FutureQuestion get_FutureQuestion(int storynum)
+    {
+        ArrayList<class_FutureQuestion> local_array = new ArrayList<>();
+        for (int i = 0; i < Future.story.length; i++)
+        {
+            if (Future.story[i].getStorynum() == storynum)
+            {
+                class_FutureQuestion story = Future.story[i];
+                if (story.getQual_skill() != null && story.getQualTraitArray() != null)
+                {
+                    if
+
+                }
+                else if (story.getQual_skill() != null)
+                {
+                    if (story.getQual_skill().equals(Stats.getSkill_1()) || story.getQual_skill().equals(Stats.getSkill_2()))
+                        local_array.add(story);
+                    else
+                        continue;
+                }
+                else if (story.getQualTraitArray() != null)
+                {
+                    for (int j =0; j<story.getQualTraitArray().length; j++)
+                    {
+                        class_Trait stat_trait = get_stat_trait(story.getQualTrait(j).getTitle());
+                        if (story.getQualTrait(j).getValue() < 0)
+                        {
+                            if (story.getQualTrait(j).getValue() > stat_trait.getValue())
+                                
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+                else
+                    local_array.add(story);
+            }
+        }
+        return fut_que;
     }
 }

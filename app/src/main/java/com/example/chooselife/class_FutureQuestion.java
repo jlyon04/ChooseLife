@@ -71,5 +71,6 @@ public class class_FutureQuestion {
    public int getRare(){return rare;}
    public int getStorynum(){return storynum;}
    public class_Trait getQualTrait(int ind){return qual_trait[ind];}
+   public class_Trait[] getQualTraitArray(){return qual_trait;}
    public String getQual_skill(){return qual_skill;}
 }
