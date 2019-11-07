@@ -249,15 +249,28 @@ public class PlayGame extends AppCompatActivity {
     public class_FutureQuestion get_FutureQuestion(int storynum)
     {
         ArrayList<class_FutureQuestion> local_array = new ArrayList<>();
-        for (int i = 0; i < Future.story.length; i++)
+        future: for (int i = 0; i < Future.story.length; i++)
         {
             if (Future.story[i].getStorynum() == storynum)
             {
                 class_FutureQuestion story = Future.story[i];
                 if (story.getQual_skill() != null && story.getQualTraitArray() != null)
                 {
-                    if
-
+                    if (!(story.getQual_skill().equals(Stats.getSkill_1())) && !(story.getQual_skill().equals(Stats.getSkill_2())))
+                        continue;
+                    for (int j =0; j<story.getQualTraitArray().length; j++)
+                    {
+                        class_Trait stat_trait = get_stat_trait(story.getQualTrait(j).getTitle());
+                        // Negative Value
+                        if (story.getQualTrait(j).getValue() < 0)
+                            if (story.getQualTrait(j).getValue() < stat_trait.getValue())
+                                continue future;
+                                // Positive Value
+                            else
+                            if (story.getQualTrait(j).getValue() > stat_trait.getValue())
+                                continue future;
+                    }
+                    local_array.add(story);
                 }
                 else if (story.getQual_skill() != null)
                 {
@@ -271,17 +284,16 @@ public class PlayGame extends AppCompatActivity {
                     for (int j =0; j<story.getQualTraitArray().length; j++)
                     {
                         class_Trait stat_trait = get_stat_trait(story.getQualTrait(j).getTitle());
+                        // Negative Value
                         if (story.getQualTrait(j).getValue() < 0)
-                        {
-                            if (story.getQualTrait(j).getValue() > stat_trait.getValue())
-                                
-
-                        }
+                            if (story.getQualTrait(j).getValue() < stat_trait.getValue())
+                                continue future;
+                        // Positive Value
                         else
-                        {
-
-                        }
+                            if (story.getQualTrait(j).getValue() > stat_trait.getValue())
+                                continue future;
                     }
+                    local_array.add(story);
                 }
                 else
                     local_array.add(story);
