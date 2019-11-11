@@ -36,18 +36,25 @@ public class PlayGame extends AppCompatActivity {
         switch(trait){
             case "intelligence":
                 temp = Stats.getTrait(0);
+                break;
             case "luck":
                 temp = Stats.getTrait(1);
+                break;
             case "courage":
                 temp = Stats.getTrait(2);
+                break;
             case "charisma":
                 temp = Stats.getTrait(3);
+                break;
             case "deviance":
                 temp = Stats.getTrait(4);
+                break;
             case "bizarre":
                 temp = Stats.getTrait(5);
+                break;
             case "athleticism":
                 temp = Stats.getTrait(6);
+                break;
         }
         return temp;
     }
@@ -67,12 +74,17 @@ public class PlayGame extends AppCompatActivity {
             cur_que = Helper.get_stage7_question(Stats.get_love(), Stats.getSkill_1());
         else if (stage == 8)
             cur_que = Helper.get_stage8_question(Stats.get_love());
-        // TODO
-        else if (stage == 9)
-            fut_que = Helper.get_FutureQuestion(0, Future);
-
-
-
+        else if (stage > 8) {
+            // END OF Game
+            if (storynum == 363) {
+                Intent readme = new Intent(this, ReadMe.class);
+                readme.putExtra("Readme", "END OF GAME BUB");
+                startActivityForResult(readme, INTRO_README);
+                return;
+            }
+            else
+                fut_que = get_FutureQuestion(storynum);
+        }
         // Set Info String and Extra
         if (stage < 9) {
                 String[] info_str = {
@@ -98,18 +110,31 @@ public class PlayGame extends AppCompatActivity {
     }
 
 
-    public class_TraitAnswer getOpt(String option)
+    public class_TraitAnswer getOpt(String option, int stage)
     {
-        switch(option) {
-            case "a":
-                return cur_que.getOptA();
-            case "b":
-                return cur_que.getOptB();
-            case "c":
-                return cur_que.getOptC();
-            case "d":
-                return cur_que.getOptD();
+        if(stage < 9) {
+            switch (option) {
+                case "a":
+                    return cur_que.getOptA();
+                case "b":
+                    return cur_que.getOptB();
+                case "c":
+                    return cur_que.getOptC();
+                case "d":
+                    return cur_que.getOptD();
+            }
         }
+        else
+            switch (option) {
+                case "a":
+                    return fut_que.getOptA();
+                case "b":
+                    return fut_que.getOptB();
+                case "c":
+                    return fut_que.getOptC();
+                case "d":
+                    return fut_que.getOptD();
+            }
         return new class_TraitAnswer();
     }
 
@@ -117,9 +142,11 @@ public class PlayGame extends AppCompatActivity {
     protected  void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         class_TraitAnswer opt = new class_TraitAnswer();
-        String result = data.getStringExtra("result");
-        opt = getOpt(result);
-        //TODO: Move results outside of oif statements
+        String result;
+        if (requestCode > 0) {
+            result = data.getStringExtra("result");
+            opt = getOpt(result, requestCode);
+        }
         // ReadMe
         if (requestCode == 0){
             start_question(1, 0);
@@ -174,7 +201,7 @@ public class PlayGame extends AppCompatActivity {
         }
         //TODO
         else if (requestCode > 8){
-
+            start_question(requestCode+1, opt.getStorynum());
         }
     }
 
@@ -211,33 +238,37 @@ public class PlayGame extends AppCompatActivity {
             if (future_array[i].crime != null && !Stats.getCrime().equals(future_array[i].crime))
                 continue;
             // After School
-            for (int j=0; j<future_array[i].after_school.length; j++) {
-                if (future_array[i].after_school == null || Stats.get_after_school() == future_array[i].after_school[j])
-                    break;
-                else if (j == future_array[i].after_school.length - 1)
-                    continue;
+            if (future_array[i].after_school != null) {
+                for (int j = 0; j < future_array[i].after_school.length; j++) {
+                    if (future_array[i].after_school == null || Stats.get_after_school() == future_array[i].after_school[j])
+                        break;
+                    else if (j == future_array[i].after_school.length - 1)
+                        continue;
+                }
             }
+            if (future_array[i].trait_array != null) {
 
             // Trait Array
             // Future Trait Loop
-            for (int k=0; k<future_array[i].trait_array.length; k++){
+            for (int k=0; k<future_array[i].trait_array.length; k++) {
                 // Stats Trait Loop
-                for (int l=0; l<Stats.getTrait_array().length; l++){
+                for (int l = 0; l < Stats.getTrait_array().length; l++) {
                     // Title Match
-                    if (future_array[i].trait_array[k].getTitle().equals(Stats.getTrait(l).getTitle())){
+                    if (future_array[i].trait_array[k].getTitle().equals(Stats.getTrait(l).getTitle())) {
                         // Value Match
                         // Negative Value
-                        if (future_array[i].trait_array[k].getValue() < 0){
+                        if (future_array[i].trait_array[k].getValue() < 0) {
                             if (!(Stats.getTrait(l).getValue() <= future_array[i].trait_array[k].getValue()))
                                 continue future_loop;
                         }
                         // Positive Value
-                        else{
+                        else {
                             if (!(Stats.getTrait(l).getValue() >= future_array[i].trait_array[k].getValue()))
                                 continue future_loop;
                         }
                     }
                 }
+            }
             }
             // Fill Local Array
             local_array.add(future_array[i]);
@@ -299,6 +330,7 @@ public class PlayGame extends AppCompatActivity {
                     local_array.add(story);
             }
         }
+        fut_que = local_array.get(0);
         return fut_que;
     }
 }

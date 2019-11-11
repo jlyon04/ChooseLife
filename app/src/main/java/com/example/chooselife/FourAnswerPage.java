@@ -22,29 +22,7 @@ public class FourAnswerPage extends AppCompatActivity {
         setContentView(R.layout.activity_four_question_page);
 
         String[] info = getIntent().getStringArrayExtra("info");
-        /*
-        stage = Integer.parseInt(info[0]);
-        if (stage < 4)
-            cur_que = Helper.get_trait_question(stage);
-        else if (stage == 4)
-            cur_que = Helper.get_stage4_question();
-        else if (stage == 5)
-            cur_que = Helper.get_stage5_question("Choose a skill", null);
-        else if (stage == 6){
-            cur_que = Helper.get_stage6_question();
-        }
-        else if (stage == 7){
-            cur_que = Helper.get_stage7_question(info[1], info[2]);
-        }
-        else if (stage == 8){
-            cur_que = Helper.get_stage8_question(info[1]);
-        }
-        else if (stage > 8)
-        {
-            fut_que = Helper.get_FutureQuestion(Integer.parseInt(info[1]), info[2]);
-        }
 
-         */
 
         //Initialize Buttons and Question Prompt
         aButton = (Button)findViewById(R.id.buttonA);
@@ -62,37 +40,6 @@ public class FourAnswerPage extends AppCompatActivity {
 
     }
 
-       public String[] set_return(class_TraitAnswer option)
-        {
-            // Traits only
-            if (option.get_Life_choice() ==  "") {
-                String[] temp = {
-                        option.getTrait(0).getTitle(),
-                        Integer.toString(option.getTrait(0).getValue()),
-                        option.getTrait(1).getTitle(),
-                        Integer.toString(option.getTrait(1).getValue())
-                };
-                return temp;
-            }
-            // Life Choice Only
-            else if (option.getTraitArray().length == 0)
-            {
-                String[] temp = {
-                        option.get_Life_choice()
-                };
-                return temp;
-            }
-            //Choice + Trait
-            String[] temp = {
-                    option.get_Life_choice(),
-                    option.getTrait(0).getTitle(),
-                    Integer.toString(option.getTrait(0).getValue()),
-                    option.getTrait(1).getTitle(),
-                    Integer.toString(option.getTrait(1).getValue())
-            };
-            return temp;
-
-        }
 
     public void aButton(View view) {
         returnIntent.putExtra("result", "a");

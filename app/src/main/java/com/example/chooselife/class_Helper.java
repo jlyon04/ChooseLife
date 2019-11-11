@@ -141,7 +141,7 @@ public class class_Helper {
 
     public class_TraitQuestion get_stage7_question(String love, String taken_skill){
         class_TraitQuestion ret_que = new class_TraitQuestion();
-        if (love.equals("true")){
+        if (love.equals("Love")){
            return get_stage5_question("You have just married the love of your life, " +
                    "you return from the honey moon and decide to start a hobby before your future is set", taken_skill);
         }
@@ -174,7 +174,7 @@ public class class_Helper {
 
     public class_TraitQuestion get_stage8_question(String love) {
         String crime = get_crime();
-        if (love.equals("true")) {
+        if (love.equals("Love")) {
             return new class_TraitQuestion("You are married and ready to start your family, choose your assortment of family.",
                     new class_TraitAnswer("0 Children", "0"),
                     new class_TraitAnswer("1 Child", "1"),
@@ -211,8 +211,55 @@ public class class_Helper {
 
 
     public class_Future[] futureArray = {
-        //new class_Future(null, null, null, null, null, null, null, null, null)
-        new class_Future(0, "Firefighter", future_trait_array(tcour, 4, tdev, -3), null, new String[]{"job, trade, college"}, null, null, null,  null, new class_TraitQuestion[]{})
+            // rare/title/qual_trait_array/love/after school/kids/skill1/skill2/crm/story(Class_FutureQuestion[]
+            /*
+            new class_FutureQuestion(0,1, null, null, "Test 1?",
+                    new class_TraitAnswer("2?",2),
+                    new class_TraitAnswer("2a?",2),
+                    new class_TraitAnswer("3?",3),
+                    new class_TraitAnswer("3a?",3)),
+
+
+            new class_Future(0, "Test", null, null, null, null, null, null, null,
+                    new class_FutureQuestion[]{new class_FutureQuestion(), new class_FutureQuestion()}),
+             */
+            // TEST
+            new class_Future(0, "Test", null, null, null, null, null, null, null,
+                             new class_FutureQuestion[]{
+                                     new class_FutureQuestion(0,0, null, null, "Test 1?",
+                                             new class_TraitAnswer("2?",2),
+                                             new class_TraitAnswer("2a?",2),
+                                             new class_TraitAnswer("3?",3),
+                                             new class_TraitAnswer("3a?",3)),
+                                     new class_FutureQuestion(0,2, null, null, "Test 2?",
+                                             new class_TraitAnswer("4?",4),
+                                             new class_TraitAnswer("4a?",4),
+                                             new class_TraitAnswer("5?",5),
+                                             new class_TraitAnswer("5a?",5)),
+                                     new class_FutureQuestion(0,3, null, null, "Test 2?",
+                                             new class_TraitAnswer("4?",4),
+                                             new class_TraitAnswer("4a?",4),
+                                             new class_TraitAnswer("5?",5),
+                                             new class_TraitAnswer("5a?",5)),
+                                     new class_FutureQuestion(0,4, null, null, "Test 3?",
+                                             new class_TraitAnswer("6?",6),
+                                             new class_TraitAnswer("6a?",6),
+                                             new class_TraitAnswer("6?",6),
+                                             new class_TraitAnswer("6a?",6)),
+                                     new class_FutureQuestion(0,5, null, null, "Test 3?",
+                                             new class_TraitAnswer("6?",6),
+                                             new class_TraitAnswer("6a?",6),
+                                             new class_TraitAnswer("6?",6),
+                                             new class_TraitAnswer("6a?",6)),
+                                     new class_FutureQuestion(0,6, null, null, "Test 3?",
+                                             new class_TraitAnswer("You Have Passed The Test!",363),
+                                             new class_TraitAnswer("You Have Passed The Test!",363),
+                                             new class_TraitAnswer("You Have Passed The Test!",363),
+                                             new class_TraitAnswer("6b?",363)),
+
+                             }),
+            // Firefighter
+            //new class_Future(0, "Firefighter", future_trait_array(tcour, 4, tdev, -3), null, new String[]{"job, trade, college"}, null, null, null,  null, new class_TraitQuestion[]{})
     };
 
     public class_TraitQuestion get_trait_question(int stage)

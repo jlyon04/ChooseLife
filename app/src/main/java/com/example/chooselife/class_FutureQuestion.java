@@ -14,7 +14,7 @@ public class class_FutureQuestion {
       question = "";
    }
 
-   public class_FutureQuestion(int vrare, int vstorynum, String q, class_TraitAnswer oa, class_TraitAnswer ob, class_TraitAnswer oc, class_TraitAnswer od, class_Trait[] qtrait, String qskill)
+   public class_FutureQuestion(int vrare, int vstorynum, class_Trait[] qtrait, String qskill, String q, class_TraitAnswer oa, class_TraitAnswer ob, class_TraitAnswer oc, class_TraitAnswer od)
    {
       rare = vrare;
       storynum = vstorynum;

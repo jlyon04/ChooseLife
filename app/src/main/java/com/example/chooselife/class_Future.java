@@ -29,13 +29,13 @@ public class class_Future {
     }
 
 
-    public class_Future(int rar, String titl, class_Trait[] ta, String vlove, String[] after, String kds, String sk1, String sk2,
+    public class_Future(int rar, String titleV, class_Trait[] trait_arr, String loveV, String[] after_sch, String kds, String sk1, String sk2,
                   String crm, class_FutureQuestion[] stry){
         rare = rar;
-        title = titl;
-        trait_array = ta;
-        love = vlove;
-        after_school = after;
+        title = titleV;
+        trait_array = trait_arr;
+        love = loveV;
+        after_school = after_sch;
         kids = kds;
         skill_1 = sk1;
         skill_2 = sk2;
