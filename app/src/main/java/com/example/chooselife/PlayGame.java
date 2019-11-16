@@ -78,7 +78,7 @@ public class PlayGame extends AppCompatActivity {
             // END OF Game
             if (storynum == 363) {
                 Intent readme = new Intent(this, ReadMe.class);
-                readme.putExtra("Readme", "END OF GAME BUB");
+                readme.putExtra("Readme", "END OF GAME BUBt");
                 startActivityForResult(readme, INTRO_README);
                 return;
             }

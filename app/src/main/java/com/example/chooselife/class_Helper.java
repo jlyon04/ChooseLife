@@ -224,7 +224,7 @@ public class class_Helper {
                     new class_FutureQuestion[]{new class_FutureQuestion(), new class_FutureQuestion()}),
              */
             // TEST
-            new class_Future(0, "Test", null, null, null, null, null, null, null,
+            new class_Future(0, 1, "Test", null, null, null, null, null, null,
                              new class_FutureQuestion[]{
                                      new class_FutureQuestion(0,0, null, null, "Test 1?",
                                              new class_TraitAnswer("2?",2),
@@ -256,10 +256,75 @@ public class class_Helper {
                                              new class_TraitAnswer("You Have Passed The Test!",363),
                                              new class_TraitAnswer("You Have Passed The Test!",363),
                                              new class_TraitAnswer("6b?",363)),
-
                              }),
-            // Firefighter
-            //new class_Future(0, "Firefighter", future_trait_array(tcour, 4, tdev, -3), null, new String[]{"job, trade, college"}, null, null, null,  null, new class_TraitQuestion[]{})
+            // FIREFIGHTER
+            new class_Future(0, 2, "Firefighter", future_trait_array(tdev,-2, tcour, 2), null, null, null, null, null,
+                    new class_FutureQuestion[]{
+                            //0
+                            new class_FutureQuestion(0,0, null, null, "AGE 22: You are a Probie, a Probational Firefighter in your small town's fire station. Starting your third week you are exhausted on the night shift you find downtime away from the crew.",
+                                    new class_TraitAnswer("Sneak in a quick nap", 12),
+                                    new class_TraitAnswer("Study Street Maps",13),
+                                    new class_TraitAnswer("Video Games",14),
+                                    new class_TraitAnswer("Deadlift in the gym",11)),
+                            //1-1
+                            new class_FutureQuestion(0, 11, null, null, "AGE 26: Fires are few and far between in this town, you keep in shape best you can but you wonder what for if there is no action, you must something to pass the time",
+                                    new class_TraitAnswer("Basketball",21),
+                                    new class_TraitAnswer("Rock Climbing",21),
+                                    new class_TraitAnswer("Sudoku",22),
+                                    new class_TraitAnswer("Frogger",22)),
+                            //1-2
+                            new class_FutureQuestion(0,12, null, null, "AGE 26: Fires are few and far between in this little town, your habits so far are in question, but does it really matter in east kansas nowhere",
+                                    new class_TraitAnswer("Learn From Older Colleague",21),
+                                    new class_TraitAnswer("Break habits on your own",22),
+                                    new class_TraitAnswer("Study to be a driver",23),
+                                    new class_TraitAnswer("Collect paycheck, rinse, repeat",22)),
+                            //1-3
+                            new class_FutureQuestion(0, 13, null, null, "AGE 26: Fires are few and far between in this town, you keep in shape best you can but you wonder what for if there is no action, you must something to pass the time",
+                                    new class_TraitAnswer("Basketball",24),
+                                    new class_TraitAnswer("Rock Climbing",24),
+                                    new class_TraitAnswer("Sudoku",23),
+                                    new class_TraitAnswer("Frogger",23)),
+                            //1-4
+                            new class_FutureQuestion(0,14, null, null, "AGE 26: Fires are few and far between in this little town, your habits so far are in question, but does it really matter in east kansas nowhere",
+                                    new class_TraitAnswer("Learn From Older Colleague",23),
+                                    new class_TraitAnswer("Break habits on your own",22),
+                                    new class_TraitAnswer("Study to be a driver",23),
+                                    new class_TraitAnswer("Collect paycheck, rinse, repeat",22)),
+                            //2-1
+                            new class_FutureQuestion(0,21, null, null, "Age 30: You have become a Rescue Firefighter, there is a town emergency. Another elderly man has fallen at the community home in town.",
+                                    new class_TraitAnswer("Gently Assist the elderly man",31),
+                                    new class_TraitAnswer("Call in the paramedics",31),
+                                    new class_TraitAnswer("Sweep him up by his ankles",32),
+                                    new class_TraitAnswer("Fireman's carry this sucker",32)),
+                            //2-2
+                            new class_FutureQuestion(0,22, null, null, "Age 30: I don't know how buy you have become a Rescue Firefighter, there is a town emergency. A boys kite is stuck in the tree",
+                                    new class_TraitAnswer("Climb Tree",32),
+                                    new class_TraitAnswer("Ladder Time",32),
+                                    new class_TraitAnswer("Shoot it down with hose",32),
+                                    new class_TraitAnswer("Throw boy up to get it",32)),
+                            //2-3
+                            new class_FutureQuestion(0,23, null, null, "Age 30: You have earned your right as a Fire Truck Driver. ",
+                                    new class_TraitAnswer("Climb Tree",33),
+                                    new class_TraitAnswer("Ladder Time",33),
+                                    new class_TraitAnswer("Shoot it down with hose",34),
+                                    new class_TraitAnswer("Throw boy up to get it",34)),
+                            //2-4
+                            new class_FutureQuestion(0,24, null, null, "Age 30: You have fooled someone into letting you become a Fire Truck Driver. ",
+                                    new class_TraitAnswer("Climb Tree",33),
+                                    new class_TraitAnswer("Ladder Time",34),
+                                    new class_TraitAnswer("Shoot it down with hose",34),
+                                    new class_TraitAnswer("Throw boy up to get it",34)),
+                            //3-1
+                            new class_FutureQuestion(0,31, null, null, "Age 33: A popular cash-for-used-games business has caught fire, your first real fire since becoming a Firefighter in your early 20's. The Rescue team shows up to flames swallowing the front door.",
+                                    new class_TraitAnswer("Order Water to the front door",42),
+                                    new class_TraitAnswer("Ladder Time",33),
+                                    new class_TraitAnswer("Shoot it down with hose",34),
+                                    new class_TraitAnswer("Throw boy up to get it",34)),
+
+
+                    }),
+
+
     };
 
     public class_TraitQuestion get_trait_question(int stage)
