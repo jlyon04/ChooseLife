@@ -26,7 +26,7 @@ public class PlayGame extends AppCompatActivity {
 
         //Initial Readme
         Intent starting_readme = new Intent(this, ReadMe.class);
-        starting_readme.putExtra("Readme", Helper.get_ReadMe("start"));
+        starting_readme.putExtra("Readme", Helper.get_ReadMe(0));
         startActivityForResult(starting_readme, INTRO_README);
     }
 
@@ -70,8 +70,6 @@ public class PlayGame extends AppCompatActivity {
             cur_que = Helper.get_stage5_question("choose a skill", null);
         else if (stage == 6)
             cur_que = Helper.get_stage6_question();
-        else if (stage == 7)
-            cur_que = Helper.get_stage7_question(Stats.get_love(), Stats.getSkill_1());
         else if (stage == 8)
             cur_que = Helper.get_stage8_question(Stats.get_love());
         else if (stage > 8) {
@@ -175,15 +173,6 @@ public class PlayGame extends AppCompatActivity {
         else if (requestCode == 6)
         {
             Stats.set_after_school(opt.get_Life_choice());
-            start_question(7,0);
-        }
-        //Q7 Return
-        else if (requestCode == 7)
-        {
-            if (opt.get_Life_choice().equals("Love"))
-                Stats.set_love("Love");
-            else
-                Stats.setSkill_2(opt.get_Life_choice());
             start_question(8,0);
         }
         //Q8 Return
@@ -201,6 +190,8 @@ public class PlayGame extends AppCompatActivity {
         }
         //TODO
         else if (requestCode > 8){
+            if (opt.getOutcome() != null)
+                Stats.append_outcome(opt.getOutcome());
             start_question(requestCode+1, opt.getStorynum());
         }
     }
@@ -230,9 +221,6 @@ public class PlayGame extends AppCompatActivity {
                 continue;
             // Skill 1
             if (future_array[i].skill_1 != null && !Stats.getSkill_1().equals(future_array[i].skill_1))
-                continue;
-            // Skill 2
-            if (future_array[i].skill_2 != null && !Stats.getSkill_2().equals(future_array[i].skill_2))
                 continue;
             // Crime
             if (future_array[i].crime != null && !Stats.getCrime().equals(future_array[i].crime))
@@ -287,7 +275,7 @@ public class PlayGame extends AppCompatActivity {
                 class_FutureQuestion story = Future.story[i];
                 if (story.getQual_skill() != null && story.getQualTraitArray() != null)
                 {
-                    if (!(story.getQual_skill().equals(Stats.getSkill_1())) && !(story.getQual_skill().equals(Stats.getSkill_2())))
+                    if (!(story.getQual_skill().equals(Stats.getSkill_1())))
                         continue;
                     for (int j =0; j<story.getQualTraitArray().length; j++)
                     {
@@ -305,7 +293,7 @@ public class PlayGame extends AppCompatActivity {
                 }
                 else if (story.getQual_skill() != null)
                 {
-                    if (story.getQual_skill().equals(Stats.getSkill_1()) || story.getQual_skill().equals(Stats.getSkill_2()))
+                    if (story.getQual_skill().equals(Stats.getSkill_1()))
                         local_array.add(story);
                     else
                         continue;

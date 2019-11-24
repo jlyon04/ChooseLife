@@ -8,7 +8,7 @@ public class class_TraitAnswer {
     private class_Trait[] trait_array;
     private int storynum;
     private int readme_num;
-    private ArrayList<String> outcome;
+    private String outcome;
 
     public class_TraitAnswer(String txt, class_Trait[] array)
     {
@@ -43,7 +43,7 @@ public class class_TraitAnswer {
         storynum = stornum;
         readme_num = readme_numV;
     }
-    public class_TraitAnswer(String txt, int stornum, int readme_numV, ArrayList<String> outcomeV)
+    public class_TraitAnswer(String txt, int stornum, int readme_numV, String outcomeV)
     {
         text = txt;
         storynum = stornum;
@@ -56,17 +56,15 @@ public class class_TraitAnswer {
         trait_array = new class_Trait[0];
         life_choice = "";
         readme_num = 0;
-        outcome = new ArrayList<>();
+        outcome = null;
     }
 
 
     public String getText(){return text;}
-
     public class_Trait[] getTraitArray(){return trait_array;}
-
     public class_Trait getTrait(int i){return trait_array[i];}
-
     public String get_Life_choice(){return life_choice;}
     public int getStorynum(){return storynum;}
+    public String getOutcome(){return outcome;}
 }
 

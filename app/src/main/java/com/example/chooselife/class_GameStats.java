@@ -1,13 +1,18 @@
 package com.example.chooselife;
 
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class class_GameStats {
     private class_Trait[] trait_array;
     private String love;
     private String after_school;
     private String kids;
     private  String skill_1;
-    private  String skill_2;
     private String crime;
+    public Map<String, String> outcomes;
 
     public class_GameStats(class_Trait[] t_trait_array){
         trait_array = t_trait_array;
@@ -20,8 +25,8 @@ public class class_GameStats {
     public void set_kids(String choice){kids = choice;}
     public void set_after_school(String choice){after_school = choice;}
     public void setSkill_1(String choice){skill_1 = choice;}
-    public void setSkill_2(String choice){skill_2 = choice;}
     public void setCrime(String choice){crime = choice;}
+    public void set_outcome(String outcome_key, String outcome_value){outcomes.put(outcome_key,outcome_value);}
 
 
 
@@ -29,7 +34,6 @@ public class class_GameStats {
     public String get_after_school(){return after_school;}
     public String get_love(){return love;}
     public String getSkill_1(){return skill_1;}
-    public String getSkill_2(){return skill_2;}
     public String getCrime(){return crime;}
     public String getKids(){return kids;}
     public class_Trait[] getTrait_array(){return trait_array;}

@@ -44,9 +44,29 @@ public class class_Helper {
         return new class_Trait[]{ new class_Trait(t1, val1), new class_Trait(t2, val2), new class_Trait(t3, val3)};
     }
 
-    public static class_ReadMe[] readme_array = {
-            new class_ReadMe("start", "Welcome to life where your answers will determine your outcome. Answer the multiple choice questions to avoid death and earn glory. In between each question there is a small chance for an event, many times this will mean your " +
-                    "death but in very rare circumstance it may launch a secret event. Good luck and good life.")
+    public static String[] readme_array = {
+            //0 - Intro
+            "Welcome to life where your answers will determine your outcome. Answer the multiple choice questions to avoid death and earn glory. In between each question there is a small chance for an event, many times this will mean your " +
+                    "death but in very rare circumstance it may launch a secret event. Good luck and good life.",
+            //1 - Firefighter
+            "In the early part of your afternoon shift you are filling your coffee mug when the firehouse alarm bursts with ringing. You are startled, as it is the first time you have heard it. " +
+                    "You glance at your colleague and he looks back stern faced, he rushes out of the common area. You follow, to your first fire. You are nervous.",
+            //2
+            "You hop into the seat and everyone yells out at you. \"Rookie get in the back!\"",
+            //3
+            "You stay away from the fire trying to help out on the hose but you let the older firefighters take the lead. Eventually the fire is contained and with only one injured. You just weren't needed today",
+            //4
+            "You charge to the fire, axe in hand, colleagues just behind you. You kick the door and it crashes to the floor. As the door falls oxygen rushes into the room causing the fire to swell." +
+                    "You stumble backwards, the captain pulls you back and points to the truck. Eventually the fire is contained and with only one injured. You just weren't needed today",
+            //5
+            "You charge to the fire, ladder in hand, colleagues just behind you. You climb the ladder and break the window, oxygen rushes into the room causing the fire to swell." +
+                    "The window is flooded with fire forcing you to retreat down the ladder. Eventually the fire is contained and with only one injured. You just weren't needed today",
+            //6
+            "You charge to the fire, axe in hand, colleagues just behind you. You kick the door and it crashes to the floor. As the door falls you step away allowing the fire to swell then recede." +
+                    "With the receding flames comes a man running from the danger, you grab his arm and help him to safety. Eventually the fire is contained and with no one injured.",
+            //5
+            "You charge to the fire, ladder in hand, colleagues just behind you. You climb the ladder and break the window, oxygen rushes into the room causing it to swell." +
+                    "You manage to avoid the flames and reach over and break a boarded window. The hose fires through the two new openings. Eventually the fire is contained and with no one injured",
     };
 
     // Array of Stage 1 Questions
@@ -137,39 +157,6 @@ public class class_Helper {
                 new class_TraitAnswer("Trade School",   "trade", quick_add(tint, tint)),
                 new class_TraitAnswer("Get A  Job",     "job", quick_add(tath, tath)),
                 new class_TraitAnswer("Do Nothing",     "nothing", quick_add(tchar, tchar)));
-    }
-
-    public class_TraitQuestion get_stage7_question(String love, String taken_skill){
-        class_TraitQuestion ret_que = new class_TraitQuestion();
-        if (love.equals("Love")){
-           return get_stage5_question("You have just married the love of your life, " +
-                   "you return from the honey moon and decide to start a hobby before your future is set", taken_skill);
-        }
-        ArrayList<String> skill_array = get_skill_array();
-        String optb, optc, optd;
-        Random rand = new Random();
-        if (taken_skill != null){
-            skill_array.remove(taken_skill);
-        }
-        //B
-        int index = rand.nextInt(skill_array.size());
-        optb = skill_array.get(index);
-        skill_array.remove(index);
-        //C
-        index = rand.nextInt(skill_array.size());
-        optc = skill_array.get(index);
-        skill_array.remove(index);
-        //D
-        index = rand.nextInt(skill_array.size());
-        optd = skill_array.get(index);
-        skill_array.remove(index);
-
-        return new class_TraitQuestion("You are preparing for your future but the dating life " +
-                "has not been so great, your friend would like to set you up with a blind date",
-                new class_TraitAnswer("Take your 2nd Chance at love", "Love"),
-                new class_TraitAnswer("Deny Love focus on : "+optb, optb),
-                new class_TraitAnswer("Stay alone and start a new hobby : "+optc, optc),
-                new class_TraitAnswer("Seriously Last Chance but no try : "+optd, optd));
     }
 
     public class_TraitQuestion get_stage8_question(String love) {
@@ -354,15 +341,9 @@ public class class_Helper {
         return local_array.get(rare_num);
     }
 
-    public String get_ReadMe(String t_title)
+    public String get_ReadMe(int index)
     {
-        for (int i=0; i<readme_array.length; i++)
-        {
-            if (readme_array[i].getTitle() == t_title){
-                return  readme_array[i].getText();
-            }
-        }
-        return "Failed to Retrieve ReadMe";
+        return readme_array[index];
     }
 
 }
