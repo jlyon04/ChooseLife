@@ -200,50 +200,139 @@ public class class_Helper {
     public class_Future[] futureArray = {
             // rare/title/qual_trait_array/love/after school/kids/skill1/skill2/crm/story(Class_FutureQuestion[]
             /*
-            new class_FutureQuestion(0,1, null, null, "Test 1?",
-                    new class_TraitAnswer("2?",2),
-                    new class_TraitAnswer("2a?",2),
-                    new class_TraitAnswer("3?",3),
-                    new class_TraitAnswer("3a?",3)),
 
+            // Doctor
+            new class_Future(0, 2, "Doctor", null, null, str_arr("college"), null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,1, null, null, "It is the first day of your medical internship,  ",
+                                    new class_TraitAnswer("2?",2),
+                                    new class_TraitAnswer("2a?",2),
+                                    new class_TraitAnswer("3?",3),
+                                    new class_TraitAnswer("3a?",3)
+                            ),
+                            new class_FutureQuestion(0,2, null, null, "",
+                                    new class_TraitAnswer("2?",2),
+                                    new class_TraitAnswer("2a?",2),
+                                    new class_TraitAnswer("3?",3),
+                                    new class_TraitAnswer("3a?",3)
+                            ),
+                    }),
 
-            new class_Future(0, "Test", null, null, null, null, null, null, null,
-                    new class_FutureQuestion[]{new class_FutureQuestion(), new class_FutureQuestion()}),
              */
             // TEST
-            new class_Future(0, 1, "Test", null, null, null, null, null, null,
-                             new class_FutureQuestion[]{
-                                     new class_FutureQuestion(0,0, null, null, "Test 1?",
-                                             new class_TraitAnswer("2?",2),
-                                             new class_TraitAnswer("2a?",2),
-                                             new class_TraitAnswer("3?",3),
-                                             new class_TraitAnswer("3a?",3)),
-                                     new class_FutureQuestion(0,2, null, null, "Test 2?",
-                                             new class_TraitAnswer("4?",4),
-                                             new class_TraitAnswer("4a?",4),
-                                             new class_TraitAnswer("5?",5),
-                                             new class_TraitAnswer("5a?",5)),
-                                     new class_FutureQuestion(0,3, null, null, "Test 2?",
-                                             new class_TraitAnswer("4?",4),
-                                             new class_TraitAnswer("4a?",4),
-                                             new class_TraitAnswer("5?",5),
-                                             new class_TraitAnswer("5a?",5)),
-                                     new class_FutureQuestion(0,4, null, null, "Test 3?",
-                                             new class_TraitAnswer("6?",6),
-                                             new class_TraitAnswer("6a?",6),
-                                             new class_TraitAnswer("6?",6),
-                                             new class_TraitAnswer("6a?",6)),
-                                     new class_FutureQuestion(0,5, null, null, "Test 3?",
-                                             new class_TraitAnswer("6?",6),
-                                             new class_TraitAnswer("6a?",6),
-                                             new class_TraitAnswer("6?",6),
-                                             new class_TraitAnswer("6a?",6)),
-                                     new class_FutureQuestion(0,6, null, null, "Test 3?",
-                                             new class_TraitAnswer("You Have Passed The Test!",363),
-                                             new class_TraitAnswer("You Have Passed The Test!",363),
-                                             new class_TraitAnswer("You Have Passed The Test!",363),
-                                             new class_TraitAnswer("6b?",363)),
-                             }),
+            new class_Future(100, 1, "Test", null, null, null, null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "Test 1?",
+                                    new class_TraitAnswer("2?",2),
+                                    new class_TraitAnswer("2a?",2),
+                                    new class_TraitAnswer("3?",3),
+                                    new class_TraitAnswer("3a?",3)),
+                            new class_FutureQuestion(0,2, null, null, "Test 2?",
+                                    new class_TraitAnswer("4?",4),
+                                    new class_TraitAnswer("4a?",4),
+                                    new class_TraitAnswer("5?",5),
+                                    new class_TraitAnswer("5a?",5)),
+                            new class_FutureQuestion(0,3, null, null, "Test 2?",
+                                    new class_TraitAnswer("4?",4),
+                                    new class_TraitAnswer("4a?",4),
+                                    new class_TraitAnswer("5?",5),
+                                    new class_TraitAnswer("5a?",5)),
+                            new class_FutureQuestion(0,4, null, null, "Test 3?",
+                                    new class_TraitAnswer("6?",6),
+                                    new class_TraitAnswer("6a?",6),
+                                    new class_TraitAnswer("6?",6),
+                                    new class_TraitAnswer("6a?",6)),
+                            new class_FutureQuestion(0,5, null, null, "Test 3?",
+                                    new class_TraitAnswer("6?",6),
+                                    new class_TraitAnswer("6a?",6),
+                                    new class_TraitAnswer("6?",6),
+                                    new class_TraitAnswer("6a?",6)),
+                            new class_FutureQuestion(0,6, null, null, "Test 3?",
+                                    new class_TraitAnswer("You Have Passed The Test!",999),
+                                    new class_TraitAnswer("You Have Passed The Test!",999),
+                                    new class_TraitAnswer("You Have Passed The Test!",999),
+                                    new class_TraitAnswer("6b?",999)),
+                    }
+            ),
+
+
+            // Plumber
+            new class_Future(0, 2, "Plumber", null, null, str_arr("trade"), null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,1, null, null, "Portrait of a man hard at work, your hands move quickly and effortlessly due to years of service, age 51 and after 4 hours of labor at a previous house you are exhausted.",
+                                    new class_TraitAnswer("Rest your head on the sink cabinet",2),
+                                    new class_TraitAnswer("Work but shut your eyes",2),
+                                    new class_TraitAnswer("Work through it",4),
+                                    new class_TraitAnswer("Shake your head to wake up",4)
+                            ),
+                            new class_FutureQuestion(0,2, null, null, "The client walks in  just as you do and yells \"Wow, really?! wake up you're fired!",
+                                    new class_TraitAnswer("Apologise, ask for second chance",999, "Polite Plumber"),
+                                    new class_TraitAnswer("Insult client", 999, "Plumber Justice"),
+                                    new class_TraitAnswer("Tell them you understand", 999, "Polite Plumber"),
+                                    new class_TraitAnswer("Lie and say you understand", 3)
+                            ),
+                            new class_FutureQuestion(0,3, null, null, "You pack up your tools slowly looking around the bathroom, plotting your revenge.",
+                                    new class_TraitAnswer("Clog Drain",999, "Plumber Justice"),
+                                    new class_TraitAnswer("Break the Flush valve",999, "Plumber Justice"),
+                                    new class_TraitAnswer("Connect the electrical outlet to the pipe under the sink",999, "Plumber in Jail"),
+                                    new class_TraitAnswer("Steal fancy towels",999, "Plumber and a Thief")
+                            ),
+                            new class_FutureQuestion(0,4, null, null, "As you work through exhaustion the client returns time and again calling you the wrong name and reminding you not to steal something.",
+                                    new class_TraitAnswer("Ask for water",5),
+                                    new class_TraitAnswer("Insult client",6),
+                                    new class_TraitAnswer("Ask for privacy",5),
+                                    new class_TraitAnswer("Continue work",7)
+                            ),
+                            new class_FutureQuestion(0,5, null, null, "The client spits on the bathroom floor, yelling \"This is my house. I do not answer to you.\"",
+                                    new class_TraitAnswer("Smack client and leave",999, "Plumber Justice"),
+                                    new class_TraitAnswer("Stand and leave",999, "Polite Plumber"),
+                                    new class_TraitAnswer("Left uppercut, right hook", 999,"Plumber KO"),
+                                    //TODO: Make a boxing future have this as option to win
+                                    new class_TraitAnswer("Continue work",7)
+                            ),
+                            new class_FutureQuestion(0,6, null, null, "You tell the client not to worry. \"I only steal from nice houses\". Wink. The client kicks your toolbox over spilling your tools to the ground.",
+                                    new class_TraitAnswer("Quit in Spite",3),
+                                    new class_TraitAnswer("Quit in Peace",999, "Polite Plumber"),
+                                    new class_TraitAnswer("Break sink tile", 999,"Plumber Justice"),
+                                    new class_TraitAnswer("Continue work",7)
+                            ),
+                            new class_FutureQuestion(0,7, null, null, "After working into overtime, you free the blockage and have finished your work. As your packing up the client accuses you of breaking a tile above the sink",
+                                    new class_TraitAnswer("Insist you didn't and leave.",999, "Plumber with a bad review"),
+                                    new class_TraitAnswer("Double charge client",999, "Plumber Justice"),
+                                    new class_TraitAnswer("Calmly explain you did not",999, "Peaceful Plumber"),
+                                    new class_TraitAnswer("Attack and kidnap client",999, "Plumber in Jail")
+            ),
+
+
+
+
+                    }),
+
+
+
+            // Doctor
+            new class_Future(0, 2, "Doctor", null, null, str_arr("college"), null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,1, null, null, "It is the first day of your medical residency, you have spent the first six hours running mindless errands and now are tasked with checking the heart rate of your attending's patient." +
+                                    "As you enter the room you notice the patient has spilled her pills on the ground.",
+                                    new class_TraitAnswer("Alert the nurse",2),
+                                    new class_TraitAnswer("Place pills on the table",2),
+                                    new class_TraitAnswer("Place pills in pocket",999),
+                                    new class_TraitAnswer("Leave it alone",2)),
+                            new class_FutureQuestion(0,2, null, null, "You have survived residency so far and are almost to the end. Your attending is giving you first choice between 4 new patients",
+                                    new class_TraitAnswer("Chest pressure",3),
+                                    new class_TraitAnswer("Bad Cough",4),
+                                    new class_TraitAnswer("Burns when urinate",4),
+                                    new class_TraitAnswer("Claim of flu",4)),
+                            new class_FutureQuestion(0,3, null, null, "After taking an x-ray of the man's chest you discover that he has a rare congenital condition that causes his heart to point in the opposite direction. Your attending tells you to respect the patients privacy but " +
+                                    "you feel the urge to write a paper on the subject",
+                                    new class_TraitAnswer("Write the paper",4),
+                                    new class_TraitAnswer("Don't write the paper",6),
+                                    new class_TraitAnswer("Ask patient's permission to write paper",5),
+                                    new class_TraitAnswer("Don't write the paper",6)),
+
+                    }),
+
             // FIREFIGHTER
             new class_Future(0, 2, "Firefighter", future_trait_array(tdev,-2, tcour, 2), null, null, null, null, null,
                     new class_FutureQuestion[]{
@@ -313,6 +402,9 @@ public class class_Helper {
 
 
     };
+
+    public String[] str_arr(String s1, String s2){String[] str_arr = {s1, s2}; return str_arr;}
+    public String[] str_arr(String s1){String[] str_arr = {s1}; return str_arr;}
 
     public class_TraitQuestion get_trait_question(int stage)
     {

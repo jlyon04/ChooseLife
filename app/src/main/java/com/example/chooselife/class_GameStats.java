@@ -12,7 +12,7 @@ public class class_GameStats {
     private String kids;
     private  String skill_1;
     private String crime;
-    public Map<String, String> outcomes;
+    private String outcome;
 
     public class_GameStats(class_Trait[] t_trait_array){
         trait_array = t_trait_array;
@@ -26,7 +26,7 @@ public class class_GameStats {
     public void set_after_school(String choice){after_school = choice;}
     public void setSkill_1(String choice){skill_1 = choice;}
     public void setCrime(String choice){crime = choice;}
-    public void set_outcome(String outcome_key, String outcome_value){outcomes.put(outcome_key,outcome_value);}
+    public void setOutcome(String outcom){outcome = outcom;}
 
 
 

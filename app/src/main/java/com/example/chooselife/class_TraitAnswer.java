@@ -50,6 +50,13 @@ public class class_TraitAnswer {
         readme_num = readme_numV;
         outcome = outcomeV;
     }
+    public class_TraitAnswer(String txt, int stornum, String outcomeV)
+    {
+        text = txt;
+        storynum = stornum;
+        readme_num = 0;
+        outcome = outcomeV;
+    }
     public class_TraitAnswer()
     {
         text = "";

@@ -2,4 +2,13 @@
     <string name="app_name">Choose Life</string>
     <string name="play_game">Play Game</string>
     <string name="quit">Quit</string>
+    <string name="trait_lines">
+        Intelligence\n\n
+        Luck\n\n
+        Courage\n\n
+        Charisma\n\n
+        Deviance\n\n
+        Bizarre\n\n
+        Athleticism\n\n
+    </string>
 </resources>

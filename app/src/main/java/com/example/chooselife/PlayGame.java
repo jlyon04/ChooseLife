@@ -74,7 +74,7 @@ public class PlayGame extends AppCompatActivity {
             cur_que = Helper.get_stage8_question(Stats.get_love());
         else if (stage > 8) {
             // END OF Game
-            if (storynum == 363) {
+            if (storynum == 999) {
                 Intent readme = new Intent(this, ReadMe.class);
                 readme.putExtra("Readme", "END OF GAME BUBt");
                 startActivityForResult(readme, INTRO_README);
@@ -82,6 +82,8 @@ public class PlayGame extends AppCompatActivity {
             }
             else
                 fut_que = get_FutureQuestion(storynum);
+            //TODO:
+            if fut_que.
         }
         // Set Info String and Extra
         if (stage < 9) {
@@ -106,7 +108,6 @@ public class PlayGame extends AppCompatActivity {
         }
         startActivityForResult(trait_que, stage);
     }
-
 
     public class_TraitAnswer getOpt(String option, int stage)
     {
@@ -185,13 +186,17 @@ public class PlayGame extends AppCompatActivity {
                 Stats.set_kids("2");
             else
                 Stats.setCrime(opt.get_Life_choice());
+           // Display Traits
+            Intent display = new Intent(this, DisplayTrait.class);
+            display.putExtra("trait_values", trait_value_strings());
+            startActivity(display);
             setFuture();
             start_question(9,0);
         }
         //TODO
         else if (requestCode > 8){
             if (opt.getOutcome() != null)
-                Stats.append_outcome(opt.getOutcome());
+                Stats.setOutcome(opt.getOutcome());
             start_question(requestCode+1, opt.getStorynum());
         }
     }
@@ -321,4 +326,20 @@ public class PlayGame extends AppCompatActivity {
         fut_que = local_array.get(0);
         return fut_que;
     }
+
+    public ArrayList<String> trait_value_strings()
+    {
+        ArrayList<String> ret = new ArrayList<>();
+
+        ret.add(Integer.toString(Stats.getTrait(0).getValue()));
+        ret.add(Integer.toString(Stats.getTrait(1).getValue()));
+        ret.add(Integer.toString(Stats.getTrait(2).getValue()));
+        ret.add(Integer.toString(Stats.getTrait(3).getValue()));
+        ret.add(Integer.toString(Stats.getTrait(4).getValue()));
+        ret.add(Integer.toString(Stats.getTrait(5).getValue()));
+        ret.add(Integer.toString(Stats.getTrait(6).getValue()));
+        return ret;
+    }
 }
+
+
