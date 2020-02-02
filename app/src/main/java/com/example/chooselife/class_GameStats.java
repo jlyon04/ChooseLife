@@ -38,5 +38,6 @@ public class class_GameStats {
     public String getKids(){return kids;}
     public class_Trait[] getTrait_array(){return trait_array;}
     public class_Trait getTrait(int index){return trait_array[index];}
+    public String getOutcome(){return outcome;}
 
 }

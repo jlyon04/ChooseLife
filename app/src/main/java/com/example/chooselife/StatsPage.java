@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Set;
 
 public class StatsPage extends AppCompatActivity {
-    String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,36 +21,24 @@ public class StatsPage extends AppCompatActivity {
 
         ListView page = (ListView)findViewById(R.id.list_view);
 
-        // Get Shared Preferances
+        // Get Futures
         SharedPreferences shref = getApplicationContext().getSharedPreferences("gameData", MODE_PRIVATE);
         Set<String> future_set = shref.getStringSet("futures", null);
-        if (future_set == null){
 
-        }
+        // Get Starts
         int starts = shref.getInt("starts", 0);
-        // Have never played - exit
-        if (starts == 0) {
-            str = "0";
-        }
-        else{
-            str = Integer.toString(starts);
-        }
+        String start_str = Integer.toString(starts);
 
-        //Make Printable list
-        //TODO: EXPAND TO INCLUDE OTHER STATS
-        /*
+        // Adapter List
         ArrayList<String> printable = new ArrayList<>();
-        for (String str : future_set)
-            printable.add(str);
-
-         */
-        ArrayList<String> printable = new ArrayList<>();
-        printable.add(str);
-        printable.add("test");
+        printable.add(start_str);
+        if (future_set != null) {
+            for (String str : future_set)
+                printable.add(str);
+        }
 
 
-
-
+        // Create List for Scroll
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, printable);
         page.setAdapter(adapter);
 

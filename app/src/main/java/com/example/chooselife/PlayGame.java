@@ -10,7 +10,9 @@ import android.view.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.Future;
 
 public class PlayGame extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class PlayGame extends AppCompatActivity {
     class_FutureQuestion fut_que = new class_FutureQuestion();
     static final int INTRO_README = 0;
     SharedPreferences gameData;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class PlayGame extends AppCompatActivity {
 
         // Shared Preference
         gameData = getApplicationContext().getSharedPreferences("gameData", MODE_PRIVATE);
-        SharedPreferences.Editor editor = gameData.edit();
+        editor = gameData.edit();
 
         // Set Game Started Stat
         int start = gameData.getInt("starts", 0);
@@ -97,6 +100,7 @@ public class PlayGame extends AppCompatActivity {
         return temp;
     }
 
+
     public void start_question(int stage, int storynum)
     {
         Intent question_page = new Intent();
@@ -118,13 +122,38 @@ public class PlayGame extends AppCompatActivity {
         else if (stage > 8) {
             // END OF Game
             if (storynum == 999) {
-                Intent readme = new Intent(this, ReadMe.class);
-                readme.putExtra("Readme", "END OF GAME BUB");
-                startActivityForResult(readme, INTRO_README);
-                return;
+                if (Stats.getOutcome() != null)
+                {
+                    Set<String> futures_set = gameData.getStringSet("futures", null);
+                    // New List
+                    if (futures_set == null)
+                    {
+                        Set<String> new_set =  new HashSet<String>();
+                        new_set.add(Stats.getOutcome());
+                        //new futures
+                        editor.putStringSet("futures", new_set);
+                        editor.apply();
+                    }
+                    else {
+                        // Already Unlocked
+                        if (futures_set.contains(Stats.getOutcome())) {
+                            finish();
+                            return;
+                        }
+                        // Add to List
+                        futures_set.add(Stats.getOutcome());
+                        editor.putStringSet("futures", futures_set);
+                        editor.apply();
+                    }
+                    // Read Me
+                    Intent readme = new Intent(this, ReadMe.class);
+                    readme.putExtra("Readme", "END OF GAME BUB");
+                    startActivityForResult(readme, INTRO_README);
+                    finish();
+                    return;
+                }
             }
             fut_que = get_FutureQuestion(storynum);
-            //TODO:
         }
         // Set Info String and Extra
         if (stage < 9) {
@@ -139,6 +168,7 @@ public class PlayGame extends AppCompatActivity {
             question_page.putExtra("info", info_str);
         }
         else{
+            // 2 answer Page
             if (fut_que.getOptC() == null)
             {
                 String[] info_str = {
@@ -327,6 +357,7 @@ public class PlayGame extends AppCompatActivity {
             // Fill Local Array
             local_array.add(future_array[i]);
         }
+        // TODO: Check -1
         int index = rand.nextInt(local_array.size());
         Future = local_array.get(index);
     }

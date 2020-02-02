@@ -257,18 +257,18 @@ public class class_Helper {
                                     null,
                                     new class_TraitAnswer("6a?",6)),
                             new class_FutureQuestion(0,6, null, null, "Test 3?",
-                                    new class_TraitAnswer("You Have Passed The Test!",999),
-                                    new class_TraitAnswer("You Have Passed The Test!",999),
-                                    new class_TraitAnswer("You Have Passed The Test!",999),
-                                    new class_TraitAnswer("6b?",999)),
+                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
+                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
+                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
+                                    new class_TraitAnswer("6b?",999, "Welcome Neo")),
                     }
             ),
-
+/*
 
             // Plumber
             new class_Future(0, 2, "Plumber", null, null, str_arr("trade"), null, null, null,
                     new class_FutureQuestion[]{
-                            new class_FutureQuestion(0,1, null, null, "Portrait of a man hard at work, your hands move quickly and effortlessly due to years of service, age 51 and after 4 hours of labor at a previous house you are exhausted.",
+                            new class_FutureQuestion(0,0, null, null, "Portrait of a man hard at work, your hands move quickly and effortlessly due to years of service, age 51 and after 4 hours of labor at a previous house you are exhausted.",
                                     new class_TraitAnswer("Rest your head on the sink cabinet",2),
                                     new class_TraitAnswer("Work but shut your eyes",2),
                                     new class_TraitAnswer("Work through it",4),
@@ -322,7 +322,7 @@ public class class_Helper {
             // Doctor
             new class_Future(0, 2, "Doctor", null, null, str_arr("college"), null, null, null,
                     new class_FutureQuestion[]{
-                            new class_FutureQuestion(0,1, null, null, "It is the first day of your medical residency, you have spent the first six hours running mindless errands and now are tasked with checking the heart rate of your attending's patient." +
+                            new class_FutureQuestion(0,0, null, null, "It is the first day of your medical residency, you have spent the first six hours running mindless errands and now are tasked with checking the heart rate of your attending's patient." +
                                     "As you enter the room you notice the patient has spilled her pills on the ground.",
                                     new class_TraitAnswer("Alert the nurse",2),
                                     new class_TraitAnswer("Place pills on the table",2),
@@ -408,7 +408,7 @@ public class class_Helper {
 
 
                     }),
-
+*/
 
     };
 
