@@ -218,6 +218,15 @@ public class class_Helper {
                             ),
                     }),
 
+
+                            new class_FutureQuestion(0,2, null, null, "",
+                                    new class_TraitAnswer("2?",2),
+                                    new class_TraitAnswer("2a?",2),
+                                    null,
+                                    null
+                            ),
+
+
              */
             // TEST
             new class_Future(100, 1, "Test", null, null, null, null, null, null,
@@ -245,7 +254,7 @@ public class class_Helper {
                             new class_FutureQuestion(0,5, null, null, "Test 3?",
                                     new class_TraitAnswer("6?",6),
                                     new class_TraitAnswer("6a?",6),
-                                    new class_TraitAnswer("6?",6),
+                                    null,
                                     new class_TraitAnswer("6a?",6)),
                             new class_FutureQuestion(0,6, null, null, "Test 3?",
                                     new class_TraitAnswer("You Have Passed The Test!",999),
@@ -286,8 +295,8 @@ public class class_Helper {
                             new class_FutureQuestion(0,5, null, null, "The client spits on the bathroom floor, yelling \"This is my house. I do not answer to you.\"",
                                     new class_TraitAnswer("Smack client and leave",999, "Plumber Justice"),
                                     new class_TraitAnswer("Stand and leave",999, "Polite Plumber"),
-                                    new class_TraitAnswer("Left uppercut, right hook", 999,"Plumber KO"),
                                     //TODO: Make a boxing future have this as option to win
+                                    new class_TraitAnswer("Left uppercut, right hook", 999,"Plumber KO"),
                                     new class_TraitAnswer("Continue work",7)
                             ),
                             new class_FutureQuestion(0,6, null, null, "You tell the client not to worry. \"I only steal from nice houses\". Wink. The client kicks your toolbox over spilling your tools to the ground.",

@@ -1,5 +1,6 @@
 package com.example.chooselife;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,9 +14,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+
     public void startGame(View view)
     {
         Intent game_intent = new Intent(this, PlayGame.class);
-        startActivity(game_intent);
+        startActivityForResult(game_intent, 1);
+    }
+    public void startStatsPage(View view)
+    {
+        Intent stats_page = new Intent(this, StatsPage.class);
+        startActivity(stats_page);
     }
 }

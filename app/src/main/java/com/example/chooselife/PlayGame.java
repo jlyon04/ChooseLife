@@ -2,8 +2,11 @@ package com.example.chooselife;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,16 +22,51 @@ public class PlayGame extends AppCompatActivity {
     class_TraitQuestion cur_que = new class_TraitQuestion();
     class_FutureQuestion fut_que = new class_FutureQuestion();
     static final int INTRO_README = 0;
+    SharedPreferences gameData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
+
+        // Shared Preference
+        gameData = getApplicationContext().getSharedPreferences("gameData", MODE_PRIVATE);
+        SharedPreferences.Editor editor = gameData.edit();
+
+        // Set Game Started Stat
+        int start = gameData.getInt("starts", 0);
+        if (start == 0)
+            editor.putInt("starts", 1);
+        else
+            editor.putInt("starts", start+1);
+        editor.apply();
 
         //Initial Readme
         Intent starting_readme = new Intent(this, ReadMe.class);
         starting_readme.putExtra("Readme", Helper.get_ReadMe(0));
         startActivityForResult(starting_readme, INTRO_README);
     }
+/*
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            event.startTracking();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking()
+                && !event.isCanceled()) {
+            finish();
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+*/
+
+
 
     public class_Trait get_stat_trait(String trait)
     {
@@ -61,7 +99,12 @@ public class PlayGame extends AppCompatActivity {
 
     public void start_question(int stage, int storynum)
     {
-        Intent trait_que = new Intent(this, FourAnswerPage.class);
+        Intent question_page = new Intent();
+        String[] vinfo_str = new String[]{};
+
+        if (stage < 9)
+            question_page = new Intent(this, FourAnswerPage.class);
+
         if (stage < 4)
             cur_que = Helper.get_trait_question(stage);
         else if (stage == 4)
@@ -76,37 +119,50 @@ public class PlayGame extends AppCompatActivity {
             // END OF Game
             if (storynum == 999) {
                 Intent readme = new Intent(this, ReadMe.class);
-                readme.putExtra("Readme", "END OF GAME BUBt");
+                readme.putExtra("Readme", "END OF GAME BUB");
                 startActivityForResult(readme, INTRO_README);
                 return;
             }
-            else
-                fut_que = get_FutureQuestion(storynum);
+            fut_que = get_FutureQuestion(storynum);
             //TODO:
-            if fut_que.
         }
         // Set Info String and Extra
         if (stage < 9) {
-                String[] info_str = {
-                        cur_que.getQuestion(),
-                        cur_que.getOptA().getText(),
-                        cur_que.getOptB().getText(),
-                        cur_que.getOptC().getText(),
-                        cur_que.getOptD().getText(),
+            String[] info_str = {
+                cur_que.getQuestion(),
+                cur_que.getOptA().getText(),
+                cur_que.getOptB().getText(),
+                cur_que.getOptC().getText(),
+                cur_que.getOptD().getText(),
             };
-            trait_que.putExtra("info", info_str);
+            vinfo_str = info_str;
+            question_page.putExtra("info", info_str);
         }
         else{
-            String[] info_str = {
-                    fut_que.getQuestion(),
-                    fut_que.getOptA().getText(),
-                    fut_que.getOptB().getText(),
-                    fut_que.getOptC().getText(),
-                    fut_que.getOptD().getText(),
-            };
-            trait_que.putExtra("info", info_str);
+            if (fut_que.getOptC() == null)
+            {
+                String[] info_str = {
+                        fut_que.getQuestion(),
+                        fut_que.getOptA().getText(),
+                        fut_que.getOptB().getText()
+                };
+                vinfo_str = info_str;
+                question_page = new Intent(this, TwoAnswerPage.class);
+            }
+            else{
+                String[] info_str = {
+                        fut_que.getQuestion(),
+                        fut_que.getOptA().getText(),
+                        fut_que.getOptB().getText(),
+                        fut_que.getOptC().getText(),
+                        fut_que.getOptD().getText(),
+                };
+                vinfo_str = info_str;
+                question_page = new Intent(this, FourAnswerPage.class);
+            }
+            question_page.putExtra("info", vinfo_str);
         }
-        startActivityForResult(trait_que, stage);
+        startActivityForResult(question_page, stage);
     }
 
     public class_TraitAnswer getOpt(String option, int stage)
@@ -142,6 +198,11 @@ public class PlayGame extends AppCompatActivity {
     {
         class_TraitAnswer opt = new class_TraitAnswer();
         String result;
+        if(resultCode == 404)
+        {
+            finish();
+            return;
+        }
         if (requestCode > 0) {
             result = data.getStringExtra("result");
             opt = getOpt(result, requestCode);
