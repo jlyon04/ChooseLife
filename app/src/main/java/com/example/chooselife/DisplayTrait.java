@@ -26,6 +26,7 @@ public class DisplayTrait extends AppCompatActivity {
         TextView t5 = (TextView)findViewById(R.id.textView1);
         TextView t6 = (TextView)findViewById(R.id.textView11);
         TextView t7 = (TextView)findViewById(R.id.textView12);
+        TextView future = (TextView)findViewById(R.id.tv_future_sel);
 
         t1.setText(values.get(0));
         t2.setText(values.get(1));
@@ -34,6 +35,7 @@ public class DisplayTrait extends AppCompatActivity {
         t5.setText(values.get(4));
         t6.setText(values.get(5));
         t7.setText(values.get(6));
+        future.setText(values.get(7));
     }
 
     public void continueButton(View view){

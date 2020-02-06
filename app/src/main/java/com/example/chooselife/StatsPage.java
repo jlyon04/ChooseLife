@@ -27,7 +27,7 @@ public class StatsPage extends AppCompatActivity {
 
         // Get Starts
         int starts = shref.getInt("starts", 0);
-        String start_str = Integer.toString(starts);
+        String start_str = "Futures Achieved: " + starts;
 
         // Adapter List
         ArrayList<String> printable = new ArrayList<>();

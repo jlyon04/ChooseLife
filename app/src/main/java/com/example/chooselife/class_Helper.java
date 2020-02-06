@@ -260,10 +260,9 @@ public class class_Helper {
                                     new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
                                     new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
                                     new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
-                                    new class_TraitAnswer("6b?",999, "Welcome Neo")),
+                                    new class_TraitAnswer("6b?",999, "Welcome Neo"))
                     }
             ),
-/*
 
             // Plumber
             new class_Future(0, 2, "Plumber", null, null, str_arr("trade"), null, null, null,
@@ -309,10 +308,11 @@ public class class_Helper {
                                     new class_TraitAnswer("Insist you didn't and leave.",999, "Plumber with a bad review"),
                                     new class_TraitAnswer("Double charge client",999, "Plumber Justice"),
                                     new class_TraitAnswer("Calmly explain you did not",999, "Peaceful Plumber"),
-                                    new class_TraitAnswer("Attack and kidnap client",999, "Plumber in Jail")
+                                    new class_TraitAnswer("Attack and kidnap client",999, "Plumber in Jail"))
+                    }
             ),
 
-
+/*
 
 
                     }),

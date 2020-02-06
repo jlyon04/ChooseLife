@@ -36,14 +36,6 @@ public class PlayGame extends AppCompatActivity {
         gameData = getApplicationContext().getSharedPreferences("gameData", MODE_PRIVATE);
         editor = gameData.edit();
 
-        // Set Game Started Stat
-        int start = gameData.getInt("starts", 0);
-        if (start == 0)
-            editor.putInt("starts", 1);
-        else
-            editor.putInt("starts", start+1);
-        editor.apply();
-
         //Initial Readme
         Intent starting_readme = new Intent(this, ReadMe.class);
         starting_readme.putExtra("Readme", Helper.get_ReadMe(0));
@@ -147,7 +139,7 @@ public class PlayGame extends AppCompatActivity {
                     }
                     // Read Me
                     Intent readme = new Intent(this, ReadMe.class);
-                    readme.putExtra("Readme", "END OF GAME BUB");
+                    readme.putExtra("Readme", "Your Future has been decided\n You are Awarded: "+Stats.getOutcome());
                     startActivityForResult(readme, INTRO_README);
                     finish();
                     return;
@@ -193,6 +185,14 @@ public class PlayGame extends AppCompatActivity {
             question_page.putExtra("info", vinfo_str);
         }
         startActivityForResult(question_page, stage);
+        // Display Stats + Trait
+        if (stage == 9){
+            // Display Traits
+            Intent display = new Intent(this, DisplayTrait.class);
+
+            display.putExtra("trait_values", trait_value_strings());
+            startActivity(display);
+        }
     }
 
     public class_TraitAnswer getOpt(String option, int stage)
@@ -277,11 +277,16 @@ public class PlayGame extends AppCompatActivity {
                 Stats.set_kids("2");
             else
                 Stats.setCrime(opt.get_Life_choice());
-           // Display Traits
-            Intent display = new Intent(this, DisplayTrait.class);
-            display.putExtra("trait_values", trait_value_strings());
-            startActivity(display);
+
+            // Set Future
             setFuture();
+            // Set Game Started/Futures Achieved Stat
+            int start = gameData.getInt("starts", 0);
+            if (start == 0)
+                editor.putInt("starts", 1);
+            else
+                editor.putInt("starts", start+1);
+            editor.apply();
             start_question(9,0);
         }
         //TODO
@@ -307,8 +312,13 @@ public class PlayGame extends AppCompatActivity {
         Random rand = new Random();
         class_Future[] future_array = Helper.futureArray;
         ArrayList<class_Future> local_array = new ArrayList<>();
+        int rare = rand.nextInt(100);
+
         //Loop through all Futures
         future_loop: for (int i =0; i < future_array.length; i++){
+            // Rare todo:check
+            if (future_array[i].rare > rare)
+                continue;
             // Love
             if (future_array[i].love != null && !Stats.get_love().equals(future_array[i].love))
                 continue;
@@ -331,33 +341,33 @@ public class PlayGame extends AppCompatActivity {
                 }
             }
             if (future_array[i].trait_array != null) {
-
-            // Trait Array
-            // Future Trait Loop
-            for (int k=0; k<future_array[i].trait_array.length; k++) {
-                // Stats Trait Loop
-                for (int l = 0; l < Stats.getTrait_array().length; l++) {
-                    // Title Match
-                    if (future_array[i].trait_array[k].getTitle().equals(Stats.getTrait(l).getTitle())) {
-                        // Value Match
-                        // Negative Value
-                        if (future_array[i].trait_array[k].getValue() < 0) {
-                            if (!(Stats.getTrait(l).getValue() <= future_array[i].trait_array[k].getValue()))
-                                continue future_loop;
-                        }
-                        // Positive Value
-                        else {
-                            if (!(Stats.getTrait(l).getValue() >= future_array[i].trait_array[k].getValue()))
-                                continue future_loop;
+                // Trait Array
+                // Future Trait Loop
+                for (int k=0; k<future_array[i].trait_array.length; k++) {
+                    // Stats Trait Loop
+                    for (int l = 0; l < Stats.getTrait_array().length; l++) {
+                        // Title Match
+                        if (future_array[i].trait_array[k].getTitle().equals(Stats.getTrait(l).getTitle())) {
+                            // Value Match
+                            // Negative Value
+                            if (future_array[i].trait_array[k].getValue() < 0) {
+                                if (!(Stats.getTrait(l).getValue() <= future_array[i].trait_array[k].getValue()))
+                                    continue future_loop;
+                            }
+                            // Positive Value
+                            else {
+                                if (!(Stats.getTrait(l).getValue() >= future_array[i].trait_array[k].getValue()))
+                                    continue future_loop;
+                            }
                         }
                     }
                 }
             }
-            }
             // Fill Local Array
             local_array.add(future_array[i]);
         }
-        // TODO: Check -1
+
+        // Grab random Qualified Future
         int index = rand.nextInt(local_array.size());
         Future = local_array.get(index);
     }
@@ -430,6 +440,7 @@ public class PlayGame extends AppCompatActivity {
         ret.add(Integer.toString(Stats.getTrait(4).getValue()));
         ret.add(Integer.toString(Stats.getTrait(5).getValue()));
         ret.add(Integer.toString(Stats.getTrait(6).getValue()));
+        ret.add(Future.title);
         return ret;
     }
 }
