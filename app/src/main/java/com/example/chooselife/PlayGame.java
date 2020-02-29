@@ -276,7 +276,7 @@ public class PlayGame extends AppCompatActivity {
             else if (opt.get_Life_choice().equals("2"))
                 Stats.set_kids("2");
             else
-                Stats.setCrime(opt.get_Life_choice());
+                Stats.setCrime("yes");
 
             // Set Future
             setFuture();

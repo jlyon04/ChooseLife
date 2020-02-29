@@ -268,6 +268,39 @@ public class class_Helper {
                     }
             ),
 
+            // Lawyer
+            new class_Future(0, 2, "Lawyer", null, null, str_arr("college"), null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "In ",
+                                    new class_TraitAnswer("Turn Back",2),
+                                    new class_TraitAnswer("",2),
+                                    new class_TraitAnswer("",3),
+                                    new class_TraitAnswer("",3)),
+                    }
+            ),
+
+            // Police
+            new class_Future(0, 2, "Police", null, null, str_arr("work", "trade"), null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "",
+                                    new class_TraitAnswer("Turn Back",2),
+                                    new class_TraitAnswer("",2),
+                                    new class_TraitAnswer("",3),
+                                    new class_TraitAnswer("",3)),
+                    }
+            ),
+
+            // Criminal
+            new class_Future(0, 2, "Criminal", null, null, null, null, null, "yes",
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "In ",
+                                    new class_TraitAnswer("Turn Back",2),
+                                    new class_TraitAnswer("",2),
+                                    new class_TraitAnswer("",3),
+                                    new class_TraitAnswer("",3)),
+                    }
+            ),
+
             // Boxer
             new class_Future(0, 2, "Professional Boxer", future_trait_array(tath, 3), null, null, null, null, null,
                     new class_FutureQuestion[]{
@@ -516,8 +549,8 @@ public class class_Helper {
                                     new class_TraitAnswer("3a?",3)),
 
                             new class_FutureQuestion(0,29, null, null, "Sliding across the dock planks your foot connects with The Attackers chest. With a heavy grunt The Attacker skids across then falls off the dock, chains dragging him deeper and deeper into the dark depths of the lake.",
-                                    new class_TraitAnswer("Fist Pump",999, "Counselor Survived: Defeat the Attacker (Legendary)"),
-                                    new class_TraitAnswer("Arm Swing",999, "Counselor Survived: Defeat the Attacker (Legendary)"),
+                                    new class_TraitAnswer("Fade to Black",999, "Counselor Survived: Defeat the Attacker (Legendary)"),
+                                    new class_TraitAnswer("To be Continued",999, "Counselor Survived: Defeat the Attacker (Legendary)"),
                                     null,
                                     new class_TraitAnswer("3a?",3)),
 
