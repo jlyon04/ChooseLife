@@ -312,7 +312,7 @@ public class PlayGame extends AppCompatActivity {
         Random rand = new Random();
         class_Future[] future_array = Helper.futureArray;
         ArrayList<class_Future> local_array = new ArrayList<>();
-        int rare = rand.nextInt(100);
+        int rare = rand.nextInt(101);
 
         //Loop through all Futures
         future_loop: for (int i =0; i < future_array.length; i++){

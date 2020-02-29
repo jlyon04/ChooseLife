@@ -21,7 +21,7 @@ public class class_Trait {
         return_array[1] = new class_Trait("luck", 0);
         return_array[2] = new class_Trait("courage", 0);
         return_array[3] = new class_Trait("charisma", 0);
-        return_array[4] = new class_Trait("deviance", 0);
+        return_array[4] = new class_Trait("morality", 0);
         return_array[5] = new class_Trait("bizarre", 0);
         return_array[6] = new class_Trait("athleticism", 0);
 

@@ -8,7 +8,7 @@ public class class_Helper {
     public static String tluck = "luck";
     public static String tcour = "courage";
     public static String tchar = "charisma";
-    public static String tdev = "deviance";
+    public static String tmor = "morality";
     public static String tbiz = "bizarre";
     public static String tath = "athleticism";
 
@@ -35,6 +35,10 @@ public class class_Helper {
         rand_int1 = rand.nextInt(5) - 6;
         rand_int2 = rand.nextInt(5) - 6;
         return new class_Trait[]{new class_Trait(trait1, rand_int1), new class_Trait(trait2, rand_int2)};
+    }
+
+    class_Trait[] future_trait_array(String t1, int val1){
+        return new class_Trait[]{ new class_Trait(t1, val1)};
     }
 
     class_Trait[] future_trait_array(String t1, int val1, String t2, int val2){
@@ -78,14 +82,14 @@ public class class_Helper {
                     new class_TraitAnswer("Banana",          quick_add(tint, tluck))),
             new class_TraitQuestion("Your aunt Clara has decided to pick you up, pulling you away from your favorite spot on the kitchen floor right where the linoleum bubbles so that you can poke it with your tiny finger",
                     new class_TraitAnswer("Cry",                    quick_add(tint, tcour, 1)),
-                    new class_TraitAnswer("Give Angry Look",        quick_add(tcour, tdev)),
+                    new class_TraitAnswer("Give Angry Look",        quick_add(tcour, tmor, 1)),
                     new class_TraitAnswer("Reach for Mama",         quick_add(tchar, tint)),
                     new class_TraitAnswer("Force a bowel movement", quick_add(tath, tbiz))),
             new class_TraitQuestion("You have been put down to sleep in your crib by the Overlord that calls himself Dad, while lying down you quickly catch a glimpse of a spider crawling across your bed ",
-                    new class_TraitAnswer("Squish it",                  quick_add(tath, tdev)),
+                    new class_TraitAnswer("Squish it",                  quick_add(tath, tmor, 1)),
                     new class_TraitAnswer("Quickly Brush it off",       quick_add(tluck, tint)),
-                    new class_TraitAnswer("Put hand down to greet it",  quick_add(tchar, tdev, 1)),
-                    new class_TraitAnswer("Eat it",                     quick_add(tbiz, tdev)))
+                    new class_TraitAnswer("Put hand down to greet it",  quick_add(tchar, tmor)),
+                    new class_TraitAnswer("Eat it",                     quick_add(tbiz, tmor, 1)))
 
             /*
             new class_TraitQuestion(" ",
@@ -97,20 +101,21 @@ public class class_Helper {
     };
     public class_TraitQuestion[] stage2_questions = {
             new class_TraitQuestion("You have entered the age of daycare, Welcome. On a day like any other you sit quiet and happy playing in a sandbox when Dale the oversized freckled toddler takes the shovel right from your hand.",
-                    new class_TraitAnswer("Tell Dale you can share",          quick_add(tchar, tint)),
+                    new class_TraitAnswer("Tell Dale you can share",          quick_add(tchar, tmor)),
                     new class_TraitAnswer("Cry, getting Dale in trouble",          quick_add(tint, tcour, 1)),
-                    new class_TraitAnswer("Push Dale and Reclaim your Shovel",          quick_add(tdev, tcour)),
-                    new class_TraitAnswer("Lie, Tell Dale the Shovel is cursed",          quick_add(tdev, tint)))
+                    new class_TraitAnswer("Push Dale and Reclaim your Shovel",          quick_add(tcour, tmor, 1)),
+                    new class_TraitAnswer("Lie, Tell Dale the Shovel is cursed",          quick_add(tint, tmor, 1)))
     };
 
     public class_TraitQuestion[] stage3_questions = {
             new class_TraitQuestion("Middle School gym class, oh what a joy. Your Teacher lets you decide on what activity to participate in.",
                     new class_TraitAnswer("Basketball",          quick_add(tchar, tath)),
                     new class_TraitAnswer("Board Games",          quick_add(tint, tath, 1)),
-                    new class_TraitAnswer("Fake an Illness",          quick_add(tint, tdev)),
-                    new class_TraitAnswer("Skip and Smoke",          quick_add(tdev, tint, 1)))
+                    new class_TraitAnswer("Fake an Illness",          quick_add(tint, tmor, 1)),
+                    new class_TraitAnswer("Skip and Smoke",          quick_add(tmor, 1, tint, 1)))
     };
 
+    // Love
     public class_TraitQuestion get_stage4_question() {
         return new class_TraitQuestion("You have fallen for your first crush.",
                 new class_TraitAnswer("Chase the girl", "Love"),
@@ -118,7 +123,7 @@ public class class_Helper {
                 new class_TraitAnswer("Focus on Athletics", "No Love", quick_add(tath, tath)),
                 new class_TraitAnswer("Focus on Social", "No Love", quick_add(tchar, tchar)));
     }
-
+    // Skill
     public class_TraitQuestion get_stage5_question(String question_string, String taken_skill) {
         ArrayList<String> skill_array = get_skill_array();
         String opta, optb, optc, optd;
@@ -150,15 +155,15 @@ public class class_Helper {
                 new class_TraitAnswer(optc, optc),
                 new class_TraitAnswer(optd, optd));
     }
-
+    // After School
     public class_TraitQuestion get_stage6_question() {
         return new class_TraitQuestion("You Have Graduated High School.",
                 new class_TraitAnswer("College",        "college"),
-                new class_TraitAnswer("Trade School",   "trade", quick_add(tint, tint)),
-                new class_TraitAnswer("Get A  Job",     "job", quick_add(tath, tath)),
-                new class_TraitAnswer("Do Nothing",     "nothing", quick_add(tchar, tchar)));
+                new class_TraitAnswer("Trade School",   "trade"),
+                new class_TraitAnswer("Get A  Job",     "job"),
+                new class_TraitAnswer("Do Nothing",     "nothing"));
     }
-
+    // Kids
     public class_TraitQuestion get_stage8_question(String love) {
         String crime = get_crime();
         if (love.equals("Love")) {
@@ -175,7 +180,6 @@ public class class_Helper {
                 new class_TraitAnswer(crime, crime));
     }
 
-
     public ArrayList<String> get_skill_array(){
         ArrayList<String> skills = new ArrayList<String>() {
             {
@@ -186,7 +190,6 @@ public class class_Helper {
         };
         return skills;
     }
-
     public String get_crime()
     {
         String[] crime_array = {"Rob a bank", "Rob a gas station", "Start Pyramid scheme", "Steal Rich Mans Identity"};
@@ -195,39 +198,29 @@ public class class_Helper {
         return crime_array[index];
     }
 
-
-
     public class_Future[] futureArray = {
-            // rare/title/qual_trait_array/love/after school/kids/skill1/skill2/crm/story(Class_FutureQuestion[]
             /*
 
             // Doctor
             new class_Future(0, 2, "Doctor", null, null, str_arr("college"), null, null, null,
                     new class_FutureQuestion[]{
-                            new class_FutureQuestion(0,1, null, null, "It is the first day of your medical internship,  ",
+                            new class_FutureQuestion(0,0, null, null, "It is the first day of your medical internship,  ",
                                     new class_TraitAnswer("2?",2),
                                     new class_TraitAnswer("2a?",2),
                                     new class_TraitAnswer("3?",3),
-                                    new class_TraitAnswer("3a?",3)
-                            ),
-                            new class_FutureQuestion(0,2, null, null, "",
-                                    new class_TraitAnswer("2?",2),
-                                    new class_TraitAnswer("2a?",2),
-                                    new class_TraitAnswer("3?",3),
-                                    new class_TraitAnswer("3a?",3)
-                            ),
-                    }),
+                                    new class_TraitAnswer("3a?",3)),
+                    }
+            ),
 
 
-                            new class_FutureQuestion(0,2, null, null, "",
-                                    new class_TraitAnswer("2?",2),
-                                    new class_TraitAnswer("2a?",2),
-                                    null,
-                                    null
-                            ),
+            new class_FutureQuestion(0,2, null, null, "",
+                    new class_TraitAnswer("2?",2),
+                    new class_TraitAnswer("2a?",2),
+                    null,
+                    null
+            ),
 
-
-             */
+*/
             // TEST
             new class_Future(100, 1, "Test", null, null, null, null, null, null,
                     new class_FutureQuestion[]{
@@ -257,10 +250,47 @@ public class class_Helper {
                                     null,
                                     new class_TraitAnswer("6a?",6)),
                             new class_FutureQuestion(0,6, null, null, "Test 3?",
-                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
-                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
-                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester"),
-                                    new class_TraitAnswer("6b?",999, "Welcome Neo"))
+                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester (Rare)"),
+                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester (Rare)"),
+                                    new class_TraitAnswer("You Have Passed The Test!",999, "Dev Tester (Rare)"),
+                                    new class_TraitAnswer("6b?",999, "Welcome Neo (Ultra-Rare)"))
+                    }
+            ),
+
+            // Archaeologist
+            new class_Future(0, 2, "Archaeologist", null, null, str_arr("college"), null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "Years of study and field work have made you a renowned archaeologist. You have finally tracked down the ancient artifact that you have spent your career searching for \"Piedra de Tigre\".",
+                                    new class_TraitAnswer("Turn Back",2),
+                                    new class_TraitAnswer("",2),
+                                    new class_TraitAnswer("",3),
+                                    new class_TraitAnswer("",3)),
+                    }
+            ),
+
+            // Boxer
+            new class_Future(0, 2, "Professional Boxer", future_trait_array(tath, 3), null, null, null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0, 0, null, null, "Aging and punched out you find yourself in the middle of a boxing match competing against a much younger and better opponent. You are dead tired at the start of the 3rd round but you may have an opening to finish.",
+                                    new class_TraitAnswer("Save Energy", 1),
+                                    new class_TraitAnswer("Final Burst", 999, "Boxer: Down in the Third"),
+                                    null,
+                                    new class_TraitAnswer("", 3)),
+                            new class_FutureQuestion(0,1, null, null, "You manage to gain some energy back and notice your opponent dropping their guard after jabbing twice. If you time the right combo it will land big.",
+                                    new class_TraitAnswer("Jab, Jab, Hook",2),
+                                    new class_TraitAnswer("Jab, Hook, Jab",2),
+                                    new class_TraitAnswer("Hook, Uppercut, Jab",3),
+                                    new class_TraitAnswer("Uppercut, Uppercut",4)),
+                            new class_FutureQuestion(0,1, null, null, "You manage to gain some energy back and notice your opponent dropping their guard after jabbing twice. If you time the right combo it will land big.",
+                                    new class_TraitAnswer("Jab, Jab, Hook",2),
+                                    new class_TraitAnswer("Jab, Hook, Jab",2),
+                                    new class_TraitAnswer("Hook, Uppercut, Jab",3),
+                                    new class_TraitAnswer("Uppercut, Uppercut",4)),
+                            new class_FutureQuestion(0,1, null, null, "You manage to gain some energy back and notice your opponent dropping their guard after jabbing twice. If you time the right combo it will land big.",
+                                    new class_TraitAnswer("Jab, Jab, Hook",2),
+                                    new class_TraitAnswer("Jab, Hook, Jab",2),
+                                    new class_TraitAnswer("Hook, Uppercut, Jab",3),
+                                    new class_TraitAnswer("Uppercut, Uppercut",4)),
                     }
             ),
 
@@ -271,46 +301,231 @@ public class class_Helper {
                                     new class_TraitAnswer("Rest your head on the sink cabinet",2),
                                     new class_TraitAnswer("Work but shut your eyes",2),
                                     new class_TraitAnswer("Work through it",4),
-                                    new class_TraitAnswer("Shake your head to wake up",4)
-                            ),
-                            new class_FutureQuestion(0,2, null, null, "The client walks in  just as you do and yells \"Wow, really?! wake up you're fired!",
+                                    new class_TraitAnswer("Shake your head to wake up",4)),
+                            new class_FutureQuestion(0,2, null, null, "The client walks in  just as you do and yells \"Wow, really?! Wake up you're fired!",
                                     new class_TraitAnswer("Apologise, ask for second chance",999, "Polite Plumber"),
                                     new class_TraitAnswer("Insult client", 999, "Plumber Justice"),
                                     new class_TraitAnswer("Tell them you understand", 999, "Polite Plumber"),
-                                    new class_TraitAnswer("Lie and say you understand", 3)
-                            ),
+                                    new class_TraitAnswer("Lie and say you understand", 3)),
                             new class_FutureQuestion(0,3, null, null, "You pack up your tools slowly looking around the bathroom, plotting your revenge.",
                                     new class_TraitAnswer("Clog Drain",999, "Plumber Justice"),
                                     new class_TraitAnswer("Break the Flush valve",999, "Plumber Justice"),
                                     new class_TraitAnswer("Connect the electrical outlet to the pipe under the sink",999, "Plumber in Jail"),
-                                    new class_TraitAnswer("Steal fancy towels",999, "Plumber and a Thief")
-                            ),
+                                    new class_TraitAnswer("Steal fancy towels",999, "Plumber and a Thief (Rare)")),
                             new class_FutureQuestion(0,4, null, null, "As you work through exhaustion the client returns time and again calling you the wrong name and reminding you not to steal something.",
                                     new class_TraitAnswer("Ask for water",5),
                                     new class_TraitAnswer("Insult client",6),
                                     new class_TraitAnswer("Ask for privacy",5),
-                                    new class_TraitAnswer("Continue work",7)
-                            ),
+                                    new class_TraitAnswer("Continue work",7)),
                             new class_FutureQuestion(0,5, null, null, "The client spits on the bathroom floor, yelling \"This is my house. I do not answer to you.\"",
                                     new class_TraitAnswer("Smack client and leave",999, "Plumber Justice"),
                                     new class_TraitAnswer("Stand and leave",999, "Polite Plumber"),
                                     //TODO: Make a boxing future have this as option to win
-                                    new class_TraitAnswer("Left uppercut, right hook", 999,"Plumber KO"),
-                                    new class_TraitAnswer("Continue work",7)
-                            ),
+                                    new class_TraitAnswer("Left uppercut, right hook", 999,"Plumber KO (Rare)"),
+                                    new class_TraitAnswer("Continue work",7)),
                             new class_FutureQuestion(0,6, null, null, "You tell the client not to worry. \"I only steal from nice houses\". Wink. The client kicks your toolbox over spilling your tools to the ground.",
                                     new class_TraitAnswer("Quit in Spite",3),
                                     new class_TraitAnswer("Quit in Peace",999, "Polite Plumber"),
                                     new class_TraitAnswer("Break sink tile", 999,"Plumber Justice"),
-                                    new class_TraitAnswer("Continue work",7)
-                            ),
+                                    new class_TraitAnswer("Continue work",7)),
                             new class_FutureQuestion(0,7, null, null, "After working into overtime, you free the blockage and have finished your work. As your packing up the client accuses you of breaking a tile above the sink",
-                                    new class_TraitAnswer("Insist you didn't and leave.",999, "Plumber with a bad review"),
+                                    new class_TraitAnswer("Insist you didn't and leave.",999, "Plumber with a bad review (Rare)"),
                                     new class_TraitAnswer("Double charge client",999, "Plumber Justice"),
-                                    new class_TraitAnswer("Calmly explain you did not",999, "Peaceful Plumber"),
+                                    new class_TraitAnswer("Calmly explain you did not",999, "Polite Plumber"),
                                     new class_TraitAnswer("Attack and kidnap client",999, "Plumber in Jail"))
                     }
             ),
+
+            // Camp Counselor
+            new class_Future(0, 2, "Summer Camp Counselor", future_trait_array(tchar, 2, tmor, 2), null, str_arr("trade", "job"), "0", null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "The summer sun is out and the birds are chirping as the summer camp counselors arrive at Camp Clear Spring. The usual cast of characters is abound, which are you?",
+                                    new class_TraitAnswer("Geek",1),
+                                    new class_TraitAnswer("Jock",1),
+                                    new class_TraitAnswer("Hippie",1),
+                                    new class_TraitAnswer("Local",1)),
+
+                            new class_FutureQuestion(0,1, null, null, "Preparing for the children to arrive you have finished your task of arranging your cabin, how will you spend your evening?",
+                                    new class_TraitAnswer("Swim in the Lake",4),
+                                    new class_TraitAnswer("Hike Alone",3),
+                                    new class_TraitAnswer("Drink with Peers",4),
+                                    new class_TraitAnswer("Sit by Fire",4)),
+
+                            new class_FutureQuestion(0,3, null, null, "You are following the hiking trail. As the sun begins to set you hear the snapping of a tree branch just feet from you.",
+                                    new class_TraitAnswer("Turn to see",999, "1st Counselor Dead"),
+                                    new class_TraitAnswer("Hide in bushes",5),
+                                    new class_TraitAnswer("Run for it",999, "1st Counselor Dead"),
+                                    new class_TraitAnswer("Play Dead",999, "1st Counselor Dead")),
+
+                            new class_FutureQuestion(0,4, null, null, "The music is loud and counselors are happy, when a terrible shriek comes from surrounding woods.",
+                                    new class_TraitAnswer("Walk to Staff Lodge",5),
+                                    new class_TraitAnswer("Run to investigate",999, "2nd Counselor Dead"),
+                                    new class_TraitAnswer("Run to Staff Lodge",5),
+                                    new class_TraitAnswer("Stay put",999, "2nd Counselor Dead")),
+
+                            new class_FutureQuestion(0,5, null, null, "You arrive at the Staff Lodge confused and afraid, the other counselors shovel you through the door and lock it behind you. There has been an attack at the camp and you must devise an escape!",
+                                    new class_TraitAnswer("Phone for help", 6),
+                                    new class_TraitAnswer("Escape on foot", 999, "Counselor that got everyone killed"),
+                                    new class_TraitAnswer("Fix the bus",9),
+                                    new class_TraitAnswer("Take the row boats",15)),
+
+                            new class_FutureQuestion(0,6, null, null, "The best plan is often the easiest, you walk to the kitchen to use the phone. Lifting the phone from the receiver you hear no dial tone, the phone is dead.",
+                                    new class_TraitAnswer("Investigate Cut Wire",999, "Curiosity killed the Counselor"),
+                                    new class_TraitAnswer("Send Kevin to Investigate",7),
+                                    new class_TraitAnswer("Send Sara to Investigate",7),
+                                    new class_TraitAnswer("Check next cabin's phone",999, "2nd Counselor Dead")),
+
+                            new class_FutureQuestion(0,7, null, null, "Waiting...seconds...minutes, suddenly the phone clicks and comes to life. A celebratory moment is had in the lodge as you call for help. Though you notice the counselor you sent has not returned. The cops are on their way, you are almost saved! Creeeeek, you turn to see an open door and The Attacker standing.",
+                                    new class_TraitAnswer("Help Jess escape",999, "Counselor Died a Hero"),
+                                    new class_TraitAnswer("Defend Jim",999, "Counselor Died a Hero"),
+                                    new class_TraitAnswer("Run past Jim",8),
+                                    new class_TraitAnswer("Push aside Jess",8)),
+
+                            new class_FutureQuestion(0,8, null, null, "Straight to your feet and out the back door, you look back and see the J named counselor snatched by The Attacker. A loud crash is heard as you escape through the backyard. Where to now?",
+                                    new class_TraitAnswer("Swim to safety", 999,"Counselor Drowned"),
+                                    new class_TraitAnswer("Hide in bush",999, "Counselor Survived: Phone (Rare)"),
+                                    new class_TraitAnswer("Run to highway",999, "Counselor Survived: Phone (Rare)"),
+                                    new class_TraitAnswer("Hide in next lodge",999, "Last Counselor Dead")),
+
+                            new class_FutureQuestion(0,9, null, null, "The bus needs a new battery, located in the garage, and the keys, located in the maintenance cabin, in order to start.",
+                                    new class_TraitAnswer("Send Kevin for the keys",10),
+                                    new class_TraitAnswer("Go for the keys",12),
+                                    new class_TraitAnswer("Go for the battery",11),
+                                    new class_TraitAnswer("Send Kayla for battery",10)),
+
+                            new class_FutureQuestion(0, 10, null, null, "Too afraid to go yourself you send your fellow counselor to save the day. Huddled together waiting nervously for help to arrive the door opens and the K letter counselor walks through. Oddly their walk is staggered and then boom. They fall flat and you can see The Attacker's Knife in their back.",
+                                    new class_TraitAnswer("Run",999, "3rd Counselor Dead"),
+                                    new class_TraitAnswer("Fight",999,"3rd Counselor Dead"),
+                                    new class_TraitAnswer("Hide",999,"3rd Counselor Dead"),
+                                    new class_TraitAnswer("Cry",999, "3rd Counselor Dead")),
+
+                            new class_FutureQuestion(0, 11, null, null, "You put on a brave face and leave the Staff Cabin. Running quickly to the trail you hear glass breaking and another terrible shriek from the Staff Cabin. Out of breath you retrieve the battery, now where to go?",
+                                    new class_TraitAnswer("Staff Lodge",999, "Curiosity killed the Counselor"),
+                                    new class_TraitAnswer("Go to bus",13),
+                                    new class_TraitAnswer("Catch breath",999,""),
+                                    new class_TraitAnswer("Get the Keys",13)),
+
+                            new class_FutureQuestion(0, 12, null, null, "You put on a brave face and leave the Staff Cabin. Running quickly to the trail you hear glass breaking and another terrible shriek from the Staff Cabin. Out of breath you retrieve the keys, now where to go?",
+                                    new class_TraitAnswer("Staff Lodge",999, "Curiosity killed the Counselor"),
+                                    new class_TraitAnswer("Go to bus",13),
+                                    new class_TraitAnswer("Catch breath",999, "Counselor Dying to Rest (Rare"),
+                                    new class_TraitAnswer("Get the battery",13)),
+
+                            new class_FutureQuestion(0, 13, null, null, "Back on the trails and not much is visible but you do here a rustling in the woods as you walk. You increase your pace but so does the rustling, it is getting closer, catching up. Out from the bushes colliding with you comes a counselor holding the missing part.",
+                                    new class_TraitAnswer("Go to Bus Together", 14),
+                                    new class_TraitAnswer("Split Up",999, "Last Counselor Dead"),
+                                    null,
+                                    null),
+
+                            new class_FutureQuestion(0, 14, null, null, "At the bus you finish installing the battery, you toss the keys to your coworker at the driver door. Keys floating in the air when...The Attacker swipes the keys with his right hand and then your coworker with his left.",
+                                    new class_TraitAnswer("Run",999, "Last Counselor Dead"),
+                                    new class_TraitAnswer("Grab Coworker",999, "Counselor Died a Hero"),
+                                    new class_TraitAnswer("Grab Keys",999, "Counselor Survived: Bus (Rare)"),
+                                    new class_TraitAnswer("Hot-wire and go",999, "Counselor Survived: Bus (Rare)")),
+
+                            new class_FutureQuestion(0, 15, null, null, "You lead everyone to the Boat House, well almost everyone, as you look around you notice that one of the counselors is missing.",
+                                    new class_TraitAnswer("Tell the group", 16),
+                                    new class_TraitAnswer("Keep it Secret",17),
+                                    null,
+                                    null),
+
+                            new class_FutureQuestion(0, 16, null, null, "The group begins to panic, you attempt to calm the group when Kyle storms out of the boat house in look for his friend.",
+                                    new class_TraitAnswer("Run after Kyle",999, "Screw You Kyle! (Rare)"),
+                                    new class_TraitAnswer("Send Kelly",17),
+                                    new class_TraitAnswer("Calm group",17),
+                                    new class_TraitAnswer("Join in Panic",999, "Counselor that got everyone killed")),
+
+                            new class_FutureQuestion(0, 17, null, null, "Your group is calm and collected, whats left of them, as you plan your escape. The row boats need paddles and the counselors need life vests but time is running out!",
+                                    new class_TraitAnswer("Take boats as is",999, "Counselor Died Floating"),
+                                    new class_TraitAnswer("Search for supplies",18),
+                                    null,
+                                    null),
+
+                            new class_FutureQuestion(0,18, null, null, "You make a run for the nearest cabin to look for paddles. Just as you open the door you hear a scream coming from the Boat House, you must hurry. After a long period of searching through storage you find the paddles.",
+                                    new class_TraitAnswer("Return to Boat House",19),
+                                    new class_TraitAnswer("Look for vests",20),
+                                    null,
+                                    null),
+
+                            new class_FutureQuestion(0,20, null, null, "You make a run for the next nearest cabin to look for life vests. Just as you open the door you hear another scream coming from the Dock, you must hurry, where do you search?",
+                                    new class_TraitAnswer("Closet",21),
+                                    new class_TraitAnswer("Shelves",22),
+                                    new class_TraitAnswer("Footlocker",21),
+                                    new class_TraitAnswer("Restroom",21)),
+
+                            new class_FutureQuestion(0,21, null, null, "You search the area but have no luck. Walking away you see the orange straps like that of a life vests sticking out from behind the footlocker.",
+                                    new class_TraitAnswer("Return to Boat House",23),
+                                    new class_TraitAnswer("Sneak to Dock",999, "Counselor Selfish Survived: Boat (Rare)"),
+                                    null,
+                                    null),
+
+                            new class_FutureQuestion(0,22, null, null, "You search the shelves but find nothing. You think you hear a noise outside of your cabin but you can't be sure.",
+                                    new class_TraitAnswer("Keep Searching",26),
+                                    new class_TraitAnswer("Run to Boat House",19),
+                                    null,
+                                    null),
+
+                            new class_FutureQuestion(0,23, null, null, "You return to the boat house to find that only two other members are present. How will you fill the boats?",
+                                    new class_TraitAnswer("All together",24),
+                                    new class_TraitAnswer("All separate",999, "Counselor Survived: Boat"),
+                                    new class_TraitAnswer("Go alone",999, "Counselor Survived: Boat"),
+                                    new class_TraitAnswer("Kenny goes alone",999, "Counselor Survived: Killed Kenny")),
+
+                            new class_FutureQuestion(0,24, null, null, "You all pile into the boat and make your way across the lake. Paddling intensely a ripple in the water begins to chase the boat. The Attacker rises from the water capsizing the boat, you all are brought to the surface by your life vest.",
+                                    new class_TraitAnswer("Swim to Safety",999, "Counselor Survived: Boat"),
+                                    new class_TraitAnswer("Help Kenny",999, "Counselor Survived: Saved Kenny"),
+                                    new class_TraitAnswer("Get on Boat",999, "Counselor Died with the Ship (Rare)"),
+                                    new class_TraitAnswer("Help Both",999, "Counselor Died a Hero")),
+
+                            // NO LIFE VEST
+                            new class_FutureQuestion(0,19, null, null, "You return to the Boat House to find that only two other members are present. How will you fill the boats?",
+                                    new class_TraitAnswer("All together",25),
+                                    new class_TraitAnswer("All separate",999, "Counselor Survived: Boat"),
+                                    new class_TraitAnswer("Go alone",999, "Counselor Survived: Boat"),
+                                    new class_TraitAnswer("Kenny goes alone",999, "Counselor Survived: Killed Kenny")),
+
+                            new class_FutureQuestion(0,25, null, null, "You all pile into the boat and make your way across the lake. Paddling intensely a ripple in the water begins to chase the boat. The Attacker rises from the water capsizing the boat, you sink to the bottom.",
+                                    new class_TraitAnswer("Sink", 999, "Last Counselor Dead"),
+                                    new class_TraitAnswer("Swim", 999, "Last Counselor Dead"),
+                                    new class_TraitAnswer("Fight", 999, "Last Counselor Dead"),
+                                    new class_TraitAnswer("Push off Kenny", 999, "Counselor Survived: Killed Kenny")),
+
+                            // Keep Searching
+                            new class_FutureQuestion(0,26, null, null, "You finally find the life vests behind the footlocker. You return to the Boat House to find that only two other members are present. How will you fill the boats?",
+                                    new class_TraitAnswer("All together",24),
+                                    new class_TraitAnswer("All separate",27),
+                                    new class_TraitAnswer("Go Alone",27),
+                                    new class_TraitAnswer("Kenny goes alone",999, "Counselor Survived: Killed Kenny")),
+
+                            new class_FutureQuestion(0,27, null, null, "While taking your time deciding who will take which boat The Attacker storms through the Boat House doors sledgehammer in hand",
+                                    new class_TraitAnswer("Hurry to Boat",25),
+                                    new class_TraitAnswer("Push Attacker",28),
+                                    new class_TraitAnswer("Run",999, "Last Counselor Dead"),
+                                    new class_TraitAnswer("Grab life vests",999, "Counselor Died for a Life Preserver")),
+
+                            new class_FutureQuestion(0,28, null, null, "You push the Attacker causing him to stumble into an assortment of hanging chains and boat anchors.",
+                                    new class_TraitAnswer("Sweep the Leg",29),
+                                    new class_TraitAnswer("Run",999, "Counselor Survived: Chained Up (Rare)"),
+                                    null,
+                                    new class_TraitAnswer("3a?",3)),
+
+                            new class_FutureQuestion(0,29, null, null, "You sweep the leg sending The Attacker high into the air and then down bouncing out of the bay door and onto the dock.",
+                                    new class_TraitAnswer("Slide Kick",30),
+                                    new class_TraitAnswer("Run",999, "Counselor Survived: Dock Anchored (Rare)"),
+                                    null,
+                                    new class_TraitAnswer("3a?",3)),
+
+                            new class_FutureQuestion(0,29, null, null, "Sliding across the dock planks your foot connects with The Attackers chest. With a heavy grunt The Attacker skids across then falls off the dock, chains dragging him deeper and deeper into the dark depths of the lake.",
+                                    new class_TraitAnswer("Fist Pump",999, "Counselor Survived: Defeat the Attacker (Legendary)"),
+                                    new class_TraitAnswer("Arm Swing",999, "Counselor Survived: Defeat the Attacker (Legendary)"),
+                                    null,
+                                    new class_TraitAnswer("3a?",3)),
+
+                    }
+            ),
+
+
+
 
 /*
 
@@ -343,7 +558,7 @@ public class class_Helper {
                     }),
 
             // FIREFIGHTER
-            new class_Future(0, 2, "Firefighter", future_trait_array(tdev,-2, tcour, 2), null, null, null, null, null,
+            new class_Future(0, 2, "Firefighter", future_trait_array(tmor, 2, tcour, 2), null, null, null, null, null,
                     new class_FutureQuestion[]{
                             //0
                             new class_FutureQuestion(0,0, null, null, "AGE 22: You are a Probie, a Probational Firefighter in your small town's fire station. Starting your third week you are exhausted on the night shift you find downtime away from the crew.",
