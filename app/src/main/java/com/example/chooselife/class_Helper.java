@@ -257,14 +257,54 @@ public class class_Helper {
                     }
             ),
 
-            // Archaeologist
+            // Archaeologist - Done
             new class_Future(0, 2, "Archaeologist", null, null, str_arr("college"), null, null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "Years of study and field work have made you a renowned archaeologist. You have finally tracked down the ancient artifact that you have spent your career searching for \"Piedra de Tigre\".",
-                                    new class_TraitAnswer("Turn Back",2),
-                                    new class_TraitAnswer("",2),
-                                    new class_TraitAnswer("",3),
-                                    new class_TraitAnswer("",3)),
+                                    new class_TraitAnswer("Enter Temple",1),
+                                    new class_TraitAnswer("Survey Area",999, "Archaeologist: Dead on Arrival"),
+                                    null,
+                                    new class_TraitAnswer("",1)),
+                            new class_FutureQuestion(0,1, null, null, "You enter the Temple and arrive at a large circular room with four thin hallways, each containing a deep fear of yours. Which do you take?",
+                                    new class_TraitAnswer("Path of Insects",2),
+                                    new class_TraitAnswer("Path of Darkness",999, "Another Archaeologist Lost"),
+                                    new class_TraitAnswer("Path of Spikes",3),
+                                    new class_TraitAnswer("Patch of Snakes",2)),
+                            new class_FutureQuestion(0,2, null, null, "You enter the dim lit hallway carefully placing every step not to disturb the creatures around you. With only feet left something falls on your back with a large thud. You are panicked.",
+                                    new class_TraitAnswer("Sprint out", 4),
+                                    new class_TraitAnswer("Brush it off",999, "Another Archaeologist Lost"),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,3, null, null, "You enter the path of spikes carefully moving your body around each point, you arrive at the middle point where a large wooden lever is placed.",
+                                    new class_TraitAnswer("Leave it",4),
+                                    new class_TraitAnswer("Pull it",999, "Archaeologist Skewered"),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,4, null, null, "Bursting out of the hallway you struggle to catch your breath, bent over you look up and see it, \"Piedra de Tigre\" sitting on a stone pedestal.",
+                                    new class_TraitAnswer("Leave it, too dangerous",5),
+                                    new class_TraitAnswer("Remove it and Place Stone",999, "Archaeologist seen too many movies"),
+                                    new class_TraitAnswer("Grab and Run",6),
+                                    new class_TraitAnswer("Careful Grab", 999, "Archaeologist Died Carefully")),
+                            new class_FutureQuestion(0,5, null, null, "Moving past the pedestal slowly you are careful not to disturb the artifact. Stepping to the side you loose balance and fall. For a moment, nothing. Then the wall buckles and the roof begins to collapse.",
+                                    new class_TraitAnswer("Leap to Safety",8),
+                                    new class_TraitAnswer("Slide to Safety",8),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,6, null, null, "You grab the relic and make a run for it, the pedestal falls over with a crash you look back to see that the walls and roof are caving in.",
+                                    new class_TraitAnswer("Leap to Safety",999, "Archaeologist Crushed"),
+                                    new class_TraitAnswer("Slide to Safety",7),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,7, null, null, "Dust fills the air, you stumble forward barely able to see through it. A beam of light shines through and you can see an exit just on the other side of a long hallway with the floor tiles cut into different shapes. What shapes shall you choose to step on?",
+                                    new class_TraitAnswer("Circle",999, "Archaeologist Died in the End"),
+                                    new class_TraitAnswer("Square",999, "Archaeologist Died in the End"),
+                                    new class_TraitAnswer("Diamond",999, "Esteemed Archaeologist: Success (Rare)"),
+                                    new class_TraitAnswer("Triangle", 999, "Archaeologist Died in the End")),
+                            new class_FutureQuestion(0,8, null, null, "Dust fills the air, you stumble forward barely able to see through it. A beam of light shines through and you can see an exit just on the other side of a long hallway with the floor tiles cut into different shapes. What shapes shall you choose to step on?",
+                                    new class_TraitAnswer("Circle",999, "Archaeologist Died in the End"),
+                                    new class_TraitAnswer("Square",999, "Archaeologist Died in the End"),
+                                    new class_TraitAnswer("Diamond",999, "Archaeologist Survived (Rare)"),
+                                    new class_TraitAnswer("Triangle", 999, "Archaeologist Died in the End")),
                     }
             ),
 
@@ -327,7 +367,7 @@ public class class_Helper {
                     }
             ),
 
-            // Plumber
+            // Plumber - Done
             new class_Future(0, 2, "Plumber", null, null, str_arr("trade"), null, null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "Portrait of a man hard at work, your hands move quickly and effortlessly due to years of service, age 51 and after 4 hours of labor at a previous house you are exhausted.",
@@ -369,7 +409,7 @@ public class class_Helper {
                     }
             ),
 
-            // Camp Counselor
+            // Camp Counselor - Done
             new class_Future(0, 2, "Summer Camp Counselor", future_trait_array(tchar, 2, tmor, 2), null, str_arr("trade", "job"), "0", null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "The summer sun is out and the birds are chirping as the summer camp counselors arrive at Camp Clear Spring. The usual cast of characters is abound, which are you?",
