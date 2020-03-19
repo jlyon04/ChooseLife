@@ -41,27 +41,6 @@ public class PlayGame extends AppCompatActivity {
         starting_readme.putExtra("Readme", Helper.get_ReadMe(0));
         startActivityForResult(starting_readme, INTRO_README);
     }
-/*
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK
-                && event.getRepeatCount() == 0) {
-            event.startTracking();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.isTracking()
-                && !event.isCanceled()) {
-            finish();
-            return true;
-        }
-        return super.onKeyUp(keyCode, event);
-    }
-*/
-
-
 
     public class_Trait get_stat_trait(String trait)
     {
@@ -189,7 +168,6 @@ public class PlayGame extends AppCompatActivity {
         if (stage == 9){
             // Display Traits
             Intent display = new Intent(this, DisplayTrait.class);
-
             display.putExtra("trait_values", trait_value_strings());
             startActivity(display);
         }
@@ -289,10 +267,16 @@ public class PlayGame extends AppCompatActivity {
             editor.apply();
             start_question(9,0);
         }
-        //TODO
         else if (requestCode > 8){
             if (opt.getOutcome() != null)
                 Stats.setOutcome(opt.getOutcome());
+            //TODO
+            if (opt.getReadme_str() != null){
+                //Attached Readme
+                Intent attach_readme = new Intent(this, ReadMe.class);
+                attach_readme.putExtra("Readme", opt.getReadme_str());
+                startActivityForResult(attach_readme, INTRO_README);
+            }
             start_question(requestCode+1, opt.getStorynum());
         }
     }
@@ -324,9 +308,6 @@ public class PlayGame extends AppCompatActivity {
                 continue;
             // Kids
             if (future_array[i].kids != null && !Stats.getKids().equals(future_array[i].kids))
-                continue;
-            // Skill 1
-            if (future_array[i].skill_1 != null && !Stats.getSkill_1().equals(future_array[i].skill_1))
                 continue;
             // Crime
             if (future_array[i].crime != null && !Stats.getCrime().equals(future_array[i].crime))

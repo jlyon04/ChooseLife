@@ -52,25 +52,6 @@ public class class_Helper {
             //0 - Intro
             "Welcome to life where your answers will determine your outcome. Answer the multiple choice questions to avoid death and earn glory. In between each question there is a small chance for an event, many times this will mean your " +
                     "death but in very rare circumstance it may launch a secret event. Good luck and good life.",
-            //1 - Firefighter
-            "In the early part of your afternoon shift you are filling your coffee mug when the firehouse alarm bursts with ringing. You are startled, as it is the first time you have heard it. " +
-                    "You glance at your colleague and he looks back stern faced, he rushes out of the common area. You follow, to your first fire. You are nervous.",
-            //2
-            "You hop into the seat and everyone yells out at you. \"Rookie get in the back!\"",
-            //3
-            "You stay away from the fire trying to help out on the hose but you let the older firefighters take the lead. Eventually the fire is contained and with only one injured. You just weren't needed today",
-            //4
-            "You charge to the fire, axe in hand, colleagues just behind you. You kick the door and it crashes to the floor. As the door falls oxygen rushes into the room causing the fire to swell." +
-                    "You stumble backwards, the captain pulls you back and points to the truck. Eventually the fire is contained and with only one injured. You just weren't needed today",
-            //5
-            "You charge to the fire, ladder in hand, colleagues just behind you. You climb the ladder and break the window, oxygen rushes into the room causing the fire to swell." +
-                    "The window is flooded with fire forcing you to retreat down the ladder. Eventually the fire is contained and with only one injured. You just weren't needed today",
-            //6
-            "You charge to the fire, axe in hand, colleagues just behind you. You kick the door and it crashes to the floor. As the door falls you step away allowing the fire to swell then recede." +
-                    "With the receding flames comes a man running from the danger, you grab his arm and help him to safety. Eventually the fire is contained and with no one injured.",
-            //5
-            "You charge to the fire, ladder in hand, colleagues just behind you. You climb the ladder and break the window, oxygen rushes into the room causing it to swell." +
-                    "You manage to avoid the flames and reach over and break a boarded window. The hose fires through the two new openings. Eventually the fire is contained and with no one injured",
     };
 
     // Array of Stage 1 Questions
@@ -222,7 +203,7 @@ public class class_Helper {
 
 */
             // TEST
-            new class_Future(100, 1, "Test", null, null, null, null, null, null,
+            new class_Future(100,"Test", null, null, null, null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "Test 1?",
                                     new class_TraitAnswer("2?",2),
@@ -258,7 +239,7 @@ public class class_Helper {
             ),
 
             // Archaeologist - Done
-            new class_Future(0, 2, "Archaeologist", null, null, str_arr("college"), null, null, null,
+            new class_Future(0,"Archaeologist", null, null, str_arr("college"),null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "Years of study and field work have made you a renowned archaeologist. You have finally tracked down the ancient artifact that you have spent your career searching for \"Piedra de Tigre\".",
                                     new class_TraitAnswer("Enter Temple",1),
@@ -309,7 +290,7 @@ public class class_Helper {
             ),
 
             // Lawyer
-            new class_Future(0, 2, "Lawyer", null, null, str_arr("college"), null, null, null,
+            new class_Future(0,"Lawyer", null, null, str_arr("college"), null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "In ",
                                     new class_TraitAnswer("Turn Back",2),
@@ -320,7 +301,7 @@ public class class_Helper {
             ),
 
             // Police
-            new class_Future(0, 2, "Police", null, null, str_arr("work", "trade"), null, null, null,
+            new class_Future(0,"Police", null, null, str_arr("work", "trade"), null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "",
                                     new class_TraitAnswer("Turn Back",2),
@@ -331,7 +312,7 @@ public class class_Helper {
             ),
 
             // Criminal
-            new class_Future(0, 2, "Criminal", null, null, null, null, null, "yes",
+            new class_Future(0,"Criminal", null, null, null, null, "yes",
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "In ",
                                     new class_TraitAnswer("Turn Back",2),
@@ -342,7 +323,7 @@ public class class_Helper {
             ),
 
             // Boxer
-            new class_Future(0, 2, "Professional Boxer", future_trait_array(tath, 3), null, null, null, null, null,
+            new class_Future(0,"Professional Boxer", future_trait_array(tath, 3), null, null, null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0, 0, null, null, "Aging and punched out you find yourself in the middle of a boxing match competing against a much younger and better opponent. You are dead tired at the start of the 3rd round but you may have an opening to finish.",
                                     new class_TraitAnswer("Save Energy", 1),
@@ -368,7 +349,7 @@ public class class_Helper {
             ),
 
             // Plumber - Done
-            new class_Future(0, 2, "Plumber", null, null, str_arr("trade"), null, null, null,
+            new class_Future(0,"Plumber", null, null, str_arr("trade"), null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "Portrait of a man hard at work, your hands move quickly and effortlessly due to years of service, age 51 and after 4 hours of labor at a previous house you are exhausted.",
                                     new class_TraitAnswer("Rest your head on the sink cabinet",2),
@@ -410,7 +391,7 @@ public class class_Helper {
             ),
 
             // Camp Counselor - Done
-            new class_Future(0, 2, "Summer Camp Counselor", future_trait_array(tchar, 2, tmor, 2), null, str_arr("trade", "job"), "0", null, null,
+            new class_Future(0, "Summer Camp Counselor", future_trait_array(tchar, 2, tmor, 2), null, str_arr("trade", "job"), "0",  null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "The summer sun is out and the birds are chirping as the summer camp counselors arrive at Camp Clear Spring. The usual cast of characters is abound, which are you?",
                                     new class_TraitAnswer("Geek",1),
@@ -583,17 +564,10 @@ public class class_Helper {
                                     new class_TraitAnswer("3a?",3)),
 
                             new class_FutureQuestion(0,29, null, null, "You sweep the leg sending The Attacker high into the air and then down bouncing out of the bay door and onto the dock.",
-                                    new class_TraitAnswer("Slide Kick",30),
-                                    new class_TraitAnswer("Run",999, "Counselor Survived: Dock Anchored (Rare)"),
+                                    new class_TraitAnswer("Slide Kick",999, "Counselor Survived: Defeat The Attacker", "Sliding across the dock planks your foot connects with The Attackers chest. With a heavy grunt The Attacker skids across then falls off the dock, chains dragging him deeper and deeper into the dark depths of the lake."),
+                                    new class_TraitAnswer("Celebrate Victory",999, "Counselor Survived: Missing Attacker", "Turning your back you swing your fist in the air with a triumphant fist pump, when you look back the body is gone"),
                                     null,
-                                    new class_TraitAnswer("3a?",3)),
-
-                            new class_FutureQuestion(0,29, null, null, "Sliding across the dock planks your foot connects with The Attackers chest. With a heavy grunt The Attacker skids across then falls off the dock, chains dragging him deeper and deeper into the dark depths of the lake.",
-                                    new class_TraitAnswer("Fade to Black",999, "Counselor Survived: Defeat the Attacker (Legendary)"),
-                                    new class_TraitAnswer("To be Continued",999, "Counselor Survived: Defeat the Attacker (Legendary)"),
-                                    null,
-                                    new class_TraitAnswer("3a?",3)),
-
+                                    null),
                     }
             ),
 
