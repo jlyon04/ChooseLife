@@ -16,6 +16,12 @@ public class class_GameStats {
 
     public class_GameStats(class_Trait[] t_trait_array){
         trait_array = t_trait_array;
+        love = null;
+        after_school = null;
+        kids = null;
+        skill_1 = null;
+        crime = null;
+        outcome = null;
     }
 
     public void addToTrait(int index, int value){trait_array[index].addValue(value);}
