@@ -203,7 +203,7 @@ public class class_Helper {
 
 */
             // TEST
-            new class_Future(100,"Test", null, null, null, null, null,
+            new class_Future(99,"Test", null, null, null, null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0,0, null, null, "Test 1?",
                                     new class_TraitAnswer("2?",2),

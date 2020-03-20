@@ -300,7 +300,7 @@ public class PlayGame extends AppCompatActivity {
 
         //Loop through all Futures
         future_loop: for (int i =0; i < future_array.length; i++){
-            // Rare todo:check
+            // Rare
             if (future_array[i].rare > rare)
                 continue;
             // Love
@@ -310,15 +310,19 @@ public class PlayGame extends AppCompatActivity {
             if (future_array[i].kids != null && !Stats.getKids().equals(future_array[i].kids))
                 continue;
             // Crime
-            if (future_array[i].crime != null && !Stats.getCrime().equals(future_array[i].crime))
-                continue;
+            if (future_array[i].crime != null)
+            {
+                if (Stats.getCrime() == null)
+                    continue future_loop;
+            }
             // After School
             if (future_array[i].after_school != null) {
                 for (int j = 0; j < future_array[i].after_school.length; j++) {
-                    if (future_array[i].after_school == null || Stats.get_after_school() == future_array[i].after_school[j])
+                    if (Stats.get_after_school() == future_array[i].after_school[j])
                         break;
-                    else if (j == future_array[i].after_school.length - 1)
-                        continue;
+                    // If no match
+                    if (j == future_array[i].after_school.length - 1)
+                        continue future_loop;
                 }
             }
             if (future_array[i].trait_array != null) {
