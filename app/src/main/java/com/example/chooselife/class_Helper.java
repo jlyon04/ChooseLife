@@ -390,6 +390,114 @@ public class class_Helper {
                     }
             ),
 
+            // Family Vacation - Done
+            new class_Future(0, "Family Vacation", null, "yes", null, "yes", null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "You have achieved the pinnacle of success as a parent, you are taking your family to the amusement park Wickey World. Choose your travel style.",
+                                    new class_TraitAnswer("Fly",1),
+                                    new class_TraitAnswer("Drive",2),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,1, null, null, "Buying tickets for your flight you can sit with your family, or save $50 and sit alone. Which do you choose?",
+                                    new class_TraitAnswer("With family",3),
+                                    new class_TraitAnswer("Alone",4),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,2, null, null, "Choosing the classic road trip to Wickey World the drive will take about 18 hours. You can save money and drive through the night or stop and rest.",
+                                    new class_TraitAnswer("Drive through",4),
+                                    new class_TraitAnswer("Stop and rest",3),
+                                    null,
+                                    null),
+                            // Healthy: D1
+                            new class_FutureQuestion(0,3, null, null, "Your choice has \"paid\" off as your family arrives safe and healthy to the resort. You are prepared to take on all that Wickey World has to offer. You start at Adventure Park, what area do you explore?",
+                                    new class_TraitAnswer("Wild West",5),
+                                    new class_TraitAnswer("Dinosaur Island",5),
+                                    new class_TraitAnswer("Kiddie Coasters",7),
+                                    new class_TraitAnswer("Animal Park",5)),
+                            // Sick: D1
+                            new class_FutureQuestion(0,4, null, null, "Your choice to save money has back-fired, exhausted and now sick your first day at Wickey World is spent inside the hotel sweating and sleeping. How will you remedy your illness?",
+                                    new class_TraitAnswer("Medicine",6),
+                                    new class_TraitAnswer("Rest",6),
+                                    new class_TraitAnswer("Internet Remedy",8),
+                                    new class_TraitAnswer("Water, lots of it",6)),
+
+                            // Healthy2Healthy: D2
+                            new class_FutureQuestion(0,5, null, null, "After an exciting day in Adventure Park your family is ready for Day 2: The Water Park. What attraction will you enjoy?",
+                                    new class_TraitAnswer("PlaySea",11),
+                                    new class_TraitAnswer("Sun Bathe",9),
+                                    new class_TraitAnswer("Wave Pool",11),
+                                    new class_TraitAnswer("Water Slide",9)),
+                            // Sick to Healthy: D2
+                            new class_FutureQuestion(0,6, null, null, "After a long day of fever and pain you are back on your feet. Just in time to join your family at the Water Park. What attraction will you enjoy?",
+                                    new class_TraitAnswer("Playground",11),
+                                    new class_TraitAnswer("Sun Bathe",14),
+                                    new class_TraitAnswer("Wave Pool",11),
+                                    new class_TraitAnswer("Water Slide",14)),
+                            // Healthy to Sick: D2
+                            new class_FutureQuestion(0,7, null, null, "You have fallen ill. The Kiddie Coaster is a sponge for germs and disease, who would have thought. You will be spending day 2 in bed, how will you recover?",
+                                    new class_TraitAnswer("Sweat it out",13),
+                                    new class_TraitAnswer("Rest",10),
+                                    new class_TraitAnswer("Water",10),
+                                    new class_TraitAnswer("Internet Remedy 2",12)),
+                            // Sick2Sick: D2
+                            new class_FutureQuestion(0,8, null, null, "Surprisingly the cold shower and coffee remedy you got from the internet has made your condition worse. You are down again for day 2, time to try something different.",
+                                    new class_TraitAnswer("Sweat it Out",16),
+                                    new class_TraitAnswer("Rest",10),
+                                    new class_TraitAnswer("Water",10),
+                                    new class_TraitAnswer("Internet Remedy 2", 15)),
+
+                            // H-H-H: D3
+                            new class_FutureQuestion(0,9, null, null, "You were ruler of the Water Park with sun bathing and sliding all at your leisure. You are tired but excited for Day 3 in Space Cavern, which amusement ride interest you the most?",
+                                    new class_TraitAnswer("Milky Way Whirl",999, "Family Vacation: Home Sick"),
+                                    new class_TraitAnswer("Comet Coaster",999,"Best Vacation Ever (Rare)"),
+                                    new class_TraitAnswer("Solar System Sickness",999, "Family Vacation: Home Sick"),
+                                    new class_TraitAnswer("Dark Matter Drop",999,"Best Vacation Ever (Rare)")),
+                            // Sick to Healthy: D3
+                            new class_FutureQuestion(0,10, null, null, "You have made a full recovery and are excited to rejoin the family at Space Cavern. Which amusement ride interest you the most?",
+                                    new class_TraitAnswer("Milky Way Whirl",999, "Family Vacation: Sickish"),
+                                    new class_TraitAnswer("Comet Coaster",999, "Family Vacation: Sickish"),
+                                    new class_TraitAnswer("Solar System Sickness",999, "Family Vacation: Sickish"),
+                                    new class_TraitAnswer("Dark Matter Drop",999, "Family Vacation: Sickish")),
+                            // H-H-S: D3
+                            new class_FutureQuestion(0,11, null, null, "In a total surprise to all the water quality of the Park turned out to be poor, the lack of chlorine and large quantity of urine seemed to react harshly to your body, who would've thought. You are down with a skin rash for Day 3, how will you cope?",
+                                    new class_TraitAnswer("Aloe",999, "Family Vacation: Sickish"),
+                                    new class_TraitAnswer("Vinegar Bath",999, "Family Vacation: Sick Ending"),
+                                    new class_TraitAnswer("Scratch Everything",999, "Family Vacation: Sick Ending"),
+                                    new class_TraitAnswer("Oatmeal Bath",999, "Family Vacation: Sickish")),
+                            // H2S: D3 - Internet
+                            new class_FutureQuestion(0,12, null, null, "The internet remedy of applying vapor rub and toothpaste to your sternum has failed. Even worse it has left you with a skin rash for Day 3, how will you cope?",
+                                    new class_TraitAnswer("Aloe",999, "Family Vacation: Healthy Finish"),
+                                    new class_TraitAnswer("Vinegar Bath",999, "Family Vacation: Sickish"),
+                                    new class_TraitAnswer("Scratch Everything",999, "Family Vacation: Sickish"),
+                                    new class_TraitAnswer("Oatmeal Bath",999, "Family Vacation: Healthy Finish")),
+                            // H2S: D3 - Blanket
+                            new class_FutureQuestion(0,13, null, null, "The blanket you grabbed from the hotel closet to warmup in had bed bugs, but it looked cleaned except for that stain. As a result you have a skin rash for Day 3, how will you cope?",
+                                    new class_TraitAnswer("Aloe",999, "Family Vacation: Healthy Finish"),
+                                    new class_TraitAnswer("Vinegar Bath",999, "Family Vacation: Sickish"),
+                                    new class_TraitAnswer("Scratch Everything",999, "Family Vacation: Sickish"),
+                                    new class_TraitAnswer("Oatmeal Bath",999, "Family Vacation: Healthy Finish")),
+                            // S2H2H: D3
+                            new class_FutureQuestion(0,14, null, null, "You were ruler of the Water Park with sun bathing and sliding all at your leisure. You are tired but excited for Day 3 in Space Cavern, which amusement ride interest you the most?",
+                                    new class_TraitAnswer("Milky Way Whirl",999,"Family Vacation: In and Out"),
+                                    new class_TraitAnswer("Comet Coaster",999,"Family Vacation: Healthy Finish"),
+                                    new class_TraitAnswer("Solar System Sickness",999, "Family Vacation: In and Out"),
+                                    new class_TraitAnswer("Dark Matter Drop",999,"Family Vacation: Healthy Finish")),
+                            // S2S2S: D3 - Internet
+                            new class_FutureQuestion(0,15, null, null, "The internet remedy of applying vapor rub and toothpaste to your sternum has failed. Even worse it has left you with a skin rash for Day 3, how will you cope?",
+                                    new class_TraitAnswer("Aloe",999, "Family Vacation: Healthy Finish"),
+                                    new class_TraitAnswer("Vinegar Bath",999, "Sick Vacation Bro (Rare)"),
+                                    new class_TraitAnswer("Scratch Everything",999,"Sick Vacation Bro (Rare)"),
+                                    new class_TraitAnswer("Oatmeal Bath",999, "Family Vacation: Healthy Finish")),
+                            // S2S2S: D3 - Blanket
+                            new class_FutureQuestion(0,16, null, null, "The blanket you grabbed from the hotel closet to warmup in had bed bugs, but it looked cleaned except for that stain. As a result you have a skin rash for Day 3, how will you cope?",
+                                    new class_TraitAnswer("Aloe",999, "Family Vacation: Healthy Finish"),
+                                    new class_TraitAnswer("Vinegar Bath",999, "Sick Vacation Bro (Rare)"),
+                                    new class_TraitAnswer("Scratch Everything",999,"Sick Vacation Bro (Rare)"),
+                                    new class_TraitAnswer("Oatmeal Bath",999, "Family Vacation: Healthy Finish"))
+                    }
+
+            ),
+
             // Camp Counselor - Done
             new class_Future(0, "Summer Camp Counselor", future_trait_array(tchar, 2, tmor, 2), null, str_arr("trade", "job"), "0",  null,
                     new class_FutureQuestion[]{
