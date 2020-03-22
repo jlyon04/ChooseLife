@@ -362,54 +362,18 @@ public class PlayGame extends AppCompatActivity {
     public class_FutureQuestion get_FutureQuestion(int storynum)
     {
         ArrayList<class_FutureQuestion> local_array = new ArrayList<>();
+        int rare = new Random().nextInt(101);
         future: for (int i = 0; i < Future.story.length; i++)
         {
             if (Future.story[i].getStorynum() == storynum)
             {
-                class_FutureQuestion story = Future.story[i];
-                if (story.getQual_skill() != null && story.getQualTraitArray() != null)
-                {
-                    if (!(story.getQual_skill().equals(Stats.getSkill_1())))
-                        continue;
-                    for (int j =0; j<story.getQualTraitArray().length; j++)
-                    {
-                        class_Trait stat_trait = get_stat_trait(story.getQualTrait(j).getTitle());
-                        // Negative Value
-                        if (story.getQualTrait(j).getValue() < 0)
-                            if (story.getQualTrait(j).getValue() < stat_trait.getValue())
-                                continue future;
-                                // Positive Value
-                            else
-                            if (story.getQualTrait(j).getValue() > stat_trait.getValue())
-                                continue future;
-                    }
-                    local_array.add(story);
-                }
-                else if (story.getQual_skill() != null)
-                {
-                    if (story.getQual_skill().equals(Stats.getSkill_1()))
-                        local_array.add(story);
-                    else
-                        continue;
-                }
-                else if (story.getQualTraitArray() != null)
-                {
-                    for (int j =0; j<story.getQualTraitArray().length; j++)
-                    {
-                        class_Trait stat_trait = get_stat_trait(story.getQualTrait(j).getTitle());
-                        // Negative Value
-                        if (story.getQualTrait(j).getValue() < 0)
-                            if (story.getQualTrait(j).getValue() < stat_trait.getValue())
-                                continue future;
-                        // Positive Value
-                        else
-                            if (story.getQualTrait(j).getValue() > stat_trait.getValue())
-                                continue future;
-                    }
-                    local_array.add(story);
-                }
-                else
-                    local_array.add(story);
+                // Rare
+                if (Future.story[i].getRare() > rare)
+                    continue;
+                // skill
+                if (Future.story[i].getQual_skill() != null && !Future.story[i].getQual_skill().equals(Stats.getSkill_1()))
+                    continue;
+                local_array.add(Future.story[i]);
             }
         }
         fut_que = local_array.get(0);
