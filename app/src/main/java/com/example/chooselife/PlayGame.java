@@ -227,9 +227,12 @@ public class PlayGame extends AppCompatActivity {
         // Q4 - Return
         else if (requestCode == 4)
         {
-            Stats.set_love(opt.get_Life_choice());
-            if (opt.get_Life_choice().equals("No Love"))
+            if (opt.get_Life_choice().equals("No Love")) {
+                Stats.set_love(null);
                 set_traits(opt.getTraitArray());
+            }
+            else
+                Stats.set_love("yes");
             // Stage 5 Question
             start_question(5,0);
         }
@@ -248,11 +251,11 @@ public class PlayGame extends AppCompatActivity {
         //Q8 Return
         else if (requestCode == 8){
             if (opt.get_Life_choice().equals("0"))
-               Stats.set_kids("0");
+               Stats.set_kids(null);
             else if (opt.get_Life_choice().equals("1"))
                 Stats.set_kids("1");
             else if (opt.get_Life_choice().equals("2"))
-                Stats.set_kids("2");
+                Stats.set_love("yes");
             else
                 Stats.setCrime("yes");
 
@@ -307,14 +310,11 @@ public class PlayGame extends AppCompatActivity {
             if (future_array[i].love != null && !Stats.get_love().equals(future_array[i].love))
                 continue;
             // Kids
-            if (future_array[i].kids != null && !Stats.getKids().equals(future_array[i].kids))
+            if (future_array[i].kids != null && Stats.getKids() == null)
                 continue;
             // Crime
-            if (future_array[i].crime != null)
-            {
-                if (Stats.getCrime() == null)
-                    continue future_loop;
-            }
+            if (future_array[i].crime != null && Stats.getCrime() == null)
+                continue;
             // After School
             if (future_array[i].after_school != null) {
                 for (int j = 0; j < future_array[i].after_school.length; j++) {
@@ -325,6 +325,7 @@ public class PlayGame extends AppCompatActivity {
                         continue future_loop;
                 }
             }
+            // Trait Array
             if (future_array[i].trait_array != null) {
                 // Trait Array
                 // Future Trait Loop
@@ -348,6 +349,7 @@ public class PlayGame extends AppCompatActivity {
                     }
                 }
             }
+
             // Fill Local Array
             local_array.add(future_array[i]);
         }
