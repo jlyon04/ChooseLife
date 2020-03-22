@@ -156,7 +156,7 @@ public class class_Helper {
         }
         return new class_TraitQuestion("You are single and lonely, you want to fill this bottomless whole in your life.",
                 new class_TraitAnswer("Adopt a Child", "1"),
-                new class_TraitAnswer("Adopt Twins", "2"),
+                new class_TraitAnswer("2nd Chance at Love", "2"),
                 new class_TraitAnswer("Live alone", "0"),
                 new class_TraitAnswer(crime, crime));
     }
@@ -289,17 +289,6 @@ public class class_Helper {
                     }
             ),
 
-            // Lawyer
-            new class_Future(0,"Lawyer", null, null, str_arr("college"), null, null,
-                    new class_FutureQuestion[]{
-                            new class_FutureQuestion(0,0, null, null, "In ",
-                                    new class_TraitAnswer("Turn Back",2),
-                                    new class_TraitAnswer("",2),
-                                    new class_TraitAnswer("",3),
-                                    new class_TraitAnswer("",3)),
-                    }
-            ),
-
             // Police
             new class_Future(0,"Police", null, null, str_arr("work", "trade"), null, null,
                     new class_FutureQuestion[]{
@@ -389,6 +378,80 @@ public class class_Helper {
                                     new class_TraitAnswer("Attack and kidnap client",999, "Plumber in Jail"))
                     }
             ),
+
+
+            // Homeless
+            new class_Future(0, "Homeless", null, null, null, null, null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "Committed to holding up equality and justice you have worked hard to become a lawyer. Your first assignment: Defend the Guilty or Prosecute the Innocent?",
+                                    new class_TraitAnswer("Defend the Guilty",1),
+                                    new class_TraitAnswer("Prosecute the Innocent",),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,1, null, null, "Your job is to Defend the Guilty but what effort will you give?",
+                                    new class_TraitAnswer("100%",2),
+                                    new class_TraitAnswer("enough",3),
+                                    null,
+                                    null),
+
+            // Lawyer
+            new class_Future(0, "Lawyer", future_trait_array(tint, 3), "yes", str_arr("college"), "yes", null,
+                    new class_FutureQuestion[]{
+                            new class_FutureQuestion(0,0, null, null, "Committed to holding up equality and justice you have worked hard to become a lawyer. Your first assignment: Defend the Guilty or Prosecute the Innocent?",
+                                    new class_TraitAnswer("Defend the Guilty",1),
+                                    new class_TraitAnswer("Prosecute the Innocent",),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,1, null, null, "Your job is to Defend the Guilty but what effort will you give?",
+                                    new class_TraitAnswer("100%",2),
+                                    new class_TraitAnswer("enough",3),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,2, null, null, "Game face on! You are ready to free this fraudulent man of all his guilt.",
+                                    new class_TraitAnswer("Call Witness",4),
+                                    new class_TraitAnswer("Present Evidence",3),
+                                    new class_TraitAnswer("Challenge Evidence",3),
+                                    new class_TraitAnswer("Cross-examine",4)),
+
+                           // Success
+                            new class_FutureQuestion(0,3, null, null, "Success! You have created doubt in the jury. You have proven that the incriminating shoe could not have belonged to the defendant, as he could not fit it on to his large foot. And he tried, like really hard",
+                                    new class_TraitAnswer("Closing Argument",5),
+                                    new class_TraitAnswer("Call Witness",5),
+                                    null,
+                                    null),
+                            // Fail
+                            new class_FutureQuestion(0,4, null, null, "Failure. The witness was less than cooperative and eventually cursed your defendant.",
+                                    new class_TraitAnswer("Closing Arguments",6),
+                                    new class_TraitAnswer("Present Evidence",6),
+                                    null,
+                                    null),
+
+
+
+                            new class_FutureQuestion(0,101, null, null, "Your job is to Prosecute the Innocent but what effort will you give?",
+                                    new class_TraitAnswer("100%",102),
+                                    new class_TraitAnswer("enough",103),
+                                    null,
+                                    null),
+                            new class_FutureQuestion(0,2, null, null, "I love the smell of innocence rotting in jail, it smells like victory!",
+                                    new class_TraitAnswer("Opening Statement",103),
+                                    new class_TraitAnswer("Call Witness",104),
+                                    new class_TraitAnswer("Present Evidence",103),
+                                    new class_TraitAnswer("Cross-examine",104)),
+
+                            // Success
+                            new class_FutureQuestion(0,3, null, null, "Success! You have created doubt in the jury. You have proven that the incriminating shoe could not have belonged to the defendant, as he could not fit it on to his large foot. And he tried, like really hard",
+                                    new class_TraitAnswer("Closing Argument",5),
+                                    new class_TraitAnswer("Call Witness",5),
+                                    null,
+                                    null),
+                            // Fail
+                            new class_FutureQuestion(0,4, null, null, "Failure. The witness was less than cooperative and eventually cursed your defendant.",
+                                    new class_TraitAnswer("Closing Arguments",6),
+                                    new class_TraitAnswer("Present Evidence",6),
+                                    null,
+                                    null),
+
 
             // Family Vacation - Done
             new class_Future(0, "Family Vacation", null, "yes", null, "yes", null,
