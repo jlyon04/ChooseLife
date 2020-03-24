@@ -376,7 +376,18 @@ public class PlayGame extends AppCompatActivity {
                 local_array.add(Future.story[i]);
             }
         }
-        fut_que = local_array.get(0);
+        if (local_array.size() > 1)
+        {
+            for (int i=0; i<local_array.size(); i++){
+                fut_que = local_array.get(i);
+                if(local_array.get(i+1).getRare() > local_array.get(i).getRare())
+                    fut_que = local_array.get(i+1);
+                if(i == local_array.size() -1)
+                    break;
+            }
+        }
+        else
+            fut_que = local_array.get(0);
         return fut_que;
     }
 
