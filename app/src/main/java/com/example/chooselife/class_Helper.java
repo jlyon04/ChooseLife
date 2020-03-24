@@ -400,7 +400,7 @@ public class class_Helper {
                     }),
 
             // Lawyer
-            new class_Future(0, "Lawyer", future_trait_array(tint, 3), "yes", str_arr("college"), "yes", null,
+            new class_Future(0, "Lawyer", future_trait_array(tint, 3), null, str_arr("college"), null, null,
                     new class_FutureQuestion[]{
                             new class_FutureQuestion(0, "Committed to holding up equality and justice you have worked hard to become a lawyer. Your first assignment: Defend the Guilty or Prosecute the Innocent?",
                                     new class_TraitAnswer("Defend the Guilty", 1),
