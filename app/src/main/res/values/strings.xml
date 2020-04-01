@@ -11,4 +11,10 @@
         Bizarre\n\n
         Athleticism\n\n
     </string>
+    <string name="intro">
+        Welcome to life where your answers will determine your outcome. Answer the
+        multiple choice questions to avoid death and earn glory. In between each question there is a
+        small chance for an event, many times this will mean your death but in very rare circumstance
+        it may launch a secret event. Good luck and good life.
+    </string>
 </resources>

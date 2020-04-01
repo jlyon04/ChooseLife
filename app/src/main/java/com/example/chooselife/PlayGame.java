@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
@@ -18,6 +19,7 @@ import java.util.concurrent.Future;
 public class PlayGame extends AppCompatActivity {
     int stage_count = 1;
     class_Helper Helper = new class_Helper();
+    class_Stories Stories = new class_Stories();
     class_Trait Trait = new class_Trait();
     class_GameStats Stats = new class_GameStats(Trait.new_array());
     class_Future Future = new class_Future();
@@ -38,7 +40,7 @@ public class PlayGame extends AppCompatActivity {
 
         //Initial Readme
         Intent starting_readme = new Intent(this, ReadMe.class);
-        starting_readme.putExtra("Readme", Helper.get_ReadMe(0));
+        starting_readme.putExtra("Readme", getString(R.string.intro));
         startActivityForResult(starting_readme, INTRO_README);
     }
 
@@ -297,7 +299,7 @@ public class PlayGame extends AppCompatActivity {
     public void setFuture()
     {
         Random rand = new Random();
-        class_Future[] future_array = Helper.futureArray;
+        class_Future[] future_array = Stories.get_futureArray();
         ArrayList<class_Future> local_array = new ArrayList<>();
         int rare = rand.nextInt(101);
 

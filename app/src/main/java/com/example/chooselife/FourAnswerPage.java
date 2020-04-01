@@ -3,6 +3,7 @@ package com.example.chooselife;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,10 +14,6 @@ public class FourAnswerPage extends AppCompatActivity {
     Button aButton, bButton, cButton, dButton;
     TextView questionText;
     Intent returnIntent = new Intent();
-    //TODO:
-    //class_TraitQuestion cur_que = new class_TraitQuestion();
-    //class_FutureQuestion fut_que = new class_FutureQuestion();
-    //class_Helper Helper = new class_Helper();
     int stage = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +32,19 @@ public class FourAnswerPage extends AppCompatActivity {
 
         //Set texts for Questions and Answers
         aButton.setText(info[1]);
+        aButton.setBackgroundColor(Color.parseColor("Black"));
+        aButton.setTextColor(Color.parseColor("green"));
+        //aButton.setTextSize();
         bButton.setText(info[2]);
+        bButton.setBackgroundColor(Color.parseColor("Black"));
+        bButton.setTextColor(Color.parseColor("green"));
         cButton.setText(info[3]);
+        cButton.setBackgroundColor(Color.parseColor("Black"));
+        cButton.setTextColor(Color.parseColor("green"));
         dButton.setText(info[4]);
+        dButton.setBackgroundColor(Color.parseColor("Black"));
+        dButton.setTextColor(Color.parseColor("green"));
+        questionText.setTextColor(Color.parseColor("Green"));
         questionText.setText(info[0]);
 
     }
